@@ -1,0 +1,9 @@
+---> criar migration
+Add-Migration PrimeiraMigracao -Project Infrastructure -StartupProject FiapCloudGamesApi
+
+---> criar .sql da migration
+Script-Migration -Project Infrastructure -StartupProject FiapCloudGamesApi
+
+---> atualizar o banco de dados
+Executar a migration 
+Update-Database -StartupProject FiapCloudGamesApi Infrastructure -Connection "Server=(localdb)\\MSSQLLocalDB;Database=fiapcloudgames;User Id=fiapuser;Password=SenhaForte123!;Encrypt=True;TrustServerCertificate=True"
