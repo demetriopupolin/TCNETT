@@ -14,5 +14,10 @@ namespace Infrastructure.Repository
             _context.AddRange(jogos);
             _context.SaveChanges();
         }
+
+        public bool JogoTemPedidos(int jogoId)
+        {
+            return _context.Set<Pedido>().Any(p => p.JogoId == jogoId);
+        }
     }
 }

@@ -19,5 +19,10 @@ namespace Infrastructure.Repository
         {
             return _context.Set<Promocao>().FirstOrDefault(p => p.Nome == nome);
         }
+
+        public bool PromocaoTemPedidos(int promocaoId)
+        {
+            return _context.Set<Pedido>().Any(p => p.PromocaoId == promocaoId);
+        }
     }
 }

@@ -15,17 +15,18 @@ namespace Infrastructure.Repository
             _context.AddRange(pedidos);
             _context.SaveChanges();
         }
+          
 
-        public IEnumerable<Pedido> ObterPedidosPorEmailUsuario(string email)
+
+        public IEnumerable<Pedido> ObterPedidosPorUsuario(int usuarioId)
         {
-            var usuario = _usuarioRepository.ObterPorEmail(email);// pega usuário pelo email
-            if (usuario == null)
-                return Enumerable.Empty<Pedido>(); // retorna lista vazia se usuário não existe
-
-            // retorna todos os pedidos com o UsuarioId do usuário encontrado
+           
+           
+            // retorna todos os pedidos com o UsuarioId passado
             return _context.Set<Pedido>()
-                           .Where(p => p.UsuarioId == usuario.Id)
+                           .Where(p => p.UsuarioId == usuarioId)
                            .ToList();
         }
+
     }
 }

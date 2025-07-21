@@ -14,9 +14,13 @@ namespace Infrastructure.Repository
             _context.SaveChanges();
         }
 
-        public Usuario? ObterPorEmail(string email)
+        public Usuario ObterPorEmail(string email)
+           => _dbSet.FirstOrDefault(entity => entity.Email == email);
+
+        public bool UsuarioTemPedidos(int usuarioId)
         {
-            return _context.Set<Usuario>().FirstOrDefault(u => u.Email == email);
+            return _context.Set<Pedido>().Any(p => p.UsuarioId == usuarioId);
         }
+
     }
 }
