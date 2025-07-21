@@ -3,6 +3,7 @@ using Core.Input;
 using Core.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FiapCloudGamesApi.Controllers
 {
@@ -30,9 +31,12 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                var pedidosDto = new List<PedidoDto>();
-                var pedidos = _pedidoRepository.ObterTodos();
+                var pedidos = _pedidoRepository.ObterTodos()
+                     .OrderBy(p => p.Id)
+                     .ToList();
 
+                var pedidosDto = new List<PedidoDto>();
+                
                 foreach (var pedido in pedidos)
                 {
                     pedidosDto.Add(new PedidoDto()
@@ -81,6 +85,41 @@ namespace FiapCloudGamesApi.Controllers
                 return BadRequest(new
                 {
                     Message = "Erro ao obter o pedido.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+
+
+        [Authorize]
+        [HttpGet("pedidos-do-usuario")]
+        public IActionResult GetPedidosPorUsuario()
+        {
+            try
+            {
+                // pega o e-mail do usuário logado
+                var usuarioEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+
+                var pedidos = _pedidoRepository.ObterPedidosPorEmailUsuario(usuarioEmail);
+
+                var pedidosDto = pedidos.Select(p => new PedidoDto()
+                {
+                   Id = p.Id,
+                  DataCriacao = p.DataCriacao,
+                 UsuarioId = p.UsuarioId,
+                JogoId = p.JogoId,
+                PromocaoId = p.PromocaoId
+               }).ToList();
+
+                return Ok(pedidosDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao obter pedidos do usuário.",
                     Error = e.Message,
                     Inner = e.InnerException?.Message
                 });

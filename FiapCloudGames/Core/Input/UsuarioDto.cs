@@ -16,8 +16,8 @@ namespace Core.Input
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-       // public string Nivel { get; set; }
-
+        public char Nivel { get; set; }
+        public virtual ICollection<PedidoDto> Pedidos { get; set; } = new List<PedidoDto>();
 
     }
 }

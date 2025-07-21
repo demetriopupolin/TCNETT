@@ -1,6 +1,7 @@
 ﻿using Core.Entity;
 using Core.Input;
 using Core.Repository;
+using Infrastructure.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,8 +27,35 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                var promocoes = _promocaoRepository.ObterTodos();
-                return Ok(promocoes);
+
+                var promocoes = _promocaoRepository.ObterTodos()
+                    .OrderBy(p => p.Id)
+                    .ToList();
+
+                var promocoesDto = new List<PromocaoDto>();
+
+                foreach (var promocao in promocoes)
+                {
+                    promocoesDto.Add(new PromocaoDto()
+                    {
+                        Id = promocao.Id,
+                        DataCriacao = promocao.DataCriacao,
+                        Nome = promocao.Nome,
+                        Desconto = promocao.Desconto,
+                        DataValidade = promocao.DataValidade,
+                        Pedidos = promocao.Pedidos.Select(pedido => new PedidoDto()
+                        {
+                            Id = pedido.Id,
+                            DataCriacao = pedido.DataCriacao,
+                            UsuarioId = pedido.UsuarioId,
+                            JogoId = pedido.JogoId,
+                            PromocaoId = pedido.PromocaoId
+                        }).ToList()
+                    });
+                }
+
+                return Ok(promocoesDto);
+
             }
             catch (Exception e)
             {

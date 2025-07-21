@@ -26,10 +26,12 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
+                var jogos = _jogoRepository.ObterTodos()
+                    .OrderBy(p => p.Id)
+                    .ToList(); ;
 
                 var jogosDto = new List<JogoDto>();
-                var jogos = _jogoRepository.ObterTodos();
-
+               
                 foreach (var jogo in jogos)
                 {
                         jogosDto.Add(new JogoDto()
@@ -75,6 +77,7 @@ namespace FiapCloudGamesApi.Controllers
             try
             {
                 var jogo = _jogoRepository.ObterPorId(id);
+
                 if (jogo == null)
                     return NotFound("Jogo não encontrado.");
 

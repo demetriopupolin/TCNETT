@@ -16,5 +16,6 @@ namespace Core.Input
         public string Nome { get; set; }
         public int Desconto { get; set; }
         public DateTime DataValidade { get; set; }
+        public virtual ICollection<PedidoDto> Pedidos { get; set; } = new List<PedidoDto>();
     }
 }

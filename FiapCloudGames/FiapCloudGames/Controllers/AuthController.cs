@@ -54,6 +54,7 @@ namespace FiapCloudGamesApi.Controllers
             {
             new Claim(JwtRegisteredClaimNames.Sub, email),
             new Claim(ClaimTypes.Role, role),
+            new Claim(ClaimTypes.Email, email),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
