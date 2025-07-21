@@ -1,6 +1,7 @@
 ﻿using Core.Entity;
 using Core.Input;
 using Core.Repository;
+using Infrastructure.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -158,6 +159,7 @@ namespace FiapCloudGamesApi.Controllers
             try
             {
                 var jogo = _jogoRepository.ObterPorId(input.Id);
+                
                 if (jogo == null)
                     return NotFound("Jogo não encontrado.");
 
@@ -189,6 +191,13 @@ namespace FiapCloudGamesApi.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
+
+            if (_jogoRepository.ObterPorId(id) == null)
+                return NotFound("Jogo inexistente.");
+
+            if (_jogoRepository.JogoTemPedidos(id))
+                return BadRequest("Jogo possui pedidos. Exclusão não permitida.");
+
             try
             {
                 _jogoRepository.Deletar(id);

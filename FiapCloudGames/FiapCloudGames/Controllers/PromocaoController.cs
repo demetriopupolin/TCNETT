@@ -142,6 +142,7 @@ namespace FiapCloudGamesApi.Controllers
             try
             {
                 var promocao = _promocaoRepository.ObterPorId(input.Id);
+
                 if (promocao == null)
                     return NotFound("Promoção não encontrada.");
 
@@ -172,6 +173,13 @@ namespace FiapCloudGamesApi.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
+
+            if (_promocaoRepository.ObterPorId(id) == null)
+                return NotFound("Promoção inexistente.");
+
+            if (_promocaoRepository.PromocaoTemPedidos(id))
+                return BadRequest("Promoção possui pedidos. Exclusão não permitida.");
+            
             try
             {
                 _promocaoRepository.Deletar(id);

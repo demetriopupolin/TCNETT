@@ -95,6 +95,8 @@ namespace FiapCloudGamesApi.Controllers
             }
         }
 
+
+
         /// <summary>
         /// Cadastrar Usuário
         /// </summary>
@@ -102,6 +104,24 @@ namespace FiapCloudGamesApi.Controllers
         /// <returns>Usuário cadastrado com sucesso</returns>
         [HttpPost]
         public IActionResult Post([FromBody] UsuarioInput input)
+        {
+            return CadastrarUsuario(input, 'U'); // 'U' para usuário comum
+        }
+
+        /// <summary>
+        /// Cadastrar Usuário Admin
+        /// </summary>
+        /// <param name="input">Objeto com os dados do Usuário Admin</param>
+        /// <returns>Usuário Admin cadastrado com sucesso</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpPost("cadastrar-admin")]
+        public IActionResult CadastrarAdmin([FromBody] UsuarioInput input)
+        {
+            return CadastrarUsuario(input, 'A'); // 'A' para administrador
+        }
+
+        // Cadastro Generico de Usuario
+        private IActionResult CadastrarUsuario(UsuarioInput input, char nivel)
         {
             try
             {
@@ -112,7 +132,7 @@ namespace FiapCloudGamesApi.Controllers
                 }
                 catch (ArgumentException ex)
                 {
-                    return BadRequest(ex.Message); 
+                    return BadRequest(ex.Message);
                 }
 
                 Senha senha;
@@ -125,21 +145,25 @@ namespace FiapCloudGamesApi.Controllers
                     return BadRequest(ex.Message);
                 }
 
+                if (_usuarioRepository.ObterPorEmail(input.Email) != null)
+                {
+                    return BadRequest($"Email {input.Email} já existe.");
+                }
+
                 var usuario = new Usuario()
                 {
                     Nome = input.Nome,
                     Email = input.Email,
                     Senha = input.Senha,
-                    // Nivel = input.Nivel
+                    Nivel = nivel
                 };
-                
+
                 _usuarioRepository.Cadastrar(usuario);
-               
+
                 return Ok(new { Message = "Usuario cadastrado." });
             }
             catch (Exception e)
             {
-
                 return BadRequest(new
                 {
                     Message = "Erro ao inserir usuário.",
@@ -148,6 +172,7 @@ namespace FiapCloudGamesApi.Controllers
                 });
             }
         }
+
 
         /// <summary>
         /// Alterar Usuário
@@ -210,6 +235,13 @@ namespace FiapCloudGamesApi.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult Put([FromRoute] int id)
         {
+
+            if (_usuarioRepository.ObterPorId(id) == null)
+                return NotFound("Usuário inexistente.");
+
+            if (_usuarioRepository.UsuarioTemPedidos(id))
+                return BadRequest("Usuário possui pedidos. Exclusão não permitida.");
+            
             try
             {
                 _usuarioRepository.Deletar(id);

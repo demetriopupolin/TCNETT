@@ -15,6 +15,11 @@ namespace FiapCloudGamesApi.Controllers
 
         private readonly IPromocaoRepository _promocaoRepository;
 
+        private readonly IUsuarioRepository _usuarioRepository;
+
+        private readonly IJogoRepository _jogoRepository;
+
+
         public PedidoController(IPedidoRepository pedidoRepository, IPromocaoRepository promocaoRepository)
         {
             _pedidoRepository = pedidoRepository;
@@ -92,17 +97,21 @@ namespace FiapCloudGamesApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Busca pedidos de um usuário autenticado.
+        /// </summary>
+        /// <param name="id">ID da Pedido.</param>
+        /// <returns>Pedido encontrado.</returns>
         [Authorize]
         [HttpGet("pedidos-do-usuario")]
         public IActionResult GetPedidosPorUsuario()
         {
             try
             {
-                // pega o e-mail do usuário logado
-                var usuarioEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+                
+                int usuarioid = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 
-                var pedidos = _pedidoRepository.ObterPedidosPorEmailUsuario(usuarioEmail);
+                var pedidos = _pedidoRepository.ObterPedidosPorUsuario(usuarioid);
 
                 var pedidosDto = pedidos.Select(p => new PedidoDto()
                 {
@@ -127,18 +136,14 @@ namespace FiapCloudGamesApi.Controllers
         }
 
 
-        /// <summary>
-        /// Cadastrar Pedido
-        /// </summary>
-        /// <param name="input">Objeto com os dados do Pedido</param>
-        /// <returns>Pedido cadastrado com sucesso</returns>
-        [Authorize]
-        [HttpPost]
-        public IActionResult Post([FromBody] PedidoInput input)
+
+
+
+
+        private IActionResult CadastrarPedido(PedidoInput input, int usuarioId)
         {
             try
             {
-
                 if (input.PromocaoId <= 0)
                     input.PromocaoId = null;
 
@@ -148,16 +153,22 @@ namespace FiapCloudGamesApi.Controllers
 
                     if (promocao == null)
                         return BadRequest($"Promoção não encontrada");
-                    
-                    if (!promocao.EhValida()) 
+
+                    if (!promocao.EhValida())
                         return BadRequest($"Promoção válida para pedidos até {promocao.DataValidade:dd/MM/yyyy HH:mm:ss}");
-
-
                 }
+
+                var usuario = _usuarioRepository.ObterPorId(usuarioId);
+                if (usuario == null)
+                    return BadRequest($"Usuario não encontrado");
+
+                var jogo = _jogoRepository.ObterPorId(input.JogoId);
+                if (jogo == null)
+                    return BadRequest($"Jogo não encontrado");
 
                 var pedido = new Pedido
                 {
-                    UsuarioId = input.UsuarioId,
+                    UsuarioId = usuarioId,
                     JogoId = input.JogoId,
                     PromocaoId = input.PromocaoId
                 };
@@ -177,6 +188,49 @@ namespace FiapCloudGamesApi.Controllers
             }
         }
 
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Cadastrar Pedido do usuário autenticado
+        /// </summary>
+        /// <param name="input">Objeto com os dados do Pedido</param>
+        /// <returns>Pedido cadastrado com sucesso</returns>
+        [Authorize]
+        [HttpPost]
+        public IActionResult Post([FromBody] PedidoInput input)
+        {
+            var usuarioIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            if (!int.TryParse(usuarioIdStr, out var usuarioId) || usuarioId <= 0)
+                return BadRequest("Usuário inválido.");
+
+            return CadastrarPedido(input, usuarioId);
+        }
+
+        /// <summary>
+        /// Cadastrar Pedido para um usuário específico
+        /// </summary>
+        /// <param name="input">Objeto com os dados do Pedido</param>
+        /// <returns>Pedido cadastrado com sucesso</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpPost("cadastrar-por-usuario")]
+        public IActionResult PostPorUsuario([FromBody] PedidoInput input)
+        {
+            if (input.UsuarioId <= 0)
+                return BadRequest("Id de usuário inválido.");
+
+            return CadastrarPedido(input, input.UsuarioId);
+        }
+
+
+
+
         /// <summary>
         /// Alterar Pedido
         /// </summary>
@@ -193,7 +247,12 @@ namespace FiapCloudGamesApi.Controllers
                 
                 if (pedido == null)
                     return NotFound("Pedido não encontrado.");
-              
+
+                var usuario = _usuarioRepository.ObterPorId(input.UsuarioId);
+
+                if (usuario == null)
+                    return NotFound("Usuário não encontrado.");
+
                 // valida promocao na data de criacao
                 if (input.PromocaoId != null)
                 {

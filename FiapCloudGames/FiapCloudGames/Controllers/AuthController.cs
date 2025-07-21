@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Entity;
+using Core.Input;   
+using Core.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Core.Entity;
-using Core.Input;   
-using Core.Repository;
 
 namespace FiapCloudGamesApi.Controllers
 {
@@ -32,10 +33,10 @@ namespace FiapCloudGamesApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-          
+
             // busca usuario pelo email
             var usuario = _usuarioRepository.ObterPorEmail(loginDto.Email);
-
+                        
             if (usuario == null)
                 return Unauthorized($"Usuário {loginDto.Email} não encontrado.");
 
@@ -43,18 +44,18 @@ namespace FiapCloudGamesApi.Controllers
                 return Unauthorized("Senha incorreta.");
 
             var role = usuario.Nivel == 'A' ? "Admin" : "User";
-            var token = GenerateToken(usuario.Email, role);
+            var token = GenerateToken(usuario.Id, role);
 
             return Ok(new { token });
         }
 
-        private string GenerateToken(string email, string role)
+        private string GenerateToken(int id, string role)
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, email),
+            new Claim(JwtRegisteredClaimNames.Sub, id.ToString()),
             new Claim(ClaimTypes.Role, role),
-            new Claim(ClaimTypes.Email, email),
+            new Claim(ClaimTypes.NameIdentifier, id.ToString()),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
