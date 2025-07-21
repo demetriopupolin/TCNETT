@@ -6,6 +6,9 @@ namespace Core.Repository
     {
         void CadastrarEmMassa(IEnumerable<Usuario> usuarios);
 
-        Usuario ObterPorEmail(string email);
+        Usuario ObterPorEmail (string email);
+
+        public bool UsuarioTemPedidos(int usuarioId);
+
     }
 }

@@ -8,5 +8,8 @@ namespace Core.Repository
         void CadastrarEmMassa(IEnumerable<Promocao> promocoes );
 
         Promocao ObterPorNome(string nome);
+
+        public bool PromocaoTemPedidos(int promocaoId);
+
     }
 }

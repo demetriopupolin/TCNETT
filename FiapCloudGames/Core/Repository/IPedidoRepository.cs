@@ -6,6 +6,7 @@ namespace Core.Repository
     {
         void CadastrarEmMassa(IEnumerable<Pedido> pedidos);
 
-        public IEnumerable<Pedido> ObterPedidosPorEmailUsuario(string email);
+        public IEnumerable<Pedido> ObterPedidosPorUsuario(int id);
+        
     }
 }
