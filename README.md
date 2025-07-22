@@ -5,7 +5,7 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 # 👤 Níveis de Acesso e Funcionalidades
 
-### 🧑 Usuário Comum
+### 🧑 Usuário
 - ✅ Pode criar uma conta e fazer login.
 - ✅ Pode visualizar os jogos disponíveis.
 - ✅ Pode fazer pedidos com promoção valida ou sem promoção.
@@ -32,68 +32,75 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 ### Usuário
 - ID_Usuario
+- Data de Criação
 - Nome
 - Email
 - Senha
-- Data de Criação
 
 ### Jogo
 - ID_Jogo
+- Data de Criação
 - Nome
 - Ano de Lançamento
 - Preço Base
-- Data de Criação
-
+  
 ### Pedido
 - ID_Pedido
+- Data de Criação
 - ID_Usuario
 - ID_Jogo
 - ID_Promocao
-- Data de Criação
+- Valor do Pedido
 
 ### Promoção
 - ID_Promocao
-- Nome
-- Percentual
-- Data de Validade
 - Data de Criação
+- Nome
+- Percentual de Desconto
+- Data de Validade
 
 ## 📜 Regras Gerais do Sistema
 
-Este sistema de loja de games segue as seguintes regras e restrições de funcionamento:
+O sistema segue as seguintes regras e restrições de funcionamento:
+
+1. 🎮 **Cadastro de Usuario**
+   - Todo usuario deve possuir Nome, E-mail e Senha de Acesso.
+   - Não deverá conter usuários com e-mail repetido.   
 
 1. 🎮 **Cadastro de Jogos**
-   - Todo jogo deve possuir nome, descrição, preço, desenvolvedor e data de lançamento.
-   - Jogos não podem ser cadastrados com preços negativos ou datas futuras.
+   - Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.
+   - Jogos não podem ser cadastrados com preços negativos ou zerados.
+   - O ano de lançamento do jogo não poderá ser superior a sua data de criação.
 
 2. 🛒 **Pedidos**
-   - Um pedido só pode ser realizado por usuários autenticados.
-   - Cada pedido deve conter pelo menos um jogo.
-   - O valor total do pedido é calculado com base nos preços dos jogos aplicando (se houver) uma promoção válida.
+   - Cada pedido está vinculado a um único jogo.
+   - Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.
+   - Pode haver uma promoção (cupom de desconto) associada ao pedido, desde que sua data de validade atenda a data de criação do pedido.
+   - O valor total do pedido é calculado com base no preço do jogo, aplicando o desconto da promoção, se houver.
 
 3. 💸 **Promoções**
-   - Apenas administradores podem criar e aplicar promoções.
-   - Promoções têm data de início e término.
-   - Promoções expiradas não são aplicadas automaticamente.
+   - A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.
+   - O percentual de desconto deverá ser em numéro inteiro de 10% a 90% de desconto.
+   - A promoção deverá ter um nome único entre todas as promoções existentes.
+   - A data de validade da promoção deverá ser ao menos a data de inclusão da promoção.
 
 4. 👥 **Controle de Acesso**
-   - Usuários comuns podem visualizar jogos e seus próprios pedidos.
-   - Administradores têm acesso completo ao sistema (cadastro de jogos, promoções, usuários, pedidos).
+   - Usuários comuns podem criar usuário, fazer login, consultar jogos, realizar pedidos e visualizar seus próprios pedidos sendo seu nivel como "U"-Usuário.
+   - Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador. 
 
-5. 🔐 **Segurança**
-   - As senhas dos usuários são armazenadas de forma segura (criptografadas).
-   - O sistema impede acesso a rotas administrativas por usuários não autorizados.
+5. 🔐 **Segurança**   
+   - O e-mail do usuário informado deverá ser bem formado: usuario@domino.xxx 
+   - A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.
+   - O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.   
 
-6. 🗑️ **Exclusões**
-   - Ao excluir um jogo, ele não é removido de pedidos anteriores, apenas fica indisponível para novos pedidos.
-   - Promoções não podem ser excluídas se estiverem associadas a pedidos já realizados.
-
-
-
+7. 🗑️ **Exclusões**
+   - Toda solicitação de exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:
+   - Não é permitido excluir um jogo que esteja vinculado a algum pedido.
+   - Não é permitido excluir uma promoção que tenha sido aplicada em algum pedido.
+   - Não é permitido excluir um usuário que esteja associado a um pedido já registrado.
 
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET
 - Instituição: FIAP
 - Aluno: Demetrio Pupolin
 - RM: 365898
-
