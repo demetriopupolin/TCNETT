@@ -30,77 +30,93 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 ## 🗃️ Estrutura de Dados
 
-### Usuário
-- ID_Usuario
-- Data de Criação
-- Nome
-- Email
-- Senha
+Usuario
+| Campo         | Tipo     | Chave | Not Null | Observação          |
+| ------------- | -------- | ----- | -------- | ------------------- |
+| ID_Usuario   | int      | 🔑 PK | ✅        | Identificador único |
+| Data_Criacao | datetime |       | ✅        | Data do cadastro    |
+| Nome          | varchar  |       | ✅        | Nome do usuário     |
+| Email         | varchar  | 🔷 UK | ✅        | Deve ser único      |
+| Senha         | varchar  |       | ✅        | Criptografada       |
 
-### Jogo
-- ID_Jogo
-- Data de Criação
-- Nome
-- Ano de Lançamento
-- Preço Base
+Jogo
+| Campo           | Tipo     | Chave | Not Null | Observação        |
+| --------------- | -------- | ----- | -------- | ----------------- |
+| ID_Jogo        | int      | 🔑 PK | ✅        | Identificador     |
+| Data_Criacao   | datetime |       | ✅        | Cadastro do jogo  |
+| Nome            | varchar  |       | ✅        | Nome do jogo      |
+| Ano_Lancamento | int      |       | ✅        | Ano de lançamento |
+| Preco_Base     | decimal  |       | ✅        | Preço original    |
+
   
-### Pedido
-- ID_Pedido
-- Data de Criação
-- ID_Usuario
-- ID_Jogo
-- ID_Promocao
-- Valor do Pedido
+Pedido
+| Campo         | Tipo     | Chave | Not Null | Observação                            |
+| ------------- | -------- | ----- | -------- | ------------------------------------- |
+| ID_Pedido    | int      | 🔑 PK | ✅        | Identificador do pedido               |
+| Data_Criacao | datetime |       | ✅        | Quando o pedido foi criado            |
+| ID_Usuario   | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
+| ID_Jogo      | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
+| ID_Promocao  | int      | 🔗 FK | ❌        | Pode ou não estar presente            |
+| Valor_Total  | decimal  |       | ✅        | Calculado com base no jogo e promoção |
 
-### Promoção
-- ID_Promocao
-- Data de Criação
-- Nome
-- Percentual de Desconto
-- Data de Validade
+
+Promoção
+| Campo                | Tipo     | Chave | Not Null | Observação                |
+| -------------------- | -------- | ----- | -------- | ------------------------- |
+| ID\_Promocao         | int      | 🔑 PK | ✅        | Identificador da promoção |
+| Data\_Criacao        | datetime |       | ✅        | Cadastro da promoção      |
+| Nome                 | varchar  | 🔷 UK | ✅        | Deve ser único            |
+| Percentual\_Desconto | decimal  |       | ✅        | Valor em porcentagem      |
+| Data\_Validade       | datetime |       | ✅        | Até quando é válida       |
+
+🔑 = Primary Key (PK)
+🔗 = Foreign Key (FK)
+🔷 = Unique Key (UK)
+⚠️	= Not Null
 
 ## 📜 Regras Gerais do Sistema
 
 O sistema segue as seguintes regras e restrições de funcionamento:
 
-1. 🎮 **Cadastro de Usuario**
-   - Todo usuario deve possuir Nome, E-mail e Senha de Acesso.
-   - Não deverá conter usuários com e-mail repetido.   
+1. 🎮 **Cadastro de Usuário**
+   ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.
+   ✅ Não deverá conter usuários com e-mail repetido.   
 
 1. 🎮 **Cadastro de Jogos**
-   - Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.
-   - Jogos não podem ser cadastrados com preços negativos ou zerados.
-   - O ano de lançamento do jogo não poderá ser superior a sua data de criação.
+   ✅ Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.
+   ✅ Jogos não podem ser cadastrados com preços negativos ou zerados.
+   ✅ O ano de lançamento do jogo não poderá ser superior a sua data de criação.
 
 2. 🛒 **Pedidos**
-   - Cada pedido está vinculado a um único jogo.
-   - Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.
-   - Pode haver uma promoção (cupom de desconto) associada ao pedido, desde que sua data de validade atenda a data de criação do pedido.
-   - O valor total do pedido é calculado com base no preço do jogo, aplicando o desconto da promoção, se houver.
+   ✅ Cada pedido está vinculado a um único jogo.
+   ✅ Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.
+   ✅ Pode haver uma promoção (cupom de desconto) associada ao pedido, desde que sua data de validade atenda a data de criação do pedido.
+   ✅ O valor total do pedido é calculado com base no preço do jogo, aplicando o desconto da promoção, se houver.
 
 3. 💸 **Promoções**
-   - A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.
-   - O percentual de desconto deverá ser em numéro inteiro de 10% a 90% de desconto.
-   - A promoção deverá ter um nome único entre todas as promoções existentes.
-   - A data de validade da promoção deverá ser ao menos a data de inclusão da promoção.
+   ✅ A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.
+   ✅ O percentual de desconto deverá ser em numéro inteiro de 10% a 90% de desconto.
+   ✅ A promoção deverá ter um nome único entre todas as promoções existentes.
+   ✅ A data de validade da promoção deverá ser ao menos a data de inclusão da promoção.
 
 4. 👥 **Controle de Acesso**
-   - Usuários comuns podem criar usuário, fazer login, consultar jogos, realizar pedidos e visualizar seus próprios pedidos sendo seu nivel como "U"-Usuário.
-   - Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador. 
+   ✅ Usuários comuns podem criar usuário, fazer login, consultar jogos, realizar pedidos e visualizar seus próprios pedidos sendo seu nivel como "U"-Usuário.
+   ✅ Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador. 
 
 5. 🔐 **Segurança**   
-   - O e-mail do usuário informado deverá ser bem formado: usuario@domino.xxx 
-   - A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.
-   - O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.   
+   ✅ O e-mail do usuário informado deverá ser bem formado: usuario@domino.xxx 
+   ✅ A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.
+   ✅ O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.   
 
 7. 🗑️ **Exclusões**
-   - Toda solicitação de exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:
-   - Não é permitido excluir um jogo que esteja vinculado a algum pedido.
-   - Não é permitido excluir uma promoção que tenha sido aplicada em algum pedido.
-   - Não é permitido excluir um usuário que esteja associado a um pedido já registrado.
+   ✅ Toda solicitação de exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:
+   ✅ Não é permitido excluir um jogo que esteja vinculado a algum pedido.
+   ✅ Não é permitido excluir uma promoção que tenha sido aplicada em algum pedido.
+   ✅ Não é permitido excluir um usuário que esteja associado a um pedido já registrado.
 
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET
 - Instituição: FIAP
 - Aluno: Demetrio Pupolin
+- E-mail: pupolin@gmail.com
 - RM: 365898
