@@ -40,10 +40,10 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 ## 🗃️ Estrutura de Dados
 
-Usuario
+Usuário
 | Campo         | Tipo     | Chave | Not Null | Observação          |
 | ------------- | -------- | ----- | -------- | ------------------- |
-| ID           | int      | 🔑 PK | ✅        | Identificador do Usuário |
+| ID           | int      | 🔑 PK | ✅        | Identificador do Usuário (auto incremento IDENTITY) |
 | Data_Criacao | datetime |       | ✅        | Data do cadastro    |
 | Nome          | varchar(100)  |       | ✅        | Nome do usuário     |
 | Email         | varchar(100)  | 🔷 UK | ✅        | Deve ser único      |
@@ -53,7 +53,7 @@ Usuario
 Jogo
 | Campo           | Tipo     | Chave | Not Null | Observação        |
 | --------------- | -------- | ----- | -------- | ----------------- |
-| ID              | int      | 🔑 PK | ✅        | Identificador do Jogo     |
+| ID              | int      | 🔑 PK | ✅        | Identificador do Jogo (auto incremento IDENTITY)    |
 | Data_Criacao   | datetime |       | ✅        | Cadastro do jogo  |
 | Nome            | varchar(100) |       | ✅        | Nome do jogo      |
 | Ano_Lancamento | int      |       | ✅        | Ano de lançamento |
@@ -63,7 +63,7 @@ Jogo
 Pedido
 | Campo         | Tipo     | Chave  | Not Null | Observação                            |
 | ------------- | -------- | -----  | -------- | ------------------------------------- |
-| ID_Pedido     | int      | 🔑 PK | ✅        | Identificador do Pedido               |
+| ID_Pedido     | int      | 🔑 PK | ✅        | Identificador do Pedido (auto incremento IDENTITY)             |
 | Data_Criacao  | datetime |        | ✅        | Quando o pedido foi criado            |
 | UsuarioID     | int      | 🔗 FK | ✅        | ID do usuário                         |
 | JogoID        | int      | 🔗 FK | ✅        | ID do jogo                          |
@@ -76,7 +76,7 @@ Pedido
 Promoção
 | Campo                | Tipo     | Chave | Not Null | Observação                |
 | -------------------- | -------- | ----- | -------- | ------------------------- |
-| ID                   | int      | 🔑 PK | ✅        | Identificador da Promoção |
+| ID                   | int      | 🔑 PK | ✅        | Identificador da Promoção (auto incremento IDENTITY) |
 | Data_Criacao         | datetime |       | ✅        | Cadastro da promoção      |
 | Nome                 | varchar(100)  | 🔷 UK | ✅        | Deve ser único            |
 | Desconto             | int  |       | ✅        | Valor em porcentagem      |
