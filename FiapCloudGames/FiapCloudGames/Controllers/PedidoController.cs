@@ -80,16 +80,29 @@ namespace FiapCloudGamesApi.Controllers
             try
             {
                 var pedido = _pedidoRepository.ObterPorId(id);
+
                 if (pedido == null)
                     return NotFound("Pedido não encontrado.");
 
-                return Ok(pedido);
+                var pedidoDto = new PedidoDto
+                {
+                    Id = pedido.Id,
+                    DataCriacao = pedido.DataCriacao,
+                    JogoId = pedido.JogoId,
+                    UsuarioId = pedido.UsuarioId,
+                    PromocaoId = pedido.PromocaoId,
+                    VlPedido = pedido.VlPedido,
+                    VlDesconto = pedido.VlDesconto,
+                    VlPago = pedido.VlPago
+                };
+
+                return Ok(pedidoDto);
             }
             catch (Exception e)
             {
                 return BadRequest(new
                 {
-                    Message = "Erro ao obter o pedido.",
+                    Message = "Erro ao obter o jogo.",
                     Error = e.Message,
                     Inner = e.InnerException?.Message
                 });
@@ -115,9 +128,9 @@ namespace FiapCloudGamesApi.Controllers
 
                 var pedidosDto = pedidos.Select(p => new PedidoDto()
                 {
-                   Id = p.Id,
-                  DataCriacao = p.DataCriacao,
-                 UsuarioId = p.UsuarioId,
+                Id = p.Id,
+                DataCriacao = p.DataCriacao,
+                UsuarioId = p.UsuarioId,
                 JogoId = p.JogoId,
                 PromocaoId = p.PromocaoId
                }).ToList();
@@ -144,6 +157,10 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
+
+                decimal desconto = 0 ;
+                decimal vldesconto = 0 ;
+                
                 if (input.PromocaoId <= 0)
                     input.PromocaoId = null;
 
@@ -156,6 +173,8 @@ namespace FiapCloudGamesApi.Controllers
 
                     if (!promocao.EhValida())
                         return BadRequest($"Promoção válida para pedidos até {promocao.DataValidade:dd/MM/yyyy HH:mm:ss}");
+
+                    desconto = (decimal)promocao.Desconto;
                 }
 
                 var usuario = _usuarioRepository.ObterPorId(usuarioId);
@@ -166,11 +185,17 @@ namespace FiapCloudGamesApi.Controllers
                 if (jogo == null)
                     return BadRequest($"Jogo não encontrado");
 
+                if (desconto > 0)
+                     vldesconto = Math.Round(jogo.PrecoBase * (desconto / 100m), 2);
+
                 var pedido = new Pedido
                 {
                     UsuarioId = usuarioId,
                     JogoId = input.JogoId,
-                    PromocaoId = input.PromocaoId
+                    PromocaoId = input.PromocaoId,
+                    VlPedido = jogo.PrecoBase,
+                    VlDesconto = vldesconto,
+                    VlPago = jogo.PrecoBase - vldesconto
                 };
 
                 _pedidoRepository.Cadastrar(pedido);
@@ -242,6 +267,9 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
+                decimal desconto = 0;
+                decimal vldesconto = 0;
+                
                 // busca e valida pedido
                 var pedido = _pedidoRepository.ObterPorId(input.Id);
                 
@@ -252,6 +280,12 @@ namespace FiapCloudGamesApi.Controllers
 
                 if (usuario == null)
                     return NotFound("Usuário não encontrado.");
+
+
+                var jogo = _jogoRepository.ObterPorId(input.JogoId);
+
+                if (jogo == null)
+                    return NotFound("Jogo não encontrado.");
 
                 // valida promocao na data de criacao
                 if (input.PromocaoId != null)
@@ -264,13 +298,22 @@ namespace FiapCloudGamesApi.Controllers
                                           $"Data criação: {pedido.DataCriacao:dd/MM/yyyy}, " +
                                           $"Data validade promoção: {promocao.DataValidade:dd/MM/yyyy}");
                     }
-                    
+
+                    desconto = (decimal)promocao.Desconto;
+
                 }
+
+
+                if (desconto > 0)
+                    vldesconto = Math.Round(jogo.PrecoBase * (desconto / 100m), 2);
 
                 // tudo ok
                 pedido.UsuarioId = input.UsuarioId;
                 pedido.JogoId = input.JogoId;
                 pedido.PromocaoId = input.PromocaoId;
+                pedido.VlPedido = jogo.PrecoBase;
+                pedido.VlDesconto = vldesconto;
+                pedido.VlPago = jogo.PrecoBase - vldesconto;
                 
                 _pedidoRepository.Alterar(pedido);
 
@@ -324,9 +367,9 @@ namespace FiapCloudGamesApi.Controllers
             {
                 var pedidos = new List<Pedido>()
                 {
-                    new Pedido() { UsuarioId = 1, JogoId = 2, PromocaoId = 3, },
-                    new Pedido() { UsuarioId = 2, JogoId = 3, PromocaoId = 1  },
-                    new Pedido() { UsuarioId = 3, JogoId = 1, PromocaoId = 2, }
+                    new Pedido() { UsuarioId = 1, JogoId = 2, PromocaoId = 3, VlPedido = 0, VlDesconto = 0 , VlPago = 0  },
+                    new Pedido() { UsuarioId = 2, JogoId = 3, PromocaoId = 1, VlPedido = 0, VlDesconto = 0 , VlPago = 0  },
+                    new Pedido() { UsuarioId = 3, JogoId = 1, PromocaoId = 2, VlPedido = 0, VlDesconto = 0 , VlPago = 0  }
                 };
 
                 _pedidoRepository.CadastrarEmMassa(pedidos);
