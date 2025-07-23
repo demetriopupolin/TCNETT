@@ -1,8 +1,8 @@
-# Fiap Cloud Games – Sistema de Gestão de Jogos On Line 🎮
+# 🎮 Fiap Cloud Games – Sistema de Gestão de Jogos On Line
 
  
 ## 📌 Descrição
-A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções.
+O Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções.
 
 ## 👤 Níveis de Acesso e Funcionalidades
 
