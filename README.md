@@ -40,7 +40,7 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 ## 🗃️ Estrutura de Dados
 
-Usuário
+📋 Tabela: Usuário
 | Campo         | Tipo     | Chave | Not Null | Observação          |
 | ------------- | -------- | ----- | -------- | ------------------- |
 | ID           | int      | 🔑 PK | ✅        | Identificador do Usuário (auto incremento IDENTITY) |
@@ -50,7 +50,7 @@ Usuário
 | Senha         | varchar(100)  |       | ✅        | Senha                |
 | Nivel         | char(1)  |       | ✅        | "A"-Administrador ou "U"-Usuário |
 
-Jogo
+📋 Tabela: Jogo
 | Campo           | Tipo     | Chave | Not Null | Observação        |
 | --------------- | -------- | ----- | -------- | ----------------- |
 | ID              | int      | 🔑 PK | ✅        | Identificador do Jogo (auto incremento IDENTITY)    |
@@ -59,8 +59,18 @@ Jogo
 | Ano_Lancamento | int      |       | ✅        | Ano de lançamento |
 | Preco_Base     | decimal  |       | ✅        | Preço original    |
 
+
+📋 Tabela Promoção
+| Campo                | Tipo     | Chave | Not Null | Observação                |
+| -------------------- | -------- | ----- | -------- | ------------------------- |
+| ID                   | int      | 🔑 PK | ✅        | Identificador da Promoção (auto incremento IDENTITY) |
+| Data_Criacao         | datetime |       | ✅        | Cadastro da promoção      |
+| Nome                 | varchar(100)  | 🔷 UK | ✅        | Deve ser único            |
+| Desconto             | int  |       | ✅        | Valor em porcentagem      |
+| Data_Validade        | datetime |       | ✅        | Até quando é válida       |
+
   
-Pedido
+📋 Tabela Pedido
 | Campo         | Tipo     | Chave  | Not Null | Observação                            |
 | ------------- | -------- | -----  | -------- | ------------------------------------- |
 | ID_Pedido     | int      | 🔑 PK | ✅        | Identificador do Pedido (auto incremento IDENTITY)             |
@@ -73,15 +83,6 @@ Pedido
 | VlPago        | decimal(10,2)  |       | ✅        | Valor Pago                            |
 
 
-Promoção
-| Campo                | Tipo     | Chave | Not Null | Observação                |
-| -------------------- | -------- | ----- | -------- | ------------------------- |
-| ID                   | int      | 🔑 PK | ✅        | Identificador da Promoção (auto incremento IDENTITY) |
-| Data_Criacao         | datetime |       | ✅        | Cadastro da promoção      |
-| Nome                 | varchar(100)  | 🔷 UK | ✅        | Deve ser único            |
-| Desconto             | int  |       | ✅        | Valor em porcentagem      |
-| Data_Validade        | datetime |       | ✅        | Até quando é válida       |
-
 🔑 = Primary Key (PK)
 🔗 = Foreign Key (FK)
 🔷 = Unique Key (UK)
@@ -90,7 +91,7 @@ Promoção
 
 O sistema segue as seguintes regras e restrições de funcionamento:
 
-1. 🎮 **Cadastro de Usuário**  
+1. 🧑‍💻  **Cadastro de Usuário**  
    ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.  
    ✅ Não deverá conter usuários com e-mail repetido.  
    ✅ A senha deverá conter no mínimo de 8 caracteres com números, letras e caracteres especiais.
