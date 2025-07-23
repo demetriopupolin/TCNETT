@@ -16,7 +16,7 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 ### 👨‍💼 Administrador
 
 ✅ Cadastrar, Consultar, Editar e Excluir (usuários, jogos, promoções e pedidos).  
-✅ Inclusive cadastrar novos usuários com nivel A-Administrador.  
+✅ Cadastrar novos usuários com nivel A-Administrador.  
 
 ## 🔧 Tecnologias Utilizadas
 
@@ -118,16 +118,15 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador.  
 
 6. 🔐 **Segurança**   
-   ✅ O e-mail do usuário informado deverá ser bem formado: usuario@domino.xxx  
+   ✅ O e-mail do usuário informado deverá ser informado corretamente. 
    ✅ A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.  
    ✅ O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.  
 
 7. 🗑️ **Exclusões**  
-   ✅ Toda solicitação de exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:  
+   ✅ Toda exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:  
    ✅ Não é permitido excluir um jogo que esteja vinculado em algum pedido.  
    ✅ Não é permitido excluir uma promoção que esteja vinculada em algum pedido.  
    ✅ Não é permitido excluir um usuário que esteja vinculado em algum pedido.  
-
 
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET  
