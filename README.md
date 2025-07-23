@@ -19,10 +19,26 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 ✅ Pode cadastrar, consultar, editar e excluir promoções.  
 ✅ Pode cadastrar, consultar, editar e excluir pedidos.  
 
-## 🏗️ Tecnologias
+## 🔧 Tecnologias Utilizadas
 
-- C#
-- SQL Server
+| Camada / Recurso        | Tecnologia                         | Descrição                                                                 |
+|-------------------------|-------------------------------------|---------------------------------------------------------------------------|
+| 💻 Linguagem            | C#                                  | Linguagem principal do projeto                                            |
+| 🌐 Framework Web        | ASP.NET Core                        | Framework para construção da API REST                                    |
+| 📚 Documentação API     | Swagger (Swashbuckle.AspNetCore)    | Geração automática e visualização da documentação da API                 |
+| 🛢️ Banco de Dados       | SQL Server                          | Sistema de gerenciamento de banco relacional                             |
+| 📦 ORM (mapeamento)     | Entity Framework Core               | ORM para facilitar acesso e manipulação do banco de dados                |
+| 🔐 Autenticação         | JWT (JSON Web Token)                | Segurança da API via autenticação baseada em tokens                      |
+| 📁 DTOs                 | Data Transfer Objects               | Objetos para transportar dados entre as camadas da aplicação             |
+| 🧪 Testes               | Swagger UI                          | Interface gráfica para testar e validar os endpoints da API              |
+
+## 🚀 Execução
+
+1. Clone o repositório.
+2. Configure a connection string no `appsettings.json`
+3. Execute o projeto.
+4. Acesse: `https://localhost:{porta}/swagger` para visualizar a documentação
+
 
 ## ⚙️ Como Rodar
 1. Clone este repositório.
