@@ -36,7 +36,7 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 Usuario
 | Campo         | Tipo     | Chave | Not Null | Observação          |
 | ------------- | -------- | ----- | -------- | ------------------- |
-| ID_Usuario   | int      | 🔑 PK | ✅        | Identificador único |
+| ID_Usuario   | int      | 🔑 PK | ✅        | Identificador do Usuário |
 | Data_Criacao | datetime |       | ✅        | Data do cadastro    |
 | Nome          | varchar  |       | ✅        | Nome do usuário     |
 | Email         | varchar  | 🔷 UK | ✅        | Deve ser único      |
@@ -45,7 +45,7 @@ Usuario
 Jogo
 | Campo           | Tipo     | Chave | Not Null | Observação        |
 | --------------- | -------- | ----- | -------- | ----------------- |
-| ID_Jogo        | int      | 🔑 PK | ✅        | Identificador     |
+| ID_Jogo        | int      | 🔑 PK | ✅        | Identificador do Jogo     |
 | Data_Criacao   | datetime |       | ✅        | Cadastro do jogo  |
 | Nome            | varchar  |       | ✅        | Nome do jogo      |
 | Ano_Lancamento | int      |       | ✅        | Ano de lançamento |
@@ -55,7 +55,7 @@ Jogo
 Pedido
 | Campo         | Tipo     | Chave | Not Null | Observação                            |
 | ------------- | -------- | ----- | -------- | ------------------------------------- |
-| ID_Pedido    | int      | 🔑 PK | ✅        | Identificador do pedido               |
+| ID_Pedido    | int      | 🔑 PK | ✅        | Identificador do Pedido               |
 | Data_Criacao | datetime |       | ✅        | Quando o pedido foi criado            |
 | ID_Usuario   | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
 | ID_Jogo      | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
@@ -66,7 +66,7 @@ Pedido
 Promoção
 | Campo                | Tipo     | Chave | Not Null | Observação                |
 | -------------------- | -------- | ----- | -------- | ------------------------- |
-| ID\_Promocao         | int      | 🔑 PK | ✅        | Identificador da promoção |
+| ID\_Promocao         | int      | 🔑 PK | ✅        | Identificador da Promoção |
 | Data\_Criacao        | datetime |       | ✅        | Cadastro da promoção      |
 | Nome                 | varchar  | 🔷 UK | ✅        | Deve ser único            |
 | Percentual\_Desconto | decimal  |       | ✅        | Valor em porcentagem      |
