@@ -85,7 +85,6 @@ Promoção
 🔑 = Primary Key (PK)
 🔗 = Foreign Key (FK)
 🔷 = Unique Key (UK)
-⚠️	= Not Null
 
 ## 📜 Regras Gerais do Sistema  
 
