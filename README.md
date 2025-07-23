@@ -53,14 +53,16 @@ Jogo
 
   
 Pedido
-| Campo         | Tipo     | Chave | Not Null | Observação                            |
-| ------------- | -------- | ----- | -------- | ------------------------------------- |
-| ID_Pedido    | int      | 🔑 PK | ✅        | Identificador do Pedido               |
-| Data_Criacao | datetime |       | ✅        | Quando o pedido foi criado            |
-| ID_Usuario   | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
-| ID_Jogo      | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
-| ID_Promocao  | int      | 🔗 FK | ❌        | Pode ou não estar presente            |
-| Valor_Pedido  | decimal  |       | ✅        | Calculado com base no jogo e promoção |
+| Campo         | Tipo     | Chave  | Not Null | Observação                            |
+| ------------- | -------- | -----  | -------- | ------------------------------------- |
+| ID_Pedido     | int      | 🔑 PK | ✅        | Identificador do Pedido               |
+| Data_Criacao  | datetime |        | ✅        | Quando o pedido foi criado            |
+| ID_Usuario    | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
+| ID_Jogo       | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
+| ID_Promocao   | int      | 🔗 FK | ❌        | Pode ou não estar presente            |
+| VlPedido      | decimal  |       | ✅        | Valor do pedido                       |
+| VlDesconto    | decimal  |       | ✅        | Valor do desconto                     |
+| VlPago        | decimal  |       | ✅        | Valor Pago                            |
 
 
 Promoção
@@ -89,24 +91,25 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.  
    ✅ Jogos não podem ser cadastrados com preços negativos ou zerados.  
    ✅ O ano de lançamento do jogo não poderá ser superior a sua data de criação.  
+   ✅ O ano de lançamento do jogo não poderá ser superior ao ano corrente.     
 
-2. 🛒 **Pedidos**  
+3. 🛒 **Pedidos**  
    ✅ Cada pedido está vinculado a um único jogo.  
    ✅ Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.  
    ✅ Pode haver uma promoção (cupom de desconto) associada ao pedido, desde que sua data de validade atenda a data de criação do pedido.  
    ✅ O valor total do pedido é calculado com base no preço do jogo, aplicando o desconto da promoção, se houver.  
 
-3. 💸 **Promoções**  
+4. 💸 **Promoções**  
    ✅ A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.  
    ✅ O percentual de desconto deverá ser em numéro inteiro de 10% a 90% de desconto.  
    ✅ A promoção deverá ter um nome único entre todas as promoções existentes.  
    ✅ A data de validade da promoção deverá ser ao menos a data de inclusão da promoção.  
 
-4. 👥 **Controle de Acesso**  
+5. 👥 **Controle de Acesso**  
    ✅ Usuários comuns podem criar usuário, fazer login, consultar jogos, realizar pedidos e visualizar seus próprios pedidos sendo seu nivel como "U"-Usuário.  
    ✅ Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador.  
 
-5. 🔐 **Segurança**   
+6. 🔐 **Segurança**   
    ✅ O e-mail do usuário informado deverá ser bem formado: usuario@domino.xxx  
    ✅ A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.  
    ✅ O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.  
