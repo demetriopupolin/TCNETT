@@ -8,17 +8,15 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 ### 🧑 Usuário
   
-✅ Pode criar uma conta e fazer login.   
-✅ Pode consultar os todos os jogos disponíveis.   
-✅ Pode fazer pedidos com promoção valida ou sem promoção.   
-✅ Pode visualizar seus próprios pedidos.   
+✅ Criar uma conta e fazer login.   
+✅ Consultar os todos os jogos disponíveis.   
+✅ Fazer pedidos com promoção valida ou sem promoção.   
+✅ Visualizar seus próprios pedidos.   
 
 ### 👨‍💼 Administrador
 
-✅ Pode cadastrar, consultar, editar e excluir usuários. Inclusive pode cadastrar novos usuários com nivel A-Administrador.  
-✅ Pode cadastrar, consultar, editar e excluir jogos.  
-✅ Pode cadastrar, consultar, editar e excluir promoções.  
-✅ Pode cadastrar, consultar, editar e excluir pedidos.  
+✅ Cadastrar, Consultar, Editar e Excluir (usuários, jogos, promoções e pedidos).  
+✅ Inclusive cadastrar novos usuários com nivel A-Administrador.  
 
 ## 🔧 Tecnologias Utilizadas
 
