@@ -137,11 +137,11 @@ O sistema segue as seguintes regras e restrições de funcionamento:
 
 Autentica o usuário e retorna um token JWT que pode ser usado nas próximas requisições autenticadas.
 
-#### Níveis Permitidos:  
+#### Níveis Permitidos  
 ✅ Usuario   
 ✅ Administrador  
 
-#### 📥 Requisição
+#### 📥 Requisição  
 json
 {
   "email": "usuario@email.com",
