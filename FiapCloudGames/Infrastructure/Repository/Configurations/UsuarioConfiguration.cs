@@ -18,7 +18,7 @@ namespace Infrastructure.Repository.Configurations
             builder.Property(p => p.Email).HasColumnName("EMAIL").HasColumnType("VARCHAR(100)").IsRequired().HasConversion(
                     p => p.ToLower(), 
                     p => p );
-            builder.Property(p => p.Senha).HasColumnName("SENHA").HasColumnType("VARCHAR(8)").IsRequired();
+            builder.Property(p => p.Senha).HasColumnName("SENHA").HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(p => p.Nivel).HasColumnName("NIVEL").HasColumnType("CHAR(1)").IsRequired().HasConversion(
                   p => char.ToUpper(p),
                   p => p);
