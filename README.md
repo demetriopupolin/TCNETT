@@ -104,8 +104,8 @@ O sistema segue as seguintes regras e restrições de funcionamento:
 3. 🛒 **Pedidos**  
    ✅ Cada pedido está vinculado a um único jogo.  
    ✅ Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.  
-   ✅ Pode haver uma promoção (cupom de desconto) associada ao pedido, desde que sua data de validade atenda a data de criação do pedido.  
-   ✅ O valor total do pedido é calculado com base no preço do jogo, aplicando o desconto da promoção, se houver.  
+   ✅ O pedido pode ou não conter uma promoção (cupom de desconto), desde que sua data de validade atenda a data de criação do pedido.  
+   ✅ O valor pago do pedido é calculado com base no preço base do jogo, aplicando o desconto da promoção, se houver.  
 
 4. 💸 **Promoções**  
    ✅ A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.  
@@ -124,9 +124,9 @@ O sistema segue as seguintes regras e restrições de funcionamento:
 
 7. 🗑️ **Exclusões**  
    ✅ Toda solicitação de exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:  
-   ✅ Não é permitido excluir um jogo que esteja vinculado a algum pedido.  
-   ✅ Não é permitido excluir uma promoção que tenha sido aplicada em algum pedido.  
-   ✅ Não é permitido excluir um usuário que esteja associado a um pedido já registrado.  
+   ✅ Não é permitido excluir um jogo que esteja vinculado em algum pedido.  
+   ✅ Não é permitido excluir uma promoção que esteja vinculada em algum pedido.  
+   ✅ Não é permitido excluir um usuário que esteja vinculado em algum pedido.  
 
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET  
