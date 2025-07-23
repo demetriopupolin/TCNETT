@@ -82,7 +82,7 @@ namespace FiapCloudGamesApi.Controllers
                 var promocao = _promocaoRepository.ObterPorId(id);
 
                 if (promocao == null)
-                    return NotFound("Promo~ção não encontrada.");
+                    return NotFound("Promoção não encontrada.");
 
                 var promocaoDto = new PromocaoDto
                 {
