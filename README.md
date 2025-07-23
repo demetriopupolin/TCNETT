@@ -1,28 +1,35 @@
 # Fiap Cloud Games – Sistema de Gestão de Jogos On Line 🎮
-
+# Tech Challenge da Fase 1 da Pós-Tech em Arquitetura de Sistemas .NET
+ 
 ## 📌 Descrição
-A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções. Desenvolvido em C# com SQL Server, ele faz parte do Tech Challenge da Fase 1 da Pós-Tech em Arquitetura de Sistemas .NET
+A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções.
 
 # 👤 Níveis de Acesso e Funcionalidades
 
 ### 🧑 Usuário
-
-✅ Pode criar uma conta e fazer login.  
-✅ Pode visualizar os jogos disponíveis.  
-✅ Pode fazer pedidos com promoção valida ou sem promoção.  
-✅ Pode visualizar seus próprios pedidos.  
+  
+✅ Criar uma conta e fazer login.   
+✅ Consultar os todos os jogos disponíveis.   
+✅ Fazer pedidos com promoção valida ou sem promoção.   
+✅ Visualizar seus próprios pedidos.   
 
 ### 👨‍💼 Administrador
 
-✅ Pode cadastrar, consultar, editar e excluir todos os usuários.  
-✅ Pode cadastrar, consultar, editar e excluir todos os jogos.  
-✅ Pode cadastrar, consultar, editar e excluir todas as promoções.  
-✅ Pode cadastrar, consultar, editar e excluir todos os pedidos.  
+✅ Cadastrar, Consultar, Editar e Excluir (usuários, jogos, promoções e pedidos).  
+✅ Inclusive cadastrar novos usuários com nivel A-Administrador.  
 
-## 🏗️ Tecnologias
+## 🔧 Tecnologias Utilizadas
 
-- C#
-- SQL Server
+| Camada / Recurso        | Tecnologia                         | Descrição                                                                 |
+|-------------------------|-------------------------------------|---------------------------------------------------------------------------|
+| 💻 Linguagem            | C#                                  | Linguagem principal do projeto                                            |
+| 🌐 Framework Web        | ASP.NET Core                        | Framework para construção da API REST                                    |
+| 📚 Documentação API     | Swagger (Swashbuckle.AspNetCore)    | Geração automática e visualização da documentação da API                 |
+| 🛢️ Banco de Dados       | SQL Server                          | Sistema de gerenciamento de banco relacional                             |
+| 📦 ORM (mapeamento)     | Entity Framework Core               | ORM para facilitar acesso e manipulação do banco de dados                |
+| 🔐 Autenticação         | JWT (JSON Web Token)                | Segurança da API via autenticação baseada em tokens                      |
+| 📁 DTOs                 | Data Transfer Objects               | Objetos para transportar dados entre as camadas da aplicação             |
+| 🧪 Testes               | Swagger UI                          | Interface gráfica para testar e validar os endpoints da API              |
 
 ## ⚙️ Como Rodar
 1. Clone este repositório.
@@ -53,14 +60,16 @@ Jogo
 
   
 Pedido
-| Campo         | Tipo     | Chave | Not Null | Observação                            |
-| ------------- | -------- | ----- | -------- | ------------------------------------- |
-| ID_Pedido    | int      | 🔑 PK | ✅        | Identificador do Pedido               |
-| Data_Criacao | datetime |       | ✅        | Quando o pedido foi criado            |
-| ID_Usuario   | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
-| ID_Jogo      | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
-| ID_Promocao  | int      | 🔗 FK | ❌        | Pode ou não estar presente            |
-| Valor_Pedido  | decimal  |       | ✅        | Calculado com base no jogo e promoção |
+| Campo         | Tipo     | Chave  | Not Null | Observação                            |
+| ------------- | -------- | -----  | -------- | ------------------------------------- |
+| ID_Pedido     | int      | 🔑 PK | ✅        | Identificador do Pedido               |
+| Data_Criacao  | datetime |        | ✅        | Quando o pedido foi criado            |
+| ID_Usuario    | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
+| ID_Jogo       | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
+| ID_Promocao   | int      | 🔗 FK | ❌        | Pode ou não estar presente            |
+| VlPedido      | decimal  |       | ✅        | Valor do pedido                       |
+| VlDesconto    | decimal  |       | ✅        | Valor do desconto                     |
+| VlPago        | decimal  |       | ✅        | Valor Pago                            |
 
 
 Promoção
@@ -82,31 +91,33 @@ Promoção
 O sistema segue as seguintes regras e restrições de funcionamento:
 
 1. 🎮 **Cadastro de Usuário**  
-   ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.
-   ✅ Não deverá conter usuários com e-mail repetido.   
+   ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.  
+   ✅ Não deverá conter usuários com e-mail repetido.
+   ✅ A senha deverá conter no mínimo de 8 caracteres com números, letras e caracteres especiais.
 
 1. 🎮 **Cadastro de Jogos**  
    ✅ Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.  
    ✅ Jogos não podem ser cadastrados com preços negativos ou zerados.  
    ✅ O ano de lançamento do jogo não poderá ser superior a sua data de criação.  
+   ✅ O ano de lançamento do jogo não poderá ser superior ao ano corrente.     
 
-2. 🛒 **Pedidos**  
+3. 🛒 **Pedidos**  
    ✅ Cada pedido está vinculado a um único jogo.  
    ✅ Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.  
    ✅ Pode haver uma promoção (cupom de desconto) associada ao pedido, desde que sua data de validade atenda a data de criação do pedido.  
    ✅ O valor total do pedido é calculado com base no preço do jogo, aplicando o desconto da promoção, se houver.  
 
-3. 💸 **Promoções**  
+4. 💸 **Promoções**  
    ✅ A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.  
    ✅ O percentual de desconto deverá ser em numéro inteiro de 10% a 90% de desconto.  
    ✅ A promoção deverá ter um nome único entre todas as promoções existentes.  
    ✅ A data de validade da promoção deverá ser ao menos a data de inclusão da promoção.  
 
-4. 👥 **Controle de Acesso**  
+5. 👥 **Controle de Acesso**  
    ✅ Usuários comuns podem criar usuário, fazer login, consultar jogos, realizar pedidos e visualizar seus próprios pedidos sendo seu nivel como "U"-Usuário.  
    ✅ Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador.  
 
-5. 🔐 **Segurança**   
+6. 🔐 **Segurança**   
    ✅ O e-mail do usuário informado deverá ser bem formado: usuario@domino.xxx  
    ✅ A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.  
    ✅ O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.  
