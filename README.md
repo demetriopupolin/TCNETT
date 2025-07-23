@@ -1,5 +1,5 @@
 # Fiap Cloud Games – Sistema de Gestão de Jogos On Line 🎮
-# Tech Challenge da Fase 1 da Pós-Tech em Arquitetura de Sistemas .NET
+
  
 ## 📌 Descrição
 A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções.
@@ -127,6 +127,7 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ Não é permitido excluir um jogo que esteja vinculado em algum pedido.  
    ✅ Não é permitido excluir uma promoção que esteja vinculada em algum pedido.  
    ✅ Não é permitido excluir um usuário que esteja vinculado em algum pedido.  
+
 
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET  
