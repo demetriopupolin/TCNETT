@@ -84,7 +84,7 @@ Promoção
 O sistema segue as seguintes regras e restrições de funcionamento:
 
 1. 🎮 **Cadastro de Usuário**  
-   ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.
+   ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.  
    ✅ Não deverá conter usuários com e-mail repetido.   
 
 1. 🎮 **Cadastro de Jogos**  
