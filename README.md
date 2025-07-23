@@ -47,7 +47,8 @@ Usuario
 | Data_Criacao | datetime |       | ✅        | Data do cadastro    |
 | Nome          | varchar  |       | ✅        | Nome do usuário     |
 | Email         | varchar  | 🔷 UK | ✅        | Deve ser único      |
-| Senha         | varchar  |       | ✅        | Criptografada       |
+| Senha         | varchar  |       | ✅        | Senha                |
+| Nivel         | varchar  |       | ✅        | "A"-Administrador ou "U"-Usuário |
 
 Jogo
 | Campo           | Tipo     | Chave | Not Null | Observação        |
