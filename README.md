@@ -153,7 +153,7 @@ json
 | email | string | ✅           | E-mail do usuário |
 | senha | string | ✅           | Senha do usuário  |
 
-📤 Resposta (200 OK)
+📤 Resposta (200 OK)  
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI..."
 }
