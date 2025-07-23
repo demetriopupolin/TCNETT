@@ -126,7 +126,55 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ Toda exclusão deve verificar se o item não está sendo referenciado por outras entidades no sistema. Conforme a seguir:  
    ✅ Não é permitido excluir um jogo que esteja vinculado em algum pedido.  
    ✅ Não é permitido excluir uma promoção que esteja vinculada em algum pedido.  
-   ✅ Não é permitido excluir um usuário que esteja vinculado em algum pedido.  
+   ✅ Não é permitido excluir um usuário que esteja vinculado em algum pedido.
+
+
+
+## 🔐 Autenticação
+
+### POST `/auth/login`
+
+Autentica o usuário e retorna um token JWT que pode ser usado nas próximas requisições autenticadas.
+
+#### 📥 Requisição
+
+```json
+{
+  "email": "usuario@email.com",
+  "senha": "123456"
+}
+
+| Campo | Tipo   | Obrigatório | Descrição         |
+| ----- | ------ | ----------- | ----------------- |
+| email | string | ✅           | E-mail do usuário |
+| senha | string | ✅           | Senha do usuário  |
+
+📤 Resposta (200 OK)
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI..."
+}
+
+⚠️ Possíveis Erros
+| Código | Mensagem                          | Motivo                       |
+| ------ | --------------------------------- | ---------------------------- |
+| 400    | "Email inválido."                 | Formato de e-mail incorreto  |
+| 401    | "Usuário {email} não encontrado." | E-mail não cadastrado        |
+| 401    | "Senha incorreta."                | Senha divergente do cadastro |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET  
