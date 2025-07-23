@@ -154,9 +154,12 @@ json
 | senha | string | ✅           | Senha do usuário  |
 
 📤 Resposta (200 OK)  
+```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI..."
 }
+```
+
 
 ⚠️ Possíveis Erros
 | Código | Mensagem                          | Motivo                       |
@@ -178,7 +181,7 @@ Retorna todos os jogos cadastrados.
 ✅ Administrador  
 
 📤 **Resposta (200 OK)**
-json
+```json
 [
   {
     "id": 1,
@@ -189,7 +192,7 @@ json
     "pedidos": []
   }
 ]
-
+```
 
 
 
