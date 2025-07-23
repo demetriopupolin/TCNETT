@@ -167,7 +167,28 @@ json
 
 
 
+## 🎮 Jogos
 
+### GET `/jogo`
+
+Retorna todos os jogos cadastrados.
+
+#### Níveis Permitidos  
+✅ Administrador  
+❌ Usuário  
+
+📤 **Resposta (200 OK)**
+json
+[
+  {
+    "id": 1,
+    "dataCriacao": "2025-01-01T12:00:00",
+    "nome": "MORTAL KOMBAT",
+    "anoLancamento": 2025,
+    "precoBase": 300.0,
+    "pedidos": []
+  }
+]
 
 
 
