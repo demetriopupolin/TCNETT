@@ -31,14 +31,6 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 | 📁 DTOs                 | Data Transfer Objects               | Objetos para transportar dados entre as camadas da aplicação             |
 | 🧪 Testes               | Swagger UI                          | Interface gráfica para testar e validar os endpoints da API              |
 
-## 🚀 Execução
-
-1. Clone o repositório.
-2. Configure a connection string no `appsettings.json`
-3. Execute o projeto.
-4. Acesse: `https://localhost:{porta}/swagger` para visualizar a documentação
-
-
 ## ⚙️ Como Rodar
 1. Clone este repositório.
 2. Em /DB execute o script.sql em um banco de dados SqlServer para criação de tabelas.
