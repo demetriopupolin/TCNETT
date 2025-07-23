@@ -22,6 +22,14 @@ namespace Infrastructure.Repository.Configurations
             builder.Property(p => p.DataCriacao).HasColumnName("DATACRIACAO").HasColumnType("DATETIME").IsRequired();
             builder.Property(p => p.Desconto).HasColumnName("DESCONTO").HasColumnType("INT").IsRequired();
             builder.Property(p => p.DataValidade).HasColumnName("DATAVALIDADE").HasColumnType("DATETIME").IsRequired();
+
+            //teste
+            builder.HasMany(p => p.Pedidos)
+                .WithOne(pedido => pedido.Promocao)
+                .HasForeignKey(pedido => pedido.PromocaoId)
+                .IsRequired(false);
+
+
         }
     }
 }

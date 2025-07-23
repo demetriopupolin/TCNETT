@@ -13,10 +13,11 @@ namespace Infrastructure.Repository
         {
         }
 
-        public DbSet<Promocao> Usuario { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Jogo> Jogo { get; set; }
         public DbSet<Promocao> Promocao { get; set; }
         public DbSet<Pedido> Pedido { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -23,7 +23,12 @@ namespace Infrastructure.Repository.Configurations
                     p => p);
             builder.Property(p => p.AnoLancamento).HasColumnName("ANOLANCAMENTO").HasColumnType("INT").IsRequired();
             builder.Property(p => p.PrecoBase).HasColumnName("PRECOBASE").HasColumnType("DECIMAL").IsRequired();
-         
+            
+            //teste
+            builder.HasMany(j => j.Pedidos)
+                   .WithOne(p => p.Jogo)
+                   .HasForeignKey(p => p.JogoId);
+
         }
     }
 }

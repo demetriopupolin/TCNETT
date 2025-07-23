@@ -22,6 +22,15 @@ namespace Infrastructure.Repository.Configurations
             builder.Property(p => p.Nivel).HasColumnName("NIVEL").HasColumnType("CHAR(1)").IsRequired().HasConversion(
                   p => char.ToUpper(p),
                   p => p);
+
+
+            //  teste
+            builder.HasMany(u => u.Pedidos)
+                   .WithOne(p => p.Usuario)
+                   .HasForeignKey(p => p.UsuarioId);
+
+
+
         }
     }
 }

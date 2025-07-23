@@ -21,6 +21,10 @@ namespace Infrastructure.Repository.Configurations
 
             builder.Property(p => p.UsuarioId).HasColumnName("USUARIOID").HasColumnType("INT").IsRequired();
             builder.Property(p => p.JogoId).HasColumnName("JOGOID").HasColumnType("INT").IsRequired();
+            builder.Property(p => p.VlPedido).HasColumnName("VLPEDIDO").HasColumnType("DECIMAL").IsRequired();
+            builder.Property(p => p.VlDesconto).HasColumnName("VLDESCONTO").HasColumnType("DECIMAL").IsRequired();
+            builder.Property(p => p.VlPago).HasColumnName("VLPAGO").HasColumnType("DECIMAL").IsRequired();
+
             builder.Property(p => p.PromocaoId).HasColumnName("PROMOCAOID").HasColumnType("INT");
 
             // Relação: Pedido -> Usuario
