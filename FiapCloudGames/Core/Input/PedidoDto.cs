@@ -16,5 +16,9 @@ namespace Core.Input
         public int UsuarioId { get; set; }
         public int JogoId { get; set; }
         public int? PromocaoId { get; set; }
+        public decimal VlPedido { get; set; }
+        public decimal VlDesconto { get; set; }
+        public decimal VlPago { get; set; }
+
     }
 }
