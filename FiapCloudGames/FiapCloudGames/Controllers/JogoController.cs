@@ -42,13 +42,16 @@ namespace FiapCloudGamesApi.Controllers
                         Nome = jogo.Nome,
                         AnoLancamento = jogo.AnoLancamento,
                         PrecoBase = jogo.PrecoBase,
-                        Pedidos = jogo.Pedidos.Select(pedidoDto => new PedidoDto()
+                        Pedidos = jogo.Pedidos.Select(pedido => new PedidoDto()
                         {
-                            Id = pedidoDto.Id,
-                            DataCriacao = pedidoDto.DataCriacao,
-                            UsuarioId = pedidoDto.UsuarioId,
-                            JogoId = jogo.Id,
-                            PromocaoId = pedidoDto.PromocaoId
+                            Id = pedido.Id,
+                            DataCriacao = pedido.DataCriacao,
+                            UsuarioId = pedido.UsuarioId,
+                            JogoId = pedido.JogoId,
+                            PromocaoId = pedido.PromocaoId,
+                            VlPedido = pedido.VlPedido,
+                            VlDesconto = pedido.VlDesconto,
+                            VlPago = pedido.VlPago
                         }).ToList()
                     });
                 }
@@ -94,8 +97,11 @@ namespace FiapCloudGamesApi.Controllers
                         Id = pedido.Id,
                         DataCriacao = pedido.DataCriacao,
                         UsuarioId = pedido.UsuarioId,
-                        JogoId = jogo.Id,
-                        PromocaoId = pedido.PromocaoId
+                        JogoId = pedido.Id,
+                        PromocaoId = pedido.PromocaoId,
+                        VlPedido = pedido.VlPedido,
+                        VlDesconto = pedido.VlDesconto,
+                        VlPago = pedido.VlPago
                     }).ToList()
                 };
 

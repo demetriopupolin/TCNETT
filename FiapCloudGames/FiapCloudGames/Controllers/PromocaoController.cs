@@ -80,16 +80,37 @@ namespace FiapCloudGamesApi.Controllers
             try
             {
                 var promocao = _promocaoRepository.ObterPorId(id);
-                if (promocao == null)
-                    return NotFound("Promoção não encontrada.");
 
-                return Ok(promocao);
+                if (promocao == null)
+                    return NotFound("Promo~ção não encontrada.");
+
+                var promocaoDto = new PromocaoDto
+                {
+                    Id = promocao.Id,
+                    DataCriacao = promocao.DataCriacao,
+                    Nome = promocao.Nome,
+                    DataValidade = promocao.DataValidade,
+                    Desconto = promocao.Desconto,
+                    Pedidos = promocao.Pedidos.Select(pedido => new PedidoDto
+                    {
+                        Id = pedido.Id,
+                        DataCriacao = pedido.DataCriacao,
+                        UsuarioId = pedido.UsuarioId,
+                        JogoId = pedido.JogoId,
+                        PromocaoId = pedido.PromocaoId,
+                        VlPedido = pedido.VlPedido,
+                        VlDesconto = pedido.VlDesconto,
+                        VlPago = pedido.VlPago
+                    }).ToList()
+                };
+
+                return Ok(promocaoDto);
             }
             catch (Exception e)
             {
                 return BadRequest(new
                 {
-                    Message = "Erro ao obter a promoção.",
+                    Message = "Erro ao obter o Promoção.",
                     Error = e.Message,
                     Inner = e.InnerException?.Message
                 });
