@@ -1,7 +1,7 @@
 # Fiap Cloud Games – Sistema de Gestão de Jogos On Line 🎮
 
 ## 📌 Descrição
-A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções. Desenvolvido em C# com SQL Server, ele faz parte do Tech Challenge da Fase 1 da Pós-Tech em Arquitetura de Sistemas .NET
+A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções. Desenvolvido em C# com SQL Server,https://github.com/demetriopupolin/TCNETTFase1/blob/main/README.md ele faz parte do Tech Challenge da Fase 1 da Pós-Tech em Arquitetura de Sistemas .NET
 
 # 👤 Níveis de Acesso e Funcionalidades
 
@@ -14,10 +14,10 @@ A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 
 ### 👨‍💼 Administrador
 
-✅ Pode cadastrar, consultar, editar e excluir todos os usuários.  
-✅ Pode cadastrar, consultar, editar e excluir todos os jogos.  
-✅ Pode cadastrar, consultar, editar e excluir todas as promoções.  
-✅ Pode cadastrar, consultar, editar e excluir todos os pedidos.  
+✅ Pode cadastrar, consultar, editar e excluir usuários. Inclusive pode cadastrar novos usuários com nivel A-Administrador.  
+✅ Pode cadastrar, consultar, editar e excluir jogos.  
+✅ Pode cadastrar, consultar, editar e excluir promoções.  
+✅ Pode cadastrar, consultar, editar e excluir pedidos.  
 
 ## 🏗️ Tecnologias
 
