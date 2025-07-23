@@ -60,7 +60,7 @@ Pedido
 | ID_Usuario   | int      | 🔗 FK | ✅        | Ref. ao usuário                       |
 | ID_Jogo      | int      | 🔗 FK | ✅        | Ref. ao jogo                          |
 | ID_Promocao  | int      | 🔗 FK | ❌        | Pode ou não estar presente            |
-| Valor_Total  | decimal  |       | ✅        | Calculado com base no jogo e promoção |
+| Valor_Pedido  | decimal  |       | ✅        | Calculado com base no jogo e promoção |
 
 
 Promoção
