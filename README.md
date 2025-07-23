@@ -92,7 +92,8 @@ O sistema segue as seguintes regras e restrições de funcionamento:
 
 1. 🎮 **Cadastro de Usuário**  
    ✅ Todo usuario deve possuir Nome, E-mail e Senha de Acesso.  
-   ✅ Não deverá conter usuários com e-mail repetido.   
+   ✅ Não deverá conter usuários com e-mail repetido.
+   ✅ A senha deverá conter no mínimo de 8 caracteres com números, letras e caracteres especiais.
 
 1. 🎮 **Cadastro de Jogos**  
    ✅ Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.  
