@@ -174,8 +174,8 @@ json
 Retorna todos os jogos cadastrados.
 
 #### Níveis Permitidos  
+✅ Usuario   
 ✅ Administrador  
-❌ Usuário  
 
 📤 **Resposta (200 OK)**
 json
