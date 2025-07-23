@@ -4,7 +4,7 @@
 ## 📌 Descrição
 A Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos e promoções.
 
-# 👤 Níveis de Acesso e Funcionalidades
+## 👤 Níveis de Acesso e Funcionalidades
 
 ### 🧑 Usuário
   
