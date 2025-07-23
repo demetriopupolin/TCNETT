@@ -85,15 +85,39 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                return Ok(_usuarioRepository.ObterPorId(id));
+                var usuario = _usuarioRepository.ObterPorId(id);
+
+                if (usuario == null)
+                    return NotFound("Usuário não encontrado.");
+
+                var usuarioDto = new UsuarioDto
+                {
+                    Id = usuario.Id,
+                    DataCriacao = usuario.DataCriacao,
+                    Nome = usuario.Nome,
+                    Email = usuario.Email,
+                    Pedidos = usuario.Pedidos.Select(pedido => new PedidoDto
+                    {
+                        Id = pedido.Id,
+                        DataCriacao = pedido.DataCriacao,
+                        UsuarioId = pedido.UsuarioId,
+                        JogoId = pedido.Id,
+                        PromocaoId = pedido.PromocaoId,
+                        VlPedido = pedido.VlPedido,
+                        VlDesconto = pedido.VlDesconto,
+                        VlPago = pedido.VlPago
+                    }).ToList()
+                };
+
+                return Ok(usuarioDto);
             }
             catch (Exception e)
             {
                 return BadRequest(new
                 {
-                    Message = "Erro ao obter usuario.",
+                    Message = "Erro ao obter o usuário.",
                     Error = e.Message,
-                    inner = e.InnerException?.Message
+                    Inner = e.InnerException?.Message
                 });
             }
         }
