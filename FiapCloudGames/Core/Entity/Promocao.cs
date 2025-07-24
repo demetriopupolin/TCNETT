@@ -31,7 +31,7 @@ namespace Core.Entity
             Nome = nome;
             Desconto = desconto;
             DataValidade = dataValidade;
-            DataCriacao = DateTime.Now;
+            
         }       
 
         public bool EhValida() => DateTime.Now <= DataValidade;

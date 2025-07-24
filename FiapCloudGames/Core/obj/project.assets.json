@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FIAP\\PROJETO\\FiapCloudGames\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\FIAP\\PROJETO\\FiapCloudGames\\Core\\Core.csproj",
+      "projectPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\Demetrio\\.nuget\\packages\\",
-      "outputPath": "C:\\FIAP\\PROJETO\\FiapCloudGames\\Core\\obj\\",
+      "outputPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

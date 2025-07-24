@@ -23,17 +23,6 @@ namespace FiapCloudGamesApi.Controllers
         public IActionResult Login([FromBody] LoginDto loginDto)
         {
 
-            // valida email informado (formato)
-            Email email;
-            try
-            {
-                email = new Email(loginDto.Email);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
             // busca usuario pelo email
             var usuario = _usuarioRepository.ObterPorEmail(loginDto.Email);
                         

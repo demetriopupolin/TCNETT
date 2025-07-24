@@ -4661,11 +4661,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FIAP\\PROJETO\\FiapCloudGames\\FiapCloudGames\\FiapCloudGamesApi.csproj",
+      "projectUniqueName": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\FiapCloudGamesApi.csproj",
       "projectName": "FiapCloudGamesApi",
-      "projectPath": "C:\\FIAP\\PROJETO\\FiapCloudGames\\FiapCloudGames\\FiapCloudGamesApi.csproj",
+      "projectPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\FiapCloudGamesApi.csproj",
       "packagesPath": "C:\\Users\\Demetrio\\.nuget\\packages\\",
-      "outputPath": "C:\\FIAP\\PROJETO\\FiapCloudGames\\FiapCloudGames\\obj\\",
+      "outputPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4686,8 +4686,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\FIAP\\PROJETO\\FiapCloudGames\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\FIAP\\PROJETO\\FiapCloudGames\\Infrastructure\\Infrastructure.csproj"
+            "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

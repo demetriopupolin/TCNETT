@@ -159,7 +159,7 @@
     "Parameters": [
       {
         "Name": "input",
-        "Type": "Core.Input.PedidoInput",
+        "Type": "Core.Input.PedidoInputUsuario",
         "IsRequired": true
       }
     ],
@@ -215,9 +215,35 @@
   },
   {
     "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "PostPorUsuario",
+    "RelativePath": "Pedido/cadastrar-por-usuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.PedidoInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
     "Method": "CadastroEmMassa",
     "RelativePath": "Pedido/cadastro-em-massa",
     "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "GetPedidosPorUsuario",
+    "RelativePath": "Pedido/pedidos-do-usuario",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
@@ -376,6 +402,22 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "CadastrarAdmin",
+    "RelativePath": "Usuario/cadastrar-admin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.UsuarioInput",
         "IsRequired": true
       }
     ],

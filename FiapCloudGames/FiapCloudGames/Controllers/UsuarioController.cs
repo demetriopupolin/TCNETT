@@ -152,26 +152,6 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                Email email;
-                try
-                {
-                    email = new Email(input.Email);
-                }
-                catch (ArgumentException ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-
-                Senha senha;
-                try
-                {
-                    senha = new Senha(input.Senha);
-                }
-                catch (ArgumentException ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-
                 if (_usuarioRepository.ObterPorEmail(input.Email) != null)
                 {
                     return BadRequest($"Email {input.Email} já existe.");
@@ -212,26 +192,6 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                Email email;
-                try
-                {
-                    email = new Email(input.Email);
-                }
-                catch (ArgumentException ex)
-                {
-                    return BadRequest(ex.Message); 
-                }
-
-                Senha senha;
-                try
-                {
-                    senha = new Senha(input.Senha);
-                }
-                catch (ArgumentException ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-
                 var usuario = _usuarioRepository.ObterPorId(input.Id);
 
                 usuario.Nome = input.Nome;

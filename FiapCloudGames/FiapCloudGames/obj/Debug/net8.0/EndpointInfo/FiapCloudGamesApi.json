@@ -200,23 +200,23 @@
         "tags": [
           "Pedido"
         ],
-        "summary": "Cadastrar Pedido",
+        "summary": "Cadastrar Pedido do usuário autenticado",
         "requestBody": {
           "description": "Objeto com os dados do Pedido",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PedidoInput"
+                "$ref": "#/components/schemas/PedidoInputUsuario"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PedidoInput"
+                "$ref": "#/components/schemas/PedidoInputUsuario"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PedidoInput"
+                "$ref": "#/components/schemas/PedidoInputUsuario"
               }
             }
           }
@@ -300,6 +300,52 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pedido/pedidos-do-usuario": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Busca pedidos de um usuário autenticado.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pedido/cadastrar-por-usuario": {
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Cadastrar Pedido para um usuário específico",
+        "requestBody": {
+          "description": "Objeto com os dados do Pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoInput"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -615,6 +661,39 @@
         }
       }
     },
+    "/Usuario/cadastrar-admin": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Cadastrar Usuário Admin",
+        "requestBody": {
+          "description": "Objeto com os dados do Usuário Admin",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Usuario/cadastro-em-massa": {
       "post": {
         "tags": [
@@ -644,8 +723,6 @@
             "type": "string"
           },
           "anoLancamento": {
-            "maximum": 2147483647,
-            "minimum": 1980,
             "type": "integer",
             "format": "int32"
           },
@@ -671,8 +748,6 @@
             "type": "string"
           },
           "anoLancamento": {
-            "maximum": 2147483647,
-            "minimum": 1980,
             "type": "integer",
             "format": "int32"
           },
@@ -722,6 +797,21 @@
         },
         "additionalProperties": false
       },
+      "PedidoInputUsuario": {
+        "type": "object",
+        "properties": {
+          "jogoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "promocaoId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PedidoUpdateInput": {
         "type": "object",
         "properties": {
@@ -753,6 +843,8 @@
             "nullable": true
           },
           "desconto": {
+            "maximum": 90,
+            "minimum": 10,
             "type": "integer",
             "format": "int32"
           },
@@ -771,6 +863,8 @@
             "nullable": true
           },
           "desconto": {
+            "maximum": 90,
+            "minimum": 10,
             "type": "integer",
             "format": "int32"
           },

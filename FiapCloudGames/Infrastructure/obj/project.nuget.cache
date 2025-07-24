@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qvsy17e6g8c=",
+  "dgSpecHash": "+wxQEieh1nE=",
   "success": true,
-  "projectFilePath": "C:\\FIAP\\PROJETO\\FiapCloudGames\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Demetrio\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Demetrio\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

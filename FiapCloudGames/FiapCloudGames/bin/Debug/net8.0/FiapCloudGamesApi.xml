@@ -56,9 +56,23 @@
             <param name="id">ID da Pedido</param>
             <returns>Pedido encontrado</returns>
         </member>
-        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Post(Core.Input.PedidoInput)">
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.GetPedidosPorUsuario">
             <summary>
-            Cadastrar Pedido
+            Busca pedidos de um usuário autenticado.
+            </summary>
+            <param name="id">ID da Pedido.</param>
+            <returns>Pedido encontrado.</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Post(Core.Input.PedidoInputUsuario)">
+            <summary>
+            Cadastrar Pedido do usuário autenticado
+            </summary>
+            <param name="input">Objeto com os dados do Pedido</param>
+            <returns>Pedido cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.PostPorUsuario(Core.Input.PedidoInput)">
+            <summary>
+            Cadastrar Pedido para um usuário específico
             </summary>
             <param name="input">Objeto com os dados do Pedido</param>
             <returns>Pedido cadastrado com sucesso</returns>
@@ -140,6 +154,13 @@
             </summary>
             <param name="input">Objeto com os dados do Usuário</param>
             <returns>Usuário cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.CadastrarAdmin(Core.Input.UsuarioInput)">
+            <summary>
+            Cadastrar Usuário Admin
+            </summary>
+            <param name="input">Objeto com os dados do Usuário Admin</param>
+            <returns>Usuário Admin cadastrado com sucesso</returns>
         </member>
         <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.Put(Core.Input.UsuarioUpdateInput)">
             <summary>
