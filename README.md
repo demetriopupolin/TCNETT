@@ -101,17 +101,17 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ O ano de lançamento do jogo não poderá ser superior a sua data de criação.  
    ✅ O ano de lançamento do jogo não poderá ser superior ao ano corrente.     
 
-3. 🛒 **Pedidos**  
-   ✅ Cada pedido está vinculado a um único jogo.  
-   ✅ Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.  
-   ✅ O pedido pode ou não conter uma promoção (cupom de desconto), desde que sua data de validade atenda a data de criação do pedido.  
-   ✅ O valor pago do pedido é calculado com base no preço base do jogo, aplicando o desconto da promoção, se houver.  
-
-4. 💸 **Promoções**  
+3. 💸 **Promoções**  
    ✅ A promoção deverá conter obrigatoriamente um nome, data de validade e percentual de desconto.  
    ✅ O percentual de desconto deverá ser em numéro inteiro de 10% a 90% de desconto.  
    ✅ A promoção deverá ter um nome único entre todas as promoções existentes.  
    ✅ A data de validade da promoção deverá ser ao menos a data de inclusão da promoção.  
+
+4. 🛒 **Pedidos**  
+   ✅ Cada pedido está vinculado a um único jogo.  
+   ✅ Todo pedido deve conter obrigatoriamente um usuário e o jogo adquirido.  
+   ✅ O pedido pode ou não conter uma promoção (cupom de desconto), desde que sua data de validade atenda a data de criação do pedido.  
+   ✅ O valor pago do pedido é calculado com base no preço base do jogo, aplicando o desconto da promoção, se houver.  
 
 5. 👥 **Controle de Acesso**  
    ✅ Usuários comuns podem criar usuário, fazer login, consultar jogos, realizar pedidos e visualizar seus próprios pedidos sendo seu nivel como "U"-Usuário.  
