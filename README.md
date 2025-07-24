@@ -97,8 +97,7 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ A senha deverá conter no mínimo de 8 caracteres com números, letras e caracteres especiais.
 
 1. 🎮 **Cadastro de Jogos**  
-   ✅ Todo jogo deve possuir nome, descrição, ano de lançamento e preço base.  
-   ✅ Jogos não podem ser cadastrados com preços negativos ou zerados.  
+   ✅ Todo jogo deve possuir nome, ano de lançamento e preço base sendo o valor maior que zero.  
    ✅ O ano de lançamento do jogo não poderá ser superior a sua data de criação.  
    ✅ O ano de lançamento do jogo não poderá ser superior ao ano corrente.     
 
