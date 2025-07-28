@@ -1,24 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\tests\\tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|solutionrelative:tests\\tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\tests\\usuariocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|solutionrelative:tests\\usuariocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\tests\\authcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|solutionrelative:tests\\authcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\fiapcloudgames\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|solutionrelative:fiapcloudgames\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -26,63 +9,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Tests",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\Tests.csproj",
-              "RelativeDocumentMoniker": "Tests\\Tests.csproj",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\Tests.csproj",
-              "RelativeToolTip": "Tests\\Tests.csproj",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-07-28T07:31:07.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioControllerTests.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\UsuarioControllerTests.cs",
-              "RelativeDocumentMoniker": "Tests\\UsuarioControllerTests.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\UsuarioControllerTests.cs",
-              "RelativeToolTip": "Tests\\UsuarioControllerTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T07:14:53.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "FiapCloudGames\\Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "FiapCloudGames\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAAQBAAAAAAAAAAAqwBMBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T07:13:57.725Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuthControllerTests.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\AuthControllerTests.cs",
-              "RelativeDocumentMoniker": "Tests\\AuthControllerTests.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\AuthControllerTests.cs",
-              "RelativeToolTip": "Tests\\AuthControllerTests.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAswGgAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T06:53:26.299Z",
-              "EditorCaption": ""
             }
           ]
         }

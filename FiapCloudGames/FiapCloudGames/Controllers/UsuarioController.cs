@@ -268,7 +268,7 @@ namespace FiapCloudGamesApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(new { Message = "Erro ao cadastrar usuarios em massa", Error = e.Message });
             }
         }
     }

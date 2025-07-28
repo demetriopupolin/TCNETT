@@ -8,7 +8,7 @@ using FiapCloudGamesApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Xunit.Abstractions;
 
-namespace tests
+namespace Tests
 {
     public class AuthControllerTests
     {

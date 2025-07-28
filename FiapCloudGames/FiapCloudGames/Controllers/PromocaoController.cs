@@ -239,7 +239,7 @@ namespace FiapCloudGamesApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(new { Message = "Erro ao cadastrar promocoes em massa", Error = e.Message });
             }
         }
     }
