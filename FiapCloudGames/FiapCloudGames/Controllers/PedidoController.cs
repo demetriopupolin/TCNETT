@@ -323,6 +323,10 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
+
+                if (_promocaoRepository.ObterPorId(id) == null)
+                    return NotFound("Promoção inexistente.");
+
                 _pedidoRepository.Deletar(id);
                 return Ok(new { Message = "Pedido excluído." });
             }
