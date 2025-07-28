@@ -254,9 +254,9 @@ Este documento descreve os casos de testes funcionais para o sistema de cadastro
 
 | ID       | Descrição                                             | Entrada             | Resultado Esperado                        |
 |----------|-------------------------------------------------------|---------------------|--------------------------------------------|
-| CTAC001  | Acesso de usuário comum às funções permitidas         | Usuário nível "U"   | Acesso permitido às funcionalidades        |
-| CTAC002  | Usuário comum tenta acessar r              | Usuário nível "U"   | Acesso negado                              |
-| CTAC003  | Administrador acessa o sistema completo               | Usuário nível "A"   | Acesso total permitido                     |
+| CTAC001  | Acesso de usuário comum em rotinas permitidas         | Usuário nível "U"   | Acesso permitido às funcionalidades        |
+| CTAC002  | Acessso de usuário comum em rotinas não permitidas    | Usuário nível "U"   | Acesso negado                              |
+| CTAC003  | Acesso de usuário administrador                       | Usuário nível "A"   | Acesso total permitido                     |
 
 ---
 
