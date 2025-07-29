@@ -75,6 +75,10 @@ namespace Core.Entity
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
+            // Verifica se contém letras maiúsculas
+            if (value.Any(char.IsUpper))
+                return false;
+
             return Regex.IsMatch(value, @"^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$");
         }
 
@@ -84,9 +88,7 @@ namespace Core.Entity
             if (string.IsNullOrWhiteSpace(senha))
                 return false;
 
-            // Verifica se contém letras maiúsculas
-            if (senha.Any(char.IsUpper))
-                return false;
+            
 
             // Pelo menos 8 caracteres, 1 letra, 1 número e 1 caractere especial
             return Regex.IsMatch(senha, @"^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{8,}$");
