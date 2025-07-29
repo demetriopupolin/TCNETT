@@ -23,7 +23,9 @@ namespace Infrastructure.Repository.Configurations
                   p => char.ToUpper(p),
                   p => p);
 
-
+            builder.HasIndex(p => p.Email)
+                            .IsUnique()
+                            .HasDatabaseName("UQ_USUARIO_EMAIL");
             //  teste
             builder.HasMany(u => u.Pedidos)
                    .WithOne(p => p.Usuario)

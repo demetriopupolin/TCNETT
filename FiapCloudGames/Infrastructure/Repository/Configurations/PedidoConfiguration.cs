@@ -30,18 +30,21 @@ namespace Infrastructure.Repository.Configurations
             // Relação: Pedido -> Usuario
             builder.HasOne(p => p.Usuario)
                    .WithMany(u => u.Pedidos)
-                   .HasForeignKey(p => p.UsuarioId);
+                   .HasForeignKey(p => p.UsuarioId)
+                   .HasConstraintName("FK_PEDIDO_USUARIO");
 
             // Relação: Pedido -> Jogo
             builder.HasOne(p => p.Jogo)
                    .WithMany(j => j.Pedidos)
-                   .HasForeignKey(p => p.JogoId);
+                   .HasForeignKey(p => p.JogoId)
+                   .HasConstraintName("FK_PEDIDO_JOGO");
 
             // Relação: Pedido -> Promocao (opcional)
             builder.HasOne(p => p.Promocao)
                    .WithMany(promo => promo.Pedidos)
                    .HasForeignKey(p => p.PromocaoId)
-                   .IsRequired(false);
+                   .IsRequired(false)
+                   .HasConstraintName("FK_PEDIDO_PROMOCAO");
 
 
         }

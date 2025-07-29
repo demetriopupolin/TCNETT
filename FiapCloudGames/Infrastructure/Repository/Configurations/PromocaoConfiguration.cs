@@ -23,6 +23,10 @@ namespace Infrastructure.Repository.Configurations
             builder.Property(p => p.Desconto).HasColumnName("DESCONTO").HasColumnType("INT").IsRequired();
             builder.Property(p => p.DataValidade).HasColumnName("DATAVALIDADE").HasColumnType("DATETIME").IsRequired();
 
+            builder.HasIndex(p => p.Nome)
+                            .IsUnique()
+                            .HasDatabaseName("UQ_PROMOCAO_NOME");
+
             //teste
             builder.HasMany(p => p.Pedidos)
                 .WithOne(pedido => pedido.Promocao)
