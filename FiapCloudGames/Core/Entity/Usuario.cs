@@ -80,7 +80,12 @@ namespace Core.Entity
 
         private static bool SenhaEhForte(string senha)
         {
+            
             if (string.IsNullOrWhiteSpace(senha))
+                return false;
+
+            // Verifica se contém letras maiúsculas
+            if (senha.Any(char.IsUpper))
                 return false;
 
             // Pelo menos 8 caracteres, 1 letra, 1 número e 1 caractere especial
