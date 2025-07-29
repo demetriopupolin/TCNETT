@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250718134218_PrimeiraMigracao")]
-    partial class PrimeiraMigracao
+    [Migration("20250729111042_SegundaMigracao")]
+    partial class SegundaMigracao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,6 +82,18 @@ namespace Infrastructure.Migrations
                         .HasColumnType("INT")
                         .HasColumnName("USUARIOID");
 
+                    b.Property<decimal>("VlDesconto")
+                        .HasColumnType("DECIMAL")
+                        .HasColumnName("VLDESCONTO");
+
+                    b.Property<decimal>("VlPago")
+                        .HasColumnType("DECIMAL")
+                        .HasColumnName("VLPAGO");
+
+                    b.Property<decimal>("VlPedido")
+                        .HasColumnType("DECIMAL")
+                        .HasColumnName("VLPEDIDO");
+
                     b.HasKey("Id");
 
                     b.HasIndex("JogoId");
@@ -139,6 +151,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("VARCHAR(100)")
                         .HasColumnName("EMAIL");
 
+                    b.Property<char>("Nivel")
+                        .HasColumnType("CHAR(1)")
+                        .HasColumnName("NIVEL");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)")
@@ -146,7 +162,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(8)")
+                        .HasColumnType("VARCHAR(100)")
                         .HasColumnName("SENHA");
 
                     b.HasKey("Id");

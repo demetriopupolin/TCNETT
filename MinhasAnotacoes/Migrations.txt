@@ -6,4 +6,4 @@ Script-Migration -Project Infrastructure -StartupProject FiapCloudGamesApi
 
 ---> atualizar o banco de dados
 Executar a migration 
-Update-Database -StartupProject FiapCloudGamesApi Infrastructure -Connection "Server=(localdb)\\MSSQLLocalDB;Database=fiapcloudgames;User Id=fiapuser;Password=SenhaForte123!;Encrypt=True;TrustServerCertificate=True"
+Update-Database -StartupProject FiapCloudGamesApi -Project Infrastructure

@@ -51,7 +51,8 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NOME = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     EMAIL = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    SENHA = table.Column<string>(type: "VARCHAR(8)", nullable: false),
+                    SENHA = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    NIVEL = table.Column<string>(type: "CHAR(1)", nullable: false),
                     DATACRIACAO = table.Column<DateTime>(type: "DATETIME", nullable: false)
                 },
                 constraints: table =>
@@ -68,6 +69,9 @@ namespace Infrastructure.Migrations
                     USUARIOID = table.Column<int>(type: "INT", nullable: false),
                     JOGOID = table.Column<int>(type: "INT", nullable: false),
                     PROMOCAOID = table.Column<int>(type: "INT", nullable: true),
+                    VLPEDIDO = table.Column<decimal>(type: "DECIMAL(18,0)", nullable: false),
+                    VLDESCONTO = table.Column<decimal>(type: "DECIMAL(18,0)", nullable: false),
+                    VLPAGO = table.Column<decimal>(type: "DECIMAL(18,0)", nullable: false),
                     DATACRIACAO = table.Column<DateTime>(type: "DATETIME", nullable: false)
                 },
                 constraints: table =>
