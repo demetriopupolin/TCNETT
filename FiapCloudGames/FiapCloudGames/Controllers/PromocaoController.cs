@@ -22,6 +22,7 @@ namespace FiapCloudGamesApi.Controllers
         /// Retorna todas as promoções
         /// </summary>
         /// <returns>Lista de promoções</returns>
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -74,6 +75,7 @@ namespace FiapCloudGamesApi.Controllers
         /// </summary>
         /// <param name="id">ID da Promoção</param>
         /// <returns>Promoção encontrada</returns>
+        [Authorize(Policy = "Admin")]
         [HttpGet("{id:int}")]
         public IActionResult Get([FromRoute] int id)
         {
