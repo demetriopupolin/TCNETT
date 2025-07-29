@@ -128,6 +128,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Nome")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_PROMOCAO_NOME");
+
                     b.ToTable("PROMOCAO", (string)null);
                 });
 
@@ -148,7 +152,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("VARCHAR(100)")
                         .HasColumnName("EMAIL");
 
-                    b.Property<char>("Nivel")
+                    b.Property<string>("Nivel")
+                        .IsRequired()
                         .HasColumnType("CHAR(1)")
                         .HasColumnName("NIVEL");
 
@@ -164,6 +169,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_USUARIO_EMAIL");
+
                     b.ToTable("USUARIO", (string)null);
                 });
 
@@ -173,17 +182,20 @@ namespace Infrastructure.Migrations
                         .WithMany("Pedidos")
                         .HasForeignKey("JogoId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_PEDIDO_JOGO");
 
                     b.HasOne("Core.Entity.Promocao", "Promocao")
                         .WithMany("Pedidos")
-                        .HasForeignKey("PromocaoId");
+                        .HasForeignKey("PromocaoId")
+                        .HasConstraintName("FK_PEDIDO_PROMOCAO");
 
                     b.HasOne("Core.Entity.Usuario", "Usuario")
                         .WithMany("Pedidos")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_PEDIDO_USUARIO");
 
                     b.Navigation("Jogo");
 

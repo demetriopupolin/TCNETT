@@ -78,18 +78,18 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_PEDIDO", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PEDIDO_JOGO_JOGOID",
+                        name: "FK_PEDIDO_JOGO",
                         column: x => x.JOGOID,
                         principalTable: "JOGO",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PEDIDO_PROMOCAO_PROMOCAOID",
+                        name: "FK_PEDIDO_PROMOCAO",
                         column: x => x.PROMOCAOID,
                         principalTable: "PROMOCAO",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_PEDIDO_USUARIO_USUARIOID",
+                        name: "FK_PEDIDO_USUARIO",
                         column: x => x.USUARIOID,
                         principalTable: "USUARIO",
                         principalColumn: "Id",
@@ -110,6 +110,18 @@ namespace Infrastructure.Migrations
                 name: "IX_PEDIDO_USUARIOID",
                 table: "PEDIDO",
                 column: "USUARIOID");
+
+            migrationBuilder.CreateIndex(
+                name: "UQ_PROMOCAO_NOME",
+                table: "PROMOCAO",
+                column: "NOME",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "UQ_USUARIO_EMAIL",
+                table: "USUARIO",
+                column: "EMAIL",
+                unique: true);
         }
 
         /// <inheritdoc />
