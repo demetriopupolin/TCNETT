@@ -18,25 +18,12 @@ O Fiap Cloud Games permite o gerenciamento completo de usuários, jogos, pedidos
 ✅ Cadastrar, Consultar, Editar e Excluir (usuários, jogos, promoções e pedidos).  
 ✅ Cadastrar novos usuários com nivel A-Administrador.  
 
-## 🔧 Tecnologias Utilizadas
-
-| Camada / Recurso        | Tecnologia                         | Descrição                                                                 |
-|-------------------------|-------------------------------------|---------------------------------------------------------------------------|
-| 💻 Linguagem            | C#                                  | Linguagem principal do projeto                                            |
-| 🌐 Framework Web        | ASP.NET Core                        | Framework para construção da API REST                                    |
-| 📚 Documentação API     | Swagger (Swashbuckle.AspNetCore)    | Geração automática e visualização da documentação da API                 |
-| 🛢️ Banco de Dados       | SQL Server                          | Sistema de gerenciamento de banco relacional                             |
-| 📦 ORM (mapeamento)     | Entity Framework Core               | ORM para facilitar acesso e manipulação do banco de dados                |
-| 🔐 Autenticação         | JWT (JSON Web Token)                | Segurança da API via autenticação baseada em tokens                      |
-| 📁 DTOs                 | Data Transfer Objects               | Objetos para transportar dados entre as camadas da aplicação             |
-| 🧪 Testes               | Swagger UI                          | Interface gráfica para testar e validar os endpoints da API              |
-
 ## ⚙️ Como Rodar
 1. Clone este repositório.
-2. Em /DB execute o script.sql em um banco de dados SqlServer para criação de tabelas.
-3. Abra o Projeto no Visual Studio.
+2. Em /DB execute o script.sql em um banco de dados SqlServer para criação de tabelas e dados de exemplo.
+3. Abra o Projeto FiapCloudGames.sln no Visual Studio.
 4. Configure a conexão com banco de dados em `appsetings.json`
-5. Rode o projeto.
+5. Compile e execute o projeto.
 
 ## 🗃️ Estrutura de Dados
 
@@ -194,102 +181,7 @@ Retorna todos os jogos cadastrados.
 ```
 
 
-
-
-
-
-✅ Casos de Teste – Sistema de Jogos
-
-Este documento descreve os casos de testes funcionais para o sistema de cadastro de usuários, jogos, promoções, pedidos, controle de acesso, segurança e exclusões.
-
----
-
-🧑‍💻 Cadastro de Usuário
-
-| ID      | Descrição                                 | Entrada                                          | Resultado Esperado                       |
-|---------|-------------------------------------------|--------------------------------------------------|-------------------------------------------|
-| CTU001  | Cadastro de usuario com dados válidos     | Nome: João Silva, Email: joao@email.com, Senha: Senha123! | Usuário cadastrado com sucesso            |
-| CTU002  | E-mail já cadastrado                      | Email: joao@email.com                           | Erro: e-mail duplicado                    |
-| CTU003  | Senha sem caracteres especiais            | Senha: Senha123                                 | Erro: senha inválida                      |
-| CTU004  | Senha com menos de 8 caracteres           | Senha: R@1a                                     | Erro: senha muito curta                   |
-| CTU004  | Cadastro de usuário com nível Administrador | Nome: Pedro Lucas, Email: pedroo@email.com, Senha: Pass123!  |Usuário cadastrado com sucesso                   |
-
-
----
-
-🎮 Cadastro de Jogos
-
-| ID      | Descrição                                           | Entrada                                              | Resultado Esperado                         |
-|---------|-----------------------------------------------------|------------------------------------------------------|---------------------------------------------|
-| CTJ001  | Cadastro com dados válidos                          | Nome: Game X, Ano: 2023, Preço: 199.90               | Jogo cadastrado com sucesso                 |
-| CTJ002  | Preço zero, nulo ou negativo                        | Preço: 0.00 ou -1.00 ou NULL                         | Erro: preço inválido                        |
-| CTJ003  | Ano lançamento maior que ano atual                 | Ano: 2026 (atual: 2025)                               | Erro: ano de lançamento superior ao ano atual  |
-| CTJ004  | Ano lançamento menor que ano da data de criação    | Ano lançamento: 2024 (Data de Criação 01/07/2025)     | Erro: ano de lançamento inferior ao ano da data de criação  |
-
----
-
-💸 Promoções
-
-| ID      | Descrição                              | Entrada                                                        | Resultado Esperado                         |
-|---------|----------------------------------------|----------------------------------------------------------------|---------------------------------------------|
-| CTP001  | Promoção válida                        | Nome: Promoção Verão, Validade: 2025-08-01, Desconto: 20%     | Promoção cadastrada com sucesso             |
-| CTP002  | Desconto fora da faixa obrigatórioa    | Desconto: Inferior a 10% ou superior a 90%                    | Erro: desconto fora do intervalo            |
-| CTP003  | Nome da promoção duplicado             | Nome: Black Friday (já existente)                             | Erro: nome duplicado                        |
-| CTP004  | Validade anterior à data atual         | Validade: 10/07/2025 ( atual: 01/07/2025)                      | Erro: validade inválida                     |
-
----
-
-🛒 Pedidos
-
-| ID       | Descrição                                   | Entrada                                                         | Resultado Esperado                        |
-|----------|---------------------------------------------|------------------------------------------------------------------|--------------------------------------------|
-| CTPD001  | Pedido com promoção válida                  | Jogo: Game X, Usuário: João, Promoção: Promoção Verão           | Pedido criado com desconto aplicado        |
-| CTPD002  | Pedido com promoção vencida                 | Promoção expirada                                               | Erro: promoção inválida                    |
-| CTPD003  | Pedido sem promoção                         | Jogo: Game X, Usuário: João                                     | Pedido criado com valor cheio              |
-| CTPD004  | Pedido sem usuário                          | Usuário: null                                                   | Erro: usuário obrigatório                   |
-
----
-
-👥 Controle de Acesso
-
-| ID       | Descrição                                             | Entrada             | Resultado Esperado                        |
-|----------|-------------------------------------------------------|---------------------|--------------------------------------------|
-| CTAC001  | Acesso de usuário comum em rotinas permitidas         | Usuário nível "U"   | Acesso permitido às funcionalidades        |
-| CTAC002  | Acessso de usuário comum em rotinas não permitidas    | Usuário nível "U"   | Acesso negado                              |
-| CTAC003  | Acesso de usuário administrador                       | Usuário nível "A"   | Acesso total permitido                     |
-
----
-
-🔐 Segurança
-
-| ID      | Descrição                      | Entrada                                          | Resultado Esperado                         |
-|---------|--------------------------------|--------------------------------------------------|---------------------------------------------|
-| CTS001  | Login válido                   | E-mail: joao@email.com, Senha: Senha123!         | Login realizado com sucesso                 |
-| CTS002  | Login com senha incorreta      | Senha inválida                                   | Erro: senha incorreta                       |
-| CTS003  | E-mail inválido no login       | E-mail: joaoemail.com                            | Erro: e-mail inválido                       |
-
----
-
-🗑️ Exclusões
-
-| ID       | Descrição                                   | Pré-condição                                            | Resultado Esperado                         |
-|----------|---------------------------------------------|---------------------------------------------------------|---------------------------------------------|
-| CTE001   | Excluir jogo vinculado a pedido             | Jogo referenciado em pedido                             | Erro: exclusão não permitida                |
-| CTE002   | Excluir promoção vinculada a pedido         | Promoção referenciada                                   | Erro: exclusão não permitida                |
-| CTE003   | Excluir usuário com pedidos                 | Usuário possui pedidos                                  | Erro: exclusão não permitida                |
-| CTE004   | Excluir item sem vínculos                   | Nenhuma referência existente                            | Exclusão permitida                          |
-
----
-
-
-
-
-
-
-
-
    
-
 ## 🎓 Informações Acadêmicas
 - Curso: Pós-Tech em Arquitetura de Sistemas .NET  
 - Instituição: FIAP  
