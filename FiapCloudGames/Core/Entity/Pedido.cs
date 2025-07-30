@@ -7,16 +7,34 @@ namespace Core.Entity
     [Table("Pedido")]
     public class Pedido : EntityBase
     {
+
+
+        private int _jogoId;
+        private int _usuarioId;
+        private int ?_promocaoId;
+
         [Required]
         [Column("UsuarioId")]
-        public required int UsuarioId { get; set; }
+        public required int UsuarioId
+        {
+            get => _usuarioId;
+            set => _usuarioId = value;
+        }
 
         [Required]
         [Column("JogoId")]
-        public required int JogoId { get; set; }
+        public required int JogoId
+        {
+            get => _jogoId;
+            set => _jogoId = value;
+        }
 
         [Column("PromocaoId")]
-        public int? PromocaoId { get; set; }
+        public int? PromocaoId
+        {
+            get => _promocaoId;
+            set => _promocaoId = value;
+        }
 
         [Required]
         [Column("VlPedido")]
@@ -30,7 +48,7 @@ namespace Core.Entity
         [Column("VlPago")]
         public decimal VlPago { get; private set; }
 
-        // Propriedades de navegação (podem ser setadas pelo ORM)
+
         public virtual Usuario Usuario { get; set; }
         public virtual Jogo Jogo { get; set; }
         public virtual Promocao Promocao { get; set; }
@@ -88,5 +106,27 @@ namespace Core.Entity
             if (VlPago < 0)
                 throw new ArgumentException("Valor pago não pode ser negativo.");
         }
+
+
+        public void AtualizarJogo(int novoJogoId)
+        {
+           
+            _jogoId = novoJogoId;
+        }
+
+
+        public void AtualizarUsuario(int novoUsuarioId)
+        {
+
+            _usuarioId = novoUsuarioId;
+        }
+
+
+        public void AtualizarPromocao(int novoPromocaoId)
+        {
+
+            _promocaoId = novoPromocaoId;
+        }
+
     }
 }

@@ -194,10 +194,13 @@ namespace FiapCloudGamesApi.Controllers
             {
                 var usuario = _usuarioRepository.ObterPorId(input.Id);
 
-                usuario.Nome = input.Nome;
-                usuario.Email = input.Email;
-                usuario.Senha = input.Senha; 
+                if (usuario == null)
+                    return NotFound("Usuario não encontrado.");
 
+                usuario.AtualizarNome(input.Nome);
+                usuario.AtualizarSenha(input.Senha);
+                usuario.AtualizarEmail(input.Email);
+                
                 _usuarioRepository.Alterar(usuario);
 
                 return Ok(new { Message = "Usuario alterado." });

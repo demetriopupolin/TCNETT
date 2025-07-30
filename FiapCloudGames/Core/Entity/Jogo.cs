@@ -68,6 +68,36 @@ namespace Core.Entity
             PrecoBase = precoBase;
         }
 
+        public void AtualizarNome(string novoNome)
+        {
+            if (string.IsNullOrWhiteSpace(novoNome))
+                throw new ArgumentException("Nome é obrigatório.");
+            _nome = novoNome;
+        }
+
+        public void AtualizarPreco(decimal novoPrecoBase)
+        {
+            if (novoPrecoBase <= 0)
+                throw new ArgumentException("Preço base deve ser maior que zero.");
+            _precoBase = novoPrecoBase;
+        }
+
+        public void AtualizarAnoLancamento(int novoAnoLancamento)
+        {
+
+            int anoCriacao = DataCriacao.Year;
+            int anoAtual = DateTime.Now.Year;
+
+            if (novoAnoLancamento < anoCriacao)
+                throw new ArgumentException("Ano de lançamento não pode ser inferior ao ano de criação do registro.");
+
+            if (novoAnoLancamento > anoAtual)
+                throw new ArgumentException("Ano de lançamento não pode ser superior ao ano corrente.");
+
+            _anoLancamento = novoAnoLancamento;
+        }
+
+
         // Propriedade de navegação para Pedidos, se precisar
         public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
     }

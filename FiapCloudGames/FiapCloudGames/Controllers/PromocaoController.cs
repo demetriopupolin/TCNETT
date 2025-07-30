@@ -131,12 +131,7 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                var promocao = new Promocao
-                {
-                    Nome = input.Nome,
-                    Desconto = input.Desconto,
-                    DataValidade = input.DataValidade
-                };
+                var promocao = new Promocao(input.Nome, input.Desconto, input.DataValidade);                
 
                 _promocaoRepository.Cadastrar(promocao);
 
@@ -169,8 +164,9 @@ namespace FiapCloudGamesApi.Controllers
                 if (promocao == null)
                     return NotFound("Promoção não encontrada.");
 
-                promocao.Desconto = input.Desconto;
-                promocao.DataValidade = input.DataValidade;
+                promocao.AtualizarDesconto(input.Desconto);
+                promocao.AtualizarValidade(input.DataValidade);
+                promocao.AtualizarNome(input.Nome);
 
                 _promocaoRepository.Alterar(promocao);
 
@@ -229,11 +225,11 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
-                var promocoes = new List<Promocao>()
+                var promocoes = new List<Promocao>
                 {
-                    new Promocao() { Nome = "PROMOCAO NATAL"  , Desconto = 10, DataValidade = DateTime.Now.AddDays(30) },
-                    new Promocao() { Nome = "BLACK FRIDAY"    , Desconto = 15, DataValidade = DateTime.Now.AddDays(20) },
-                    new Promocao() { Nome = "DIA DAS CRIANCAS", Desconto = 20, DataValidade = DateTime.Now.AddDays(10) }
+                   new Promocao("PROMOCAO NATAL", 10, DateTime.Now.AddDays(30)),
+                   new Promocao("BLACK FRIDAY", 15, DateTime.Now.AddDays(20)),
+                   new Promocao("DIA DAS CRIANCAS", 20, DateTime.Now.AddDays(10))
                 };
 
                 _promocaoRepository.CadastrarEmMassa(promocoes);

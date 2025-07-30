@@ -1,24 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\infrastructure\\repository\\configurations\\promocaoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repository\\configurations\\promocaoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\infrastructure\\repository\\configurations\\usuarioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repository\\configurations\\usuarioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\infrastructure\\repository\\configurations\\pedidoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repository\\configurations\\pedidoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\infrastructure\\repository\\configurations\\jogoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6DBB192E-5AF4-4645-8292-544E2C86A67C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repository\\configurations\\jogoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -26,60 +9,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PromocaoConfiguration.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\PromocaoConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repository\\Configurations\\PromocaoConfiguration.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\PromocaoConfiguration.cs",
-              "RelativeToolTip": "Infrastructure\\Repository\\Configurations\\PromocaoConfiguration.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBkAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T11:43:26.549Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PedidoConfiguration.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\PedidoConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repository\\Configurations\\PedidoConfiguration.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\PedidoConfiguration.cs",
-              "RelativeToolTip": "Infrastructure\\Repository\\Configurations\\PedidoConfiguration.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T11:43:02.441Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioConfiguration.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\UsuarioConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repository\\Configurations\\UsuarioConfiguration.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\UsuarioConfiguration.cs",
-              "RelativeToolTip": "Infrastructure\\Repository\\Configurations\\UsuarioConfiguration.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAUwBMAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T11:34:29.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "JogoConfiguration.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\JogoConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repository\\Configurations\\JogoConfiguration.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Infrastructure\\Repository\\Configurations\\JogoConfiguration.cs",
-              "RelativeToolTip": "Infrastructure\\Repository\\Configurations\\JogoConfiguration.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T11:43:03.477Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"

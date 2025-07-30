@@ -61,10 +61,8 @@ namespace Core.Entity
 
         public Usuario(string nome, string email, string senha)
         {
-            if (string.IsNullOrWhiteSpace(nome))
-                throw new ArgumentException("Nome é obrigatório.");
-
-            Nome = nome;
+           
+            Nome = nome;     // Usa o setter com validação
             Email = email;   // Usa o setter com validação
             Senha = senha;   // Usa o setter com validação
             Nivel = 'U';
@@ -95,6 +93,27 @@ namespace Core.Entity
         }
 
         public bool ValidarSenha(string senhaInformada) => Senha == senhaInformada;
+
+        public void AtualizarNome(string novoNome)
+        {
+            if (string.IsNullOrWhiteSpace(novoNome))
+                throw new ArgumentException("Nome é obrigatório.");
+            _nome = novoNome;
+        }
+
+        public void AtualizarSenha(string novaSenha)
+        {
+            if (!SenhaEhForte(novaSenha))
+                throw new ArgumentException("A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.");
+            _senha = novaSenha;
+        }
+
+        public void AtualizarEmail(string novoEmail)
+        {
+            if (!EmailEhValido(novoEmail))
+                throw new ArgumentException("E-mail inválido.");
+            _email = novoEmail;
+        }
 
         public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
     }
