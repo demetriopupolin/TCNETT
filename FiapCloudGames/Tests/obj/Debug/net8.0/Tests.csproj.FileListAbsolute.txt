@@ -1,10 +1,4 @@
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_Tests
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.csproj.AssemblyReference.cache
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.AssemblyInfoInputs.cache
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.AssemblyInfo.cs
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.csproj.CoreCompileInputs.cache
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.sourcelink.json
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\testhost.dll
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\FiapCloudGamesApi.deps.json
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\FiapCloudGamesApi.runtimeconfig.json
@@ -153,6 +147,12 @@ C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\FiapCloudGamesApi.pd
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\FiapCloudGamesApi.xml
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\Core.pdb
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\bin\Debug\net8.0\Infrastructure.pdb
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.csproj.AssemblyReference.cache
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.AssemblyInfoInputs.cache
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.AssemblyInfo.cs
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.csproj.CoreCompileInputs.cache
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.sourcelink.json
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.csproj.Up2Date
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\Tests.dll
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Tests\obj\Debug\net8.0\refint\Tests.dll

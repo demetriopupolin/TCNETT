@@ -9,14 +9,14 @@ C:\FIAP\PROJETO\FiapCloudGames\Core\obj\Debug\net8.0\Core.dll
 C:\FIAP\PROJETO\FiapCloudGames\Core\obj\Debug\net8.0\refint\Core.dll
 C:\FIAP\PROJETO\FiapCloudGames\Core\obj\Debug\net8.0\Core.pdb
 C:\FIAP\PROJETO\FiapCloudGames\Core\obj\Debug\net8.0\ref\Core.dll
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\bin\Debug\net8.0\Core.deps.json
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\bin\Debug\net8.0\Core.dll
+C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\bin\Debug\net8.0\Core.pdb
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.AssemblyInfoInputs.cache
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.AssemblyInfo.cs
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.csproj.CoreCompileInputs.cache
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.sourcelink.json
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\bin\Debug\net8.0\Core.deps.json
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\bin\Debug\net8.0\Core.dll
-C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\bin\Debug\net8.0\Core.pdb
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.dll
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\refint\Core.dll
 C:\GITHUB\TCNETTFase1\FiapCloudGames\Core\obj\Debug\net8.0\Core.pdb

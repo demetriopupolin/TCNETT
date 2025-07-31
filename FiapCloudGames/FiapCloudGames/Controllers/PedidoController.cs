@@ -160,7 +160,7 @@ namespace FiapCloudGamesApi.Controllers
 
 
 
-        private IActionResult CadastrarPedido(PedidoInput input, int usuarioId)
+        private IActionResult CadastrarPedido(PedidoInput input, int? usuarioId)
         {
             try
             {
@@ -185,10 +185,11 @@ namespace FiapCloudGamesApi.Controllers
                         return BadRequest("Promoção não encontrada");
                 }
 
+                
                 var pedido = new Pedido
                 {
-                    UsuarioId = usuarioId,
-                    JogoId = input.JogoId,
+                    UsuarioId = (int)usuarioId, 
+                    JogoId = (int)input.JogoId,
                     PromocaoId = input.PromocaoId,
                     
                 };
@@ -291,8 +292,8 @@ namespace FiapCloudGamesApi.Controllers
 
                 var pedido = new Pedido
                 {
-                    UsuarioId = input.UsuarioId,
-                    JogoId = input.JogoId,
+                    UsuarioId = (int)input.UsuarioId,
+                    JogoId = (int)input.JogoId,
                     PromocaoId = input.PromocaoId
                 };
 

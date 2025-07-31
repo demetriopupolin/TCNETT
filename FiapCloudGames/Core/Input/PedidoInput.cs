@@ -5,8 +5,8 @@ namespace Core.Input
 {
     public class PedidoInput
     {
-        public int UsuarioId { get; set; }
-        public int JogoId { get; set; }
+        public int? UsuarioId { get; set; }
+        public int? JogoId { get; set; }
         public int? PromocaoId { get; set; }
 
     }

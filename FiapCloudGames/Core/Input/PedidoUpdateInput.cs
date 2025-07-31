@@ -2,6 +2,6 @@
 {
     public class PedidoUpdateInput : PedidoInput
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
     }
 }
