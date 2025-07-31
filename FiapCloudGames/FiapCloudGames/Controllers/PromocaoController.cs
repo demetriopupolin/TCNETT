@@ -131,6 +131,14 @@ namespace FiapCloudGamesApi.Controllers
         {
             try
             {
+                if (_promocaoRepository.ObterPorNome(input.Nome) != null)
+                    return BadRequest(new
+                    {
+                        Error = "Erro de nome de promoção duplicado.",
+                        Inner = (string)null,
+                        Message = "Erro ao inserir promoção."
+                    });
+
                 var promocao = new Promocao(input.Nome, input.Desconto, input.DataValidade);                
 
                 _promocaoRepository.Cadastrar(promocao);

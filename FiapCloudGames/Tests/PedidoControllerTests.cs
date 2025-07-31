@@ -88,7 +88,7 @@ namespace Tests
             // Mock para jogo existir
             _jogoRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Jogo { Id = 1, Nome = "JogoTeste", PrecoBase = 100 });
             // Mock para promoção (se necessário)
-            _promocaoRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Promocao { Id = 1, Nome = "Promo Nome", Desconto = 20, DataValidade = DateTime.Now.AddDays(365) });
+            _promocaoRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Promocao("Promo Nome", 20, DateTime.Now.AddDays(365)));
 
             _pedidoRepoMock.Setup(r => r.Cadastrar(It.IsAny<Pedido>()));
 
@@ -130,7 +130,7 @@ namespace Tests
             // Mock para jogo existir
             _jogoRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Jogo { Id = 1, Nome = "JogoTeste", PrecoBase = 100 });
             // Mock para promoção (se necessário)
-            _promocaoRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Promocao { Id = 1, Nome = "Promo Nome", Desconto = 20, DataValidade = DateTime.Now.AddDays(365) });
+            _promocaoRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Promocao ("Promo Nome", 20, DateTime.Now.AddDays(365)));
 
             _pedidoRepoMock.Setup(r => r.Cadastrar(It.IsAny<Pedido>())).Throws(new Exception("Erro"));
 
