@@ -18,10 +18,6 @@ namespace FiapCloudGamesApi.Controllers
             _jogoRepository = jogoRepository;
         }
 
-        /// <summary>
-        /// Retorna todos os jogos
-        /// </summary>
-        /// <returns>Lista de jogos</returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -29,34 +25,59 @@ namespace FiapCloudGamesApi.Controllers
             {
                 var jogos = _jogoRepository.ObterTodos()
                     .OrderBy(p => p.Id)
-                    .ToList(); ;
+                    .ToList();
 
-                var jogosDto = new List<JogoDto>();
-               
-                foreach (var jogo in jogos)
+                // Verifica se o usuário é Admin
+                var isAdmin = User.IsInRole("Admin") || User.HasClaim("Policy", "Admin");
+
+                if (isAdmin)
                 {
-                        jogosDto.Add(new JogoDto()
-                    {
-                        Id = jogo.Id,
-                        DataCriacao = jogo.DataCriacao,
-                        Nome = jogo.Nome,
-                        AnoLancamento = jogo.AnoLancamento,
-                        PrecoBase = jogo.PrecoBase,
-                        Pedidos = jogo.Pedidos.Select(pedido => new PedidoDto()
-                        {
-                            Id = pedido.Id,
-                            DataCriacao = pedido.DataCriacao,
-                            UsuarioId = pedido.UsuarioId,
-                            JogoId = pedido.JogoId,
-                            PromocaoId = pedido.PromocaoId,
-                            VlPedido = pedido.VlPedido,
-                            VlDesconto = pedido.VlDesconto,
-                            VlPago = pedido.VlPago
-                        }).ToList()
-                    });
-                }
+                    var jogosDto = new List<JogoDto>();
 
-                return Ok(jogosDto);
+                    foreach (var jogo in jogos)
+                    {
+                        jogosDto.Add(new JogoDto()
+                        {
+                            Id = jogo.Id,
+                            DataCriacao = jogo.DataCriacao,
+                            Nome = jogo.Nome,
+                            AnoLancamento = jogo.AnoLancamento,
+                            PrecoBase = jogo.PrecoBase,
+                            Pedidos = jogo.Pedidos.Select(pedido => new PedidoDto()
+                            {
+                                Id = pedido.Id,
+                                DataCriacao = pedido.DataCriacao,
+                                UsuarioId = pedido.UsuarioId,
+                                JogoId = pedido.JogoId,
+                                PromocaoId = pedido.PromocaoId,
+                                VlPedido = pedido.VlPedido,
+                                VlDesconto = pedido.VlDesconto,
+                                VlPago = pedido.VlPago
+                            }).ToList()
+                        });
+                    }
+
+                    return Ok(jogosDto);
+                }
+                else
+                {
+                    var jogosDtoUsuario = new List<JogoDtoUsuario>();
+
+                    foreach (var jogo in jogos)
+                    {
+                        jogosDtoUsuario.Add(new JogoDtoUsuario()
+                        {
+                            Id = jogo.Id,
+                            DataCriacao = jogo.DataCriacao,
+                            Nome = jogo.Nome,
+                            AnoLancamento = jogo.AnoLancamento,
+                            PrecoBase = jogo.PrecoBase
+                            // Não inclui pedidos
+                        });
+                    }
+
+                    return Ok(jogosDtoUsuario);
+                }
             }
             catch (Exception e)
             {
@@ -69,12 +90,6 @@ namespace FiapCloudGamesApi.Controllers
             }
         }
 
-
-        /// <summary>
-        /// Busca um jogo específico pelo ID
-        /// </summary>
-        /// <param name="id">ID do Jogo</param>
-        /// <returns>Jogo encontrado</returns>
         [HttpGet("{id:int}")]
         public IActionResult Get([FromRoute] int id)
         {
@@ -85,27 +100,46 @@ namespace FiapCloudGamesApi.Controllers
                 if (jogo == null)
                     return NotFound("Jogo não encontrado.");
 
-                var jogoDto = new JogoDto
-                {
-                    Id = jogo.Id,
-                    DataCriacao = jogo.DataCriacao,
-                    Nome = jogo.Nome,
-                    AnoLancamento = jogo.AnoLancamento,
-                    PrecoBase = jogo.PrecoBase,
-                    Pedidos = jogo.Pedidos.Select(pedido => new PedidoDto
-                    {
-                        Id = pedido.Id,
-                        DataCriacao = pedido.DataCriacao,
-                        UsuarioId = pedido.UsuarioId,
-                        JogoId = pedido.Id,
-                        PromocaoId = pedido.PromocaoId,
-                        VlPedido = pedido.VlPedido,
-                        VlDesconto = pedido.VlDesconto,
-                        VlPago = pedido.VlPago
-                    }).ToList()
-                };
+                var isAdmin = User.IsInRole("Admin") || User.HasClaim("Policy", "Admin");
 
-                return Ok(jogoDto);
+                if (isAdmin)
+                {
+                    var jogoDto = new JogoDto
+                    {
+                        Id = jogo.Id,
+                        DataCriacao = jogo.DataCriacao,
+                        Nome = jogo.Nome,
+                        AnoLancamento = jogo.AnoLancamento,
+                        PrecoBase = jogo.PrecoBase,
+                        Pedidos = jogo.Pedidos.Select(pedido => new PedidoDto
+                        {
+                            Id = pedido.Id,
+                            DataCriacao = pedido.DataCriacao,
+                            UsuarioId = pedido.UsuarioId,
+                            JogoId = pedido.JogoId,
+                            PromocaoId = pedido.PromocaoId,
+                            VlPedido = pedido.VlPedido,
+                            VlDesconto = pedido.VlDesconto,
+                            VlPago = pedido.VlPago
+                        }).ToList()
+                    };
+
+                    return Ok(jogoDto);
+                }
+                else
+                {
+                    var jogoDtoUsuario = new JogoDtoUsuario
+                    {
+                        Id = jogo.Id,
+                        DataCriacao = jogo.DataCriacao,
+                        Nome = jogo.Nome,
+                        AnoLancamento = jogo.AnoLancamento,
+                        PrecoBase = jogo.PrecoBase
+                        // Sem pedidos
+                    };
+
+                    return Ok(jogoDtoUsuario);
+                }
             }
             catch (Exception e)
             {
