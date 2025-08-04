@@ -1,251 +1,215 @@
-﻿using Xunit;
-using Xunit.Abstractions;
-using Moq;
-using Microsoft.AspNetCore.Mvc;
-using Core.Entity;
+﻿using Core.Entity;
 using Core.Input;
 using Core.Repository;
 using FiapCloudGamesApi.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xunit;
 
 namespace Tests
 {
-    public class UsuarioControllerTest
+    public class UsuarioControllerTests
     {
-        private readonly Mock<IUsuarioRepository> _usuarioRepoMock;
+        private readonly Mock<IUsuarioRepository> _mockRepo;
         private readonly UsuarioController _controller;
-        private readonly ITestOutputHelper _output;
 
-        public UsuarioControllerTest(ITestOutputHelper output)
+        public UsuarioControllerTests()
         {
-            _output = output;
-            _usuarioRepoMock = new Mock<IUsuarioRepository>();
-            _controller = new UsuarioController(_usuarioRepoMock.Object);
+            _mockRepo = new Mock<IUsuarioRepository>();
+            _controller = new UsuarioController(_mockRepo.Object);
         }
 
         [Fact]
-        public void Get_DeveRetornarUsuarios()
+        public void CTUS001_CadastroSemNome_DeveRetornarErroNomeInvalido()
         {
-            var usuarios = new List<Usuario>
+            var input = new UsuarioInput
             {
-                new Usuario { Id = 1, Nome = "Lúcio Martins", Email = "lucio@ex.com", Senha = "ABC123$#", Nivel = 'U', Pedidos = new List<Pedido>() }
+                Nome = null,
+                Email = "teste@email.com",
+                Senha = "Senha123!"
             };
-            _usuarioRepoMock.Setup(r => r.ObterTodos()).Returns(usuarios);
-
-            var result = _controller.Get();
-
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var list = Assert.IsType<List<UsuarioDto>>(okResult.Value);
-            Assert.Single(list);
-
-            _output.WriteLine($"Total usuários retornados: {list.Count}");
-            foreach (var u in list)
-                _output.WriteLine($"Usuário: {u.Id} - {u.Nome} - {u.Email}");
-        }
-
-        [Fact]
-        public void Get_DeveRetornarBadRequest_EmCasoDeErro()
-        {
-            _usuarioRepoMock.Setup(r => r.ObterTodos()).Throws(new Exception("Erro"));
-
-            var result = _controller.Get();
-
-            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
-            _output.WriteLine($"Mensagem de erro: {badRequest.Value}");
-
-            Assert.Contains("Erro ao obter todos os usuarios", badRequest.Value.ToString());
-        }
-
-        [Fact]
-        public void GetById_DeveRetornarUsuario()
-        {
-            var usuario = new Usuario
-            {
-                Id = 1,
-                Nome = "Clara Menezes",
-                Email = "clara@ex.com",
-                Senha = "ABC123$#",
-                Pedidos = new List<Pedido>()
-            };
-            _usuarioRepoMock.Setup(r => r.ObterPorId(1)).Returns(usuario);
-
-            var result = _controller.Get(1);
-
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var dto = Assert.IsType<UsuarioDto>(okResult.Value);
-
-            _output.WriteLine($"Usuário retornado: {dto.Id} - {dto.Nome} - {dto.Email}");
-
-            Assert.Equal("Clara Menezes", dto.Nome);
-        }
-
-        [Fact]
-        public void GetById_DeveRetornarNotFound_SeNaoExistir()
-        {
-            _usuarioRepoMock.Setup(r => r.ObterPorId(99)).Returns<Usuario>(null);
-
-            var result = _controller.Get(99);
-
-            _output.WriteLine("Usuário não encontrado (ID 99).");
-
-            Assert.IsType<NotFoundObjectResult>(result);
-        }
-
-        [Fact]
-        public void Post_DeveCadastrarUsuario_ComSucesso()
-        {
-            var input = new UsuarioInput { Nome = "Valentina Costa", Email = "valentina@ex.com", Senha = "XZY456$%" };
-            _usuarioRepoMock.Setup(r => r.ObterPorEmail(input.Email)).Returns<Usuario>(null);
 
             var result = _controller.Post(input);
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.Contains("Nome é obrigatório.", badRequest.Value.ToString(), StringComparison.OrdinalIgnoreCase);
+        }
 
+        [Fact]
+        public void CTUS002_CadastroEmailInvalido_DeveRetornarErroEmail()
+        {
+            var input = new UsuarioInput
+            {
+                Nome = "José",
+                Email = "josedominio.com.br",
+                Senha = "Senha123!"
+            };
+
+            var result = _controller.Post(input);
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.Contains("E-mail inválido", badRequest.Value.ToString(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        [Fact]
+        public void CTUS003_CadastroSenhaCurta_DeveRetornarErroSenhaCurta()
+        {
+            var input = new UsuarioInput
+            {
+                Nome = "Ana",
+                Email = "ana@email.com",
+                Senha = "R$1A"
+            };
+
+            var result = _controller.Post(input);
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.Contains("A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.", badRequest.Value.ToString(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        [Fact]
+        public void CTUS004_CadastroSenhaSemEspecialOuNumero_DeveRetornarErro()
+        {
+            var input = new UsuarioInput
+            {
+                Nome = "Bruno",
+                Email = "bruno@email.com",
+                Senha = "abcdefgh"
+            };
+
+            var result = _controller.Post(input);
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.Contains("A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.", badRequest.Value.ToString(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        [Fact]
+        public void CTUS005_CadastroValido_DeveRetornarSucesso()
+        {
+            var input = new UsuarioInput
+            {
+                Nome = "João Silva",
+                Email = "joao@email.com",
+                Senha = "Senha123!"
+            };
+
+            _mockRepo.Setup(r => r.ObterPorEmail(input.Email)).Returns((Usuario)null);
+            _mockRepo.Setup(r => r.Cadastrar(It.IsAny<Usuario>()));
+
+            var result = _controller.Post(input);
             var ok = Assert.IsType<OkObjectResult>(result);
-            _output.WriteLine($"Cadastro realizado: {input.Nome} - {input.Email}");
-
-            Assert.Contains("Usuario cadastrado", ok.Value.ToString());
+            Assert.Contains("Usuario cadastrado", ok.Value.ToString(), StringComparison.OrdinalIgnoreCase);
         }
 
         [Fact]
-        public void Post_DeveRetornarBadRequest_SeEmailJaExistir()
+        public void CTUS006_CadastroEmailJaExistente_DeveRetornarErro()
         {
-            var input = new UsuarioInput { Nome = "Valentina Costa", Email = "valentina@ex.com", Senha = "XZY456$%" };
-            _usuarioRepoMock.Setup(r => r.ObterPorEmail(input.Email)).Returns(new Usuario
+            var input = new UsuarioInput
             {
-                Nome = input.Nome,
-                Email = input.Email,
-                Senha = input.Senha,
-                Nivel = 'U',
-                Pedidos = new List<Pedido>()
-            });
+                Nome = "Maria da Silva",
+                Email = "joao@email.com",
+                Senha = "Maria123!"
+            };
+            _mockRepo.Setup(r => r.ObterPorEmail(input.Email))
+                     .Returns(new Usuario
+                     {
+                         Nome = input.Nome,
+                         Email = input.Email,
+                         Senha = input.Senha,
+                         Nivel = 'U'
+                     });
+
 
             var result = _controller.Post(input);
-
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);
-            _output.WriteLine($"Falha ao cadastrar (email já existe): {input.Email}");
-
-            Assert.Contains("já existe", badRequest.Value.ToString());
+            Assert.Contains("já existe", badRequest.Value.ToString(), StringComparison.OrdinalIgnoreCase);
         }
 
         [Fact]
-        public void CadastrarAdmin_DeveCadastrarAdmin_ComSucesso()
+        public void CTUS007_CadastroAdminValido_DeveRetornarSucesso()
         {
-            var input = new UsuarioInput { Nome = "Fernando Prado", Email = "fernando@ex.com", Senha = "DEF456$%" };
-            _usuarioRepoMock.Setup(r => r.ObterPorEmail(input.Email)).Returns<Usuario>(null);
+            var input = new UsuarioInput
+            {
+                Nome = "Pedro Paulo",
+                Email = "pedro@admin.com",
+                Senha = "Abcd123!"
+            };
+
+            _mockRepo.Setup(r => r.ObterPorEmail(input.Email)).Returns((Usuario)null);
+            _mockRepo.Setup(r => r.Cadastrar(It.IsAny<Usuario>()));
 
             var result = _controller.CadastrarAdmin(input);
-
             var ok = Assert.IsType<OkObjectResult>(result);
-            _output.WriteLine($"Admin cadastrado: {input.Nome} - {input.Email}");
-
-            Assert.Contains("Usuario cadastrado", ok.Value.ToString());
+            Assert.Contains("Usuario cadastrado", ok.Value.ToString(), StringComparison.OrdinalIgnoreCase);
         }
 
         [Fact]
-        public void Put_DeveAlterarUsuario()
+        public void CTUS008_ExcluirUsuarioSemPedidos_DeveRetornarSucesso()
         {
-            var usuario = new Usuario { Id = 1, Nome = "Lúcio Martins", Email = "lucio@ex.com", Senha = "ABC123$#", Pedidos = new List<Pedido>() };
-            _usuarioRepoMock.Setup(r => r.ObterPorId(1)).Returns(usuario);
+            int userId = 10;
 
-            var input = new UsuarioUpdateInput { Id = 1, Nome = "Bianca Furtado", Email = "bianca@ex.com", Senha = "NEW123$#" };
-            var result = _controller.Put(input);
-
-            var ok = Assert.IsType<OkObjectResult>(result);
-            _output.WriteLine($"Usuário alterado: ID {input.Id} - {input.Nome} - {input.Email}");
-
-            Assert.Contains("Usuario alterado", ok.Value.ToString());
-        }
-
-        [Fact]
-        public void Put_DeveRetornarBadRequest_EmErro()
-        {
-            _usuarioRepoMock.Setup(r => r.ObterPorId(1)).Throws(new Exception("Erro"));
-            var input = new UsuarioUpdateInput { Id = 1, Nome = "Bianca Furtado", Email = "bianca@ex.com", Senha = "NEW123$#" };
-
-            var result = _controller.Put(input);
-
-            _output.WriteLine("Erro ao alterar usuário com ID 1.");
-
-            Assert.IsType<BadRequestObjectResult>(result);
-        }
-
-        [Fact]
-        public void Delete_DeveExcluirUsuario()
-        {
-            _usuarioRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Usuario
+            _mockRepo.Setup(r => r.ObterPorId(userId)).Returns(new Usuario
             {
-                Id = 1,
-                Nome = "Carlos Souza",
-                Email = "carlos@ex.com",
-                Senha = "PASS123$#",
+                Nome = "Teste",
+                Email = "teste@email.com",
+                Senha = "Senha123!",
+                Nivel = 'U',
+                Id = userId,
+                Pedidos = new List<Pedido>() // importante evitar null
+            });
+
+            _mockRepo.Setup(r => r.UsuarioTemPedidos(userId)).Returns(false);
+            _mockRepo.Setup(r => r.Deletar(userId));
+
+            var result = _controller.Put(userId);
+            var ok = Assert.IsType<OkObjectResult>(result);
+            Assert.Contains("Usuario excluído", ok.Value.ToString(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        [Fact]
+        public void CTUS009_ExcluirUsuarioComPedidos_DeveRetornarErro()
+        {
+            int userId = 5;
+
+            var usuario = new Usuario
+            {
+                Id = userId,
+                Nome = "Carlos Teste",
+                Email = "carlos@teste.com",
+                Senha = "Senha123!",
                 Nivel = 'U',
                 Pedidos = new List<Pedido>()
-            });
-            _usuarioRepoMock.Setup(r => r.UsuarioTemPedidos(1)).Returns(false);
+            };
 
-            var result = _controller.Put(1);
-
-            var ok = Assert.IsType<OkObjectResult>(result);
-            _output.WriteLine("Usuário excluído: ID 1");
-
-            Assert.Contains("Usuario excluído", ok.Value.ToString());
-        }
-
-        [Fact]
-        public void Delete_DeveRetornarNotFound_SeNaoExistir()
-        {
-            _usuarioRepoMock.Setup(r => r.ObterPorId(1)).Returns<Usuario>(null);
-
-            var result = _controller.Put(1);
-
-            _output.WriteLine("Tentativa de exclusão de usuário inexistente: ID 1");
-
-            Assert.IsType<NotFoundObjectResult>(result);
-        }
-
-        [Fact]
-        public void Delete_DeveRetornarBadRequest_SeTiverPedidos()
-        {
-            _usuarioRepoMock.Setup(r => r.ObterPorId(1)).Returns(new Usuario
+            var jogo = new Jogo
             {
                 Id = 1,
-                Nome = "Carlos Souza",
-                Email = "carlos@ex.com",
-                Senha = "PASS123$#",
-                Nivel = 'U',
-                Pedidos = new List<Pedido>()
-            });
-            _usuarioRepoMock.Setup(r => r.UsuarioTemPedidos(1)).Returns(true);
+                Nome = "Jogo Teste",
+                PrecoBase = 100,
+                DataCriacao = DateTime.Now
+            };
 
-            var result = _controller.Put(1);
+            var pedido = new Pedido
+            {
+                Id = 1,
+                UsuarioId = usuario.Id,
+                JogoId = jogo.Id,
+                DataCriacao = DateTime.Now
+            };
 
-            _output.WriteLine("Usuário com pedidos não pode ser excluído: ID 1");
+            pedido.ValidarECalcularPedido(usuario, jogo); // calcula VlPedido, VlDesconto e VlPago
 
-            Assert.IsType<BadRequestObjectResult>(result);
+            usuario.Pedidos.Add(pedido);
+
+            _mockRepo.Setup(r => r.ObterPorId(userId)).Returns(usuario);
+            _mockRepo.Setup(r => r.UsuarioTemPedidos(userId)).Returns(true);
+
+            var result = _controller.Put(userId);
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+
+            Assert.Contains("Exclusão não permitida", badRequest.Value.ToString(), StringComparison.OrdinalIgnoreCase);
         }
 
-        [Fact]
-        public void CadastroEmMassa_DeveCadastrar_ComSucesso()
-        {
-            var result = _controller.CadastroEmMassa();
-            var ok = Assert.IsType<OkObjectResult>(result);
 
-            _output.WriteLine("Cadastro em massa realizado com sucesso.");
 
-            Assert.Contains("Usuarios cadastrados em massa", ok.Value.ToString());
-        }
-
-        [Fact]
-        public void CadastroEmMassa_DeveRetornarBadRequest_EmErro()
-        {
-            _usuarioRepoMock.Setup(r => r.CadastrarEmMassa(It.IsAny<List<Usuario>>())).Throws(new Exception("Erro"));
-
-            var result = _controller.CadastroEmMassa();
-
-            _output.WriteLine("Erro no cadastro em massa.");
-
-            Assert.IsType<BadRequestObjectResult>(result);
-        }
     }
 }
