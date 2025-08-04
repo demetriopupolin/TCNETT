@@ -121,5 +121,100 @@ namespace Tests
             _output.WriteLine($"Promoção cadastrada com sucesso: {input.Nome} - Desconto: {input.Desconto}%");
         }
 
+
+        [Fact]
+        public void CTPR006_ExcluirPromocao_VinculadaPedido_NaoDevePermitir()
+        {
+            // Arrange
+            int promocaoId = 10;
+
+            var promocao = new Promocao("Promo Teste", 20, DateTime.Now.AddDays(10));
+            promocao.Id = promocaoId;
+
+            _mockRepo.Setup(r => r.ObterPorId(promocaoId)).Returns(promocao);
+            // Simula que existe pedido vinculado à promoção
+            _mockRepo.Setup(r => r.PromocaoTemPedidos(promocaoId)).Returns(true);
+
+            // Act
+            var result = _controller.Delete(promocaoId);
+
+            // Assert
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+
+            // Extrair a propriedade "Message" do objeto retornado (pode ser anônimo)
+            var message = badRequest.Value?.GetType().GetProperty("Message")?.GetValue(badRequest.Value, null) as string;
+
+            Assert.Equal("Exclusão não permitida: promoção vinculada a pedido.", message);
+        }
+
+
+        [Fact]
+        public void CTPR007_ExcluirPromocao_SemVinculo_DevePermitir()
+        {
+            int promoId = 11;
+
+            // Setup para simular promoção existente
+            _mockRepo.Setup(r => r.ObterPorId(promoId)).Returns(new Promocao("Promo Livre", 15, DateTime.Now.AddDays(15)) { Id = promoId });
+
+            // Simula que não existe pedido vinculado a essa promoção
+            _mockRepo.Setup(r => r.PromocaoTemPedidos(promoId)).Returns(false);
+
+            // Setup para exclusão, apenas para verificação
+            _mockRepo.Setup(r => r.Deletar(promoId)).Verifiable();
+
+            var result = _controller.Delete(promoId);
+
+            var ok = Assert.IsType<OkObjectResult>(result);
+            var msg = ok.Value?.GetType().GetProperty("Message")?.GetValue(ok.Value, null) as string;
+
+            Assert.Equal("Promoção excluída.", msg);
+
+            _mockRepo.Verify(r => r.Deletar(promoId), Times.Once);
+        }
+
+        [Fact]
+        public void CTPR008_ConsultarListaPromocoes_DeveRetornarLista()
+        {
+            // Arrange
+            var promocoes = new[]
+            {
+        new Promocao("Promo1", 10, DateTime.Now.AddDays(10)) { Id = 1 },
+        new Promocao("Promo2", 20, DateTime.Now.AddDays(20)) { Id = 2 },
+    };
+
+            _mockRepo.Setup(r => r.Listar()).Returns(promocoes);
+
+            // Act
+            var result = _controller.Get();
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            Assert.NotNull(okResult.Value);
+
+            var lista = Assert.IsAssignableFrom<IEnumerable<Promocao>>(okResult.Value);
+            Assert.NotEmpty(lista);
+            Assert.Equal(2, lista.Count());
+        }
+
+
+        [Fact]
+        public void CTPR009_ConsultarPromocaoPorId_DeveRetornarPromocao()
+        {
+            int promoId = 1;
+            var promo = new Promocao("Promo1", 10, DateTime.Now.AddDays(10)) { Id = promoId };
+
+            _mockRepo.Setup(r => r.ObterPorId(promoId)).Returns(promo);
+
+            var result = _controller.Get(promoId);
+
+            var ok = Assert.IsType<OkObjectResult>(result);
+            var retPromo = ok.Value as Promocao;
+
+            Assert.NotNull(retPromo);
+            Assert.Equal(promoId, retPromo.Id);
+            Assert.Equal("Promo1", retPromo.Nome);
+        }
+
+
     }
 }

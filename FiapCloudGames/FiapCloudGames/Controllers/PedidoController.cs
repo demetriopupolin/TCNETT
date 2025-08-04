@@ -123,7 +123,7 @@ namespace FiapCloudGamesApi.Controllers
         /// <param name="id">ID da Pedido.</param>
         /// <returns>Pedido encontrado.</returns>
         [Authorize]
-        [HttpGet("pedidos-do-usuario")]
+        [HttpGet("meus-pedidos")]
         public IActionResult GetPedidosPorUsuario()
         {
             try
@@ -198,7 +198,7 @@ namespace FiapCloudGamesApi.Controllers
 
                 _pedidoRepository.Cadastrar(pedido);
 
-                return Ok(new { Message = "Pedido cadastrado." });
+                return Ok("Pedido cadastrado.");
             }
             catch (Exception e)
             {
@@ -250,7 +250,7 @@ namespace FiapCloudGamesApi.Controllers
         /// <param name="input">Objeto com os dados do Pedido</param>
         /// <returns>Pedido cadastrado com sucesso</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPost("cadastrar-por-usuario")]
+        [HttpPost("cadastrar-para-usuario")]
         public IActionResult PostPorUsuario([FromBody] PedidoInput input)
         {
             if (input.UsuarioId <= 0)
@@ -326,8 +326,8 @@ namespace FiapCloudGamesApi.Controllers
             try
             {
 
-                if (_promocaoRepository.ObterPorId(id) == null)
-                    return NotFound("Promoção inexistente.");
+                if (_pedidoRepository.ObterPorId(id) == null)
+                    return NotFound("Pedido inexistente.");
 
                 _pedidoRepository.Deletar(id);
                 return Ok(new { Message = "Pedido excluído." });

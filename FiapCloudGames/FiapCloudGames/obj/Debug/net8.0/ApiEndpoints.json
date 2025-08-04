@@ -216,7 +216,7 @@
   {
     "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
     "Method": "PostPorUsuario",
-    "RelativePath": "Pedido/cadastrar-por-usuario",
+    "RelativePath": "Pedido/cadastrar-para-usuario",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -242,7 +242,7 @@
   {
     "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
     "Method": "GetPedidosPorUsuario",
-    "RelativePath": "Pedido/pedidos-do-usuario",
+    "RelativePath": "Pedido/meus-pedidos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

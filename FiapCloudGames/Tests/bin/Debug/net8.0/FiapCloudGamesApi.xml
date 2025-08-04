@@ -4,19 +4,6 @@
         <name>FiapCloudGamesApi</name>
     </assembly>
     <members>
-        <member name="M:FiapCloudGamesApi.Controllers.JogoController.Get">
-            <summary>
-            Retorna todos os jogos
-            </summary>
-            <returns>Lista de jogos</returns>
-        </member>
-        <member name="M:FiapCloudGamesApi.Controllers.JogoController.Get(System.Int32)">
-            <summary>
-            Busca um jogo específico pelo ID
-            </summary>
-            <param name="id">ID do Jogo</param>
-            <returns>Jogo encontrado</returns>
-        </member>
         <member name="M:FiapCloudGamesApi.Controllers.JogoController.Post(JogoInput)">
             <summary>
             Cadastrar Jogo

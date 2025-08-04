@@ -210,6 +210,60 @@ namespace Tests
         }
 
 
+        [Fact]
+        public void CTUS010_ListarTodosUsuarios_DeveRetornarTodos()
+        {
+            // Arrange
+            var usuarios = new List<Usuario>
+    {
+        new Usuario { Id = 1, Nome = "João", Email = "joao@email.com", Senha = "Senha123!", Nivel = 'U' },
+        new Usuario { Id = 2, Nome = "Maria", Email = "maria@email.com", Senha = "Senha123!", Nivel = 'U' }
+    };
+
+            _mockRepo.Setup(r => r.ObterTodos()).Returns(usuarios);
+
+            // Act
+            var result = _controller.Get();
+
+            // Assert
+            var ok = Assert.IsType<OkObjectResult>(result);
+            var lista = Assert.IsAssignableFrom<IEnumerable<object>>(ok.Value); // use tipo real se houver um DTO
+
+            Assert.Equal(2, lista.Count());
+        }
+
+
+
+        [Fact]
+        public void CTUS011_ListarUsuarioPorId_DeveRetornarUsuario()
+        {
+            // Arrange
+            var userId = 1;
+            var usuario = new Usuario
+            {
+                Id = userId,
+                Nome = "Carlos",
+                Email = "carlos@email.com",
+                Senha = "Senha123!",
+                Nivel = 'U'
+            };
+
+            _mockRepo.Setup(r => r.ObterPorId(userId)).Returns(usuario);
+
+            // Act
+            var result = _controller.Get(userId);
+
+            // Assert
+            var ok = Assert.IsType<OkObjectResult>(result);
+            var usuarioDto = Assert.IsAssignableFrom<UsuarioDto>(ok.Value); // Usa o DTO real retornado
+
+            Assert.Equal(userId, usuarioDto.Id);
+            Assert.Equal("Carlos", usuarioDto.Nome);
+            Assert.Equal("carlos@email.com", usuarioDto.Email);
+        }
+
+
+
 
     }
 }
