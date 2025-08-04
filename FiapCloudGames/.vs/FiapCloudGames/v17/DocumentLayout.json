@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\tests\\pedidocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|solutionrelative:tests\\pedidocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\fiapcloudgames\\controllers\\pedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|solutionrelative:fiapcloudgames\\controllers\\pedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B91B0783-6D78-4805-A2E3-D8B0D1F84376}|Core\\Core.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\core\\entity\\promocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B91B0783-6D78-4805-A2E3-D8B0D1F84376}|Core\\Core.csproj|solutionrelative:core\\entity\\promocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B91B0783-6D78-4805-A2E3-D8B0D1F84376}|Core\\Core.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\core\\input\\pedidoinputusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B91B0783-6D78-4805-A2E3-D8B0D1F84376}|Core\\Core.csproj|solutionrelative:core\\input\\pedidoinputusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\tests\\promocaocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|solutionrelative:tests\\promocaocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,54 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Promocao.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Entity\\Promocao.cs",
-              "RelativeDocumentMoniker": "Core\\Entity\\Promocao.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Entity\\Promocao.cs",
-              "RelativeToolTip": "Core\\Entity\\Promocao.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T11:48:52.092Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PedidoInputUsuario.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Input\\PedidoInputUsuario.cs",
-              "RelativeDocumentMoniker": "Core\\Input\\PedidoInputUsuario.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Input\\PedidoInputUsuario.cs",
-              "RelativeToolTip": "Core\\Input\\PedidoInputUsuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T11:24:53.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PedidoController.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Controllers\\PedidoController.cs",
-              "RelativeDocumentMoniker": "FiapCloudGames\\Controllers\\PedidoController.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Controllers\\PedidoController.cs",
-              "RelativeToolTip": "FiapCloudGames\\Controllers\\PedidoController.cs",
-              "ViewState": "AgIAAOYAAAAAAAAAAAAEwPQAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T11:12:52.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PedidoControllerTests.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\PedidoControllerTests.cs",
-              "RelativeDocumentMoniker": "Tests\\PedidoControllerTests.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\PedidoControllerTests.cs",
-              "RelativeToolTip": "Tests\\PedidoControllerTests.cs",
-              "ViewState": "AgIAAAsBAAAAAAAAAAAuwFgBAAAAAAAAAAAAAA==",
+              "Title": "PromocaoControllerTests.cs",
+              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\PromocaoControllerTests.cs",
+              "RelativeDocumentMoniker": "Tests\\PromocaoControllerTests.cs",
+              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\PromocaoControllerTests.cs",
+              "RelativeToolTip": "Tests\\PromocaoControllerTests.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAAwMUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T10:45:34.429Z",
+              "WhenOpened": "2025-08-04T12:02:27.725Z",
               "EditorCaption": ""
             }
           ]
