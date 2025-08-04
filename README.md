@@ -10,6 +10,7 @@ O Fiap Cloud Games permite o gerenciamento de usuários, jogos, pedidos e promo�
   
 ✅ Criar uma conta e fazer login.   
 ✅ Consultar os todos os jogos disponíveis.   
+✅ Consultar promoções vigentes.   
 ✅ Fazer pedidos com promoção vigente ou sem promoção.   
 ✅ Visualizar seus próprios pedidos.   
 
