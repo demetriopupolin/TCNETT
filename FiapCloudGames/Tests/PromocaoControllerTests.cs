@@ -140,11 +140,9 @@ namespace Tests
 
             // Assert
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+            var message = badRequest.Value as string;
+            Assert.Equal("Promoção possui pedidos. Exclusão não permitida.", message);
 
-            // Extrair a propriedade "Message" do objeto retornado (pode ser anônimo)
-            var message = badRequest.Value?.GetType().GetProperty("Message")?.GetValue(badRequest.Value, null) as string;
-
-            Assert.Equal("Exclusão não permitida: promoção vinculada a pedido.", message);
         }
 
 
@@ -171,49 +169,66 @@ namespace Tests
 
             _mockRepo.Verify(r => r.Deletar(promoId), Times.Once);
         }
-
         [Fact]
-        public void CTPR008_ConsultarListaPromocoes_DeveRetornarLista()
+        public void CTPR008_ConsultarListaPromocoes_DeveRetornarListaComItensEsperados()
         {
             // Arrange
-            var promocoes = new[]
-            {
+            var promocoes = new List<Promocao>
+    {
         new Promocao("Promo1", 10, DateTime.Now.AddDays(10)) { Id = 1 },
         new Promocao("Promo2", 20, DateTime.Now.AddDays(20)) { Id = 2 },
     };
 
-            _mockRepo.Setup(r => r.Listar()).Returns(promocoes);
+            _mockRepo.Setup(r => r.ObterTodos()).Returns(promocoes);
 
             // Act
-            var result = _controller.Get();
+            var resultado = _controller.Get();
 
             // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
+            var okResult = Assert.IsType<OkObjectResult>(resultado);
             Assert.NotNull(okResult.Value);
 
-            var lista = Assert.IsAssignableFrom<IEnumerable<Promocao>>(okResult.Value);
+            var lista = Assert.IsAssignableFrom<IEnumerable<PromocaoDto>>(okResult.Value);
             Assert.NotEmpty(lista);
             Assert.Equal(2, lista.Count());
+
+            var listaDto = lista.ToList();
+
+            // Validação detalhada dos dados retornados
+            Assert.Equal(1, listaDto[0].Id);
+            Assert.Equal("Promo1", listaDto[0].Nome);
+            Assert.Equal(10, listaDto[0].Desconto);
+
+            Assert.Equal(2, listaDto[1].Id);
+            Assert.Equal("Promo2", listaDto[1].Nome);
+            Assert.Equal(20, listaDto[1].Desconto);
         }
 
 
         [Fact]
         public void CTPR009_ConsultarPromocaoPorId_DeveRetornarPromocao()
         {
+            // Arrange
             int promoId = 1;
-            var promo = new Promocao("Promo1", 10, DateTime.Now.AddDays(10)) { Id = promoId };
+            var promocao = new Promocao("Promo1", 10, DateTime.Now.AddDays(10)) { Id = promoId };
 
-            _mockRepo.Setup(r => r.ObterPorId(promoId)).Returns(promo);
+            _mockRepo.Setup(r => r.ObterPorId(promoId)).Returns(promocao);
 
-            var result = _controller.Get(promoId);
+            // Act
+            var resultado = _controller.Get(promoId);
 
-            var ok = Assert.IsType<OkObjectResult>(result);
-            var retPromo = ok.Value as Promocao;
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(resultado);
+            Assert.NotNull(okResult.Value);
 
-            Assert.NotNull(retPromo);
-            Assert.Equal(promoId, retPromo.Id);
-            Assert.Equal("Promo1", retPromo.Nome);
+            // Se o controller retorna um DTO, use PromocaoDto; senão, mantenha como Promocao
+            var retorno = Assert.IsType<PromocaoDto>(okResult.Value);
+
+            Assert.Equal(promoId, retorno.Id);
+            Assert.Equal("Promo1", retorno.Nome);
+            Assert.Equal(10, retorno.Desconto); // ajuste se for necessário
         }
+
 
 
     }
