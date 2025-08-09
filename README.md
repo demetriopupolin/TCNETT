@@ -85,7 +85,6 @@ O sistema segue as seguintes regras e restrições de funcionamento:
 
 1. 🎮 **Cadastro de Jogos**  
    ✅ Todo jogo deve possuir nome, ano de lançamento e preço base sendo o valor maior que zero.  
-   ✅ O ano de lançamento do jogo não poderá ser inferior a sua data de criação.  
    ✅ O ano de lançamento do jogo não poderá ser superior ao ano corrente.     
 
 3. 💸 **Promoções**  
