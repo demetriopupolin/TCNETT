@@ -104,7 +104,7 @@ O sistema segue as seguintes regras e restrições de funcionamento:
    ✅ Administradores têm acesso completo ao sistema sendo nível como "A"-Administrador.  
 
 6. 🔐 **Segurança**   
-   ✅ O e-mail do usuário informado deverá ser informado corretamente. 
+   ✅ O e-mail do usuário informado deverá ser informado corretamente.  
    ✅ A senha do usuário deverá conter obrigatoriamente 8 caracteres contendo números, letras e caracteres especiais.  
    ✅ O login deverá ser realizado através de e-mail do usuário e sua respectiva senha.  
 
