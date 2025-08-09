@@ -54,7 +54,7 @@ O Fiap Cloud Games permite o gerenciamento de usuários, jogos, pedidos e promo�
 | Data_Criacao         | datetime |       | ✅        | Cadastro da promoção      |
 | Nome                 | varchar(100)  | 🔷 UK | ✅        | Deve ser único            |
 | Desconto             | int  |       | ✅        | Valor em porcentagem      |
-| Data_Validade        | datetime |       | ✅        | Até quando é válida       |
+| DataValidade         | datetime |       | ✅        | Até quando é válida       |
 
   
 📋 Tabela Pedido
