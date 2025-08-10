@@ -103,35 +103,10 @@ namespace Tests
             _output.WriteLine($"Resultado do teste: {badRequest.Value}");
         }
 
-        [Fact]
-        public void CTJO004_Cadastro_de_jogo_com_ano_lancamento_menor_que_ano_da_data_de_criacao()
-        {
-            var input = new JogoInput
-            {
-                Nome = "Novo Jogo",
-                AnoLancamento = DateTime.Now.Year - 1, // Ano anterior ao atual
-                PrecoBase = 200m
-            };
-
-            var result = _controller.Post(input);
-
-            // Espera retorno BadRequest com mensagem
-            var badRequest = Assert.IsType<BadRequestObjectResult>(result);
-            var mensagemErro = badRequest.Value?.ToString().ToLower();
-
-            // Verifica que o erro é sobre o ano
-            Assert.Contains("ano", mensagemErro);
-
-            // Garante que o método de cadastro não foi chamado
-            _mockRepo.Verify(r => r.Cadastrar(It.IsAny<Jogo>()), Times.Never);
-
-            _output.WriteLine($"Resultado do teste: {badRequest.Value}");
-        }
-
-
+        
 
         [Fact]
-        public void CTJO005_Cadastro_de_jogo_com_dados_validos()
+        public void CTJO004_Cadastro_de_jogo_com_dados_validos()
         {
             var input = new JogoInput
             {
@@ -159,7 +134,7 @@ namespace Tests
 
 
         [Fact]
-        public void CTJO006_Excluir_jogo_vinculado_a_pedido()
+        public void CTJO005_Excluir_jogo_vinculado_a_pedido()
         {
             int jogoId = 1;
             _mockRepo.Setup(r => r.ObterPorId(jogoId)).Returns(new Jogo { Id = jogoId });
@@ -178,7 +153,7 @@ namespace Tests
 
 
         [Fact]
-        public void CTJO007_Excluir_jogo_sem_vinculo_a_pedido()
+        public void CTJO006_Excluir_jogo_sem_vinculo_a_pedido()
         {
             int jogoId = 2;
             _mockRepo.Setup(r => r.ObterPorId(jogoId)).Returns(new Jogo { Id = jogoId });
@@ -197,7 +172,7 @@ namespace Tests
 
 
         [Fact]
-        public void CTJO008_Usuario_consultar_lista_de_jogos()
+        public void CTJO007_Usuario_consultar_lista_de_jogos()
         {
             var jogos = new List<Jogo>
     {
@@ -229,7 +204,7 @@ namespace Tests
         }
 
         [Fact]
-        public void CTJO009_Usuario_consultar_jogo_por_id()
+        public void CTJO008_Usuario_consultar_jogo_por_id()
         {
             // Arrange
             var jogo = new Jogo
@@ -266,7 +241,7 @@ namespace Tests
 
 
         [Fact]
-        public void CTJO010_Admin_consultar_lista_de_jogos()
+        public void CTJO009_Admin_consultar_lista_de_jogos()
         {
             var jogos = new List<Jogo>
     {
@@ -296,7 +271,7 @@ namespace Tests
 
 
         [Fact]
-        public void CTJO011_Admin_consultar_jogo_por_id()
+        public void CTJO010_Admin_consultar_jogo_por_id()
         {
             var jogo = new Jogo
             {
@@ -328,15 +303,6 @@ namespace Tests
 
             _output.WriteLine($"Admin recebeu jogo: {dto.Nome}");
         }
-
-
-
-
-
-
-
-
-
 
     }
 }

@@ -32,12 +32,8 @@ namespace Core.Entity
             get => _anoLancamento;
             set
             {
-                int anoCriacao = DataCriacao.Year;
-                int anoAtual = DateTime.Now.Year;
-
-                if (value < anoCriacao)
-                    throw new ArgumentException("Ano de lançamento não pode ser inferior ao ano de criação do registro.");
-
+               int anoAtual = DateTime.Now.Year;
+               
                 if (value > anoAtual)
                     throw new ArgumentException("Ano de lançamento não pode ser superior ao ano corrente.");
 
