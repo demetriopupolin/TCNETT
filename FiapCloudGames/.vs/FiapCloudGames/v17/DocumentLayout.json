@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\tests\\jogocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B738FD9-3FE4-475E-B534-948093285B6F}|Tests\\Tests.csproj|solutionrelative:tests\\jogocontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B91B0783-6D78-4805-A2E3-D8B0D1F84376}|Core\\Core.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\core\\entity\\jogo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B91B0783-6D78-4805-A2E3-D8B0D1F84376}|Core\\Core.csproj|solutionrelative:core\\entity\\jogo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\fiapcloudgames\\controllers\\jogocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|solutionrelative:fiapcloudgames\\controllers\\jogocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -22,50 +9,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "JogoControllerTests.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\JogoControllerTests.cs",
-              "RelativeDocumentMoniker": "Tests\\JogoControllerTests.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\JogoControllerTests.cs",
-              "RelativeToolTip": "Tests\\JogoControllerTests.cs",
-              "ViewState": "AgIAACsBAAAAAAAAAAAswDABAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-10T08:20:00.857Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Jogo.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Entity\\Jogo.cs",
-              "RelativeDocumentMoniker": "Core\\Entity\\Jogo.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Core\\Entity\\Jogo.cs",
-              "RelativeToolTip": "Core\\Entity\\Jogo.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAnwCMAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-10T08:15:50.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "JogoController.cs",
-              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Controllers\\JogoController.cs",
-              "RelativeDocumentMoniker": "FiapCloudGames\\Controllers\\JogoController.cs",
-              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Controllers\\JogoController.cs",
-              "RelativeToolTip": "FiapCloudGames\\Controllers\\JogoController.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAuwAYBAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-10T08:08:55.998Z",
-              "EditorCaption": ""
             }
           ]
         }

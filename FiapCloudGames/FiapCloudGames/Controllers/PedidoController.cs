@@ -139,7 +139,10 @@ namespace FiapCloudGamesApi.Controllers
                 DataCriacao = p.DataCriacao,
                 UsuarioId = p.UsuarioId,
                 JogoId = p.JogoId,
-                PromocaoId = p.PromocaoId
+                PromocaoId = p.PromocaoId,                
+                VlPedido = p.VlPedido,
+                VlDesconto = p.VlDesconto,
+                VlPago = p.VlPago
                }).ToList();
 
                 return Ok(pedidosDto);
