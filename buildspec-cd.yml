@@ -4,23 +4,37 @@ phases:
   install:
     runtime-versions:
       dotnet: 8.0
+      docker: 24
     commands:
-      - echo "Usando imagem gerenciada com .NET 8 instalado"
+      - echo "Usando imagem gerenciada com .NET 8 e Docker"
       - dotnet --version
+      - docker --version
+      # Login no ECR (substitua pela sua conta/URI)
+      - $(aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com)
 
   pre_build:
     commands:
       - echo "Restaurando dependências do projeto..."
       - dotnet restore FiapCloudGames/FiapCloudGames.sln
+      # Definindo nome da imagem e tag com hash do commit (7 primeiros caracteres)
+      - IMAGE_NAME=fcg-app
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo "Imagem será construída com a tag: $IMAGE_TAG"
 
   build:
     commands:
       - echo "Compilando projeto em modo Release..."
       - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
+      - echo "Construindo imagem Docker..."
+      # Ajuste o caminho do Dockerfile se necessário
+      - docker build -t $IMAGE_NAME:$IMAGE_TAG -f FiapCloudGames/Dockerfile FiapCloudGames
 
   post_build:
     commands:
-      - echo "Build concluído com sucesso."
+      - echo "Tagging e enviando imagem para o ECR..."
+      - docker tag $IMAGE_NAME:$IMAGE_TAG 701604998561.dkr.ecr.sa-east-1.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
+      - docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
+      - echo "Build Docker e push concluídos com sucesso."
 
 artifacts:
   files:
