@@ -3,20 +3,26 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      dotnet: 6
+      dotnet: 6.0
     commands:
-      - echo "Restaurando pacotes NuGet..."
-      - dotnet restore main/FiapCloudGames/FiapCloudGames.sln
+      - echo "Usando imagem gerenciada com .NET 6 instalado"
+      - dotnet --version
+
+  pre_build:
+    commands:
+      - echo "Restaurando dependências do projeto..."
+      - dotnet restore FiapCloudGames/FiapCloudGames.sln
+
   build:
     commands:
-      - echo "Compilando a solution em modo Release..."
-      - dotnet build main/FiapCloudGames/FiapCloudGames.sln --configuration Release --no-restore
-  #post_build:
-   # commands:
-   #   - echo "Preparando deploy..."
-      # Exemplo deploy S3 (substitua pelo seu destino real)
-   #   - aws s3 sync ./wwwroot s3://meu-bucket-prod/ --delete
+      - echo "Compilando projeto em modo Release..."
+      - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
+
+  post_build:
+    commands:
+      - echo "Build concluído com sucesso."
 
 artifacts:
   files:
     - '**/*'
+  discard-paths: yes
