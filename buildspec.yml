@@ -9,7 +9,7 @@ phases:
       - dotnet --version
       - echo "Detectando branch atual..."
       - |
-        BRANCH_NAME=$(echo $CODEBUILD_SOURCE_VERSION | sed 's|refs/heads/||')
+        BRANCH_NAME=$(echo $CODEBUILD_WEBHOOK_HEAD_REF | sed 's|refs/heads/||')
         echo "Branch detectada: $BRANCH_NAME"
         echo "export BRANCH_NAME=$BRANCH_NAME" >> ~/.bash_profile
       - docker --version
