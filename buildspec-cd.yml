@@ -9,7 +9,6 @@ phases:
       - echo "Usando .NET 8 e Docker"
       - dotnet --version
       - docker --version
-      # Login no ECR
       - $(aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com)
 
   pre_build:
