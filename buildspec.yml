@@ -9,8 +9,12 @@ phases:
       - dotnet --version
       - echo "Detectando branch atual..."
       - |
-        BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-        echo "Branch detectada via Git: $BRANCH_NAME"
+        if [[ "$CODEBUILD_SOURCE_VERSION" == refs/heads/* ]]; then
+          BRANCH_NAME=$(echo $CODEBUILD_SOURCE_VERSION | sed 's|refs/heads/||')
+        else
+          BRANCH_NAME="unknown"
+        fi
+        echo "Branch detectada: $BRANCH_NAME"
         echo "export BRANCH_NAME=$BRANCH_NAME" >> ~/.bash_profile
       - docker --version
       - |
