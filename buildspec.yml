@@ -20,14 +20,19 @@ phases:
     commands:
       - echo "Compilando projeto em modo Release..."
       - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
-      - echo "Construindo imagem Docker..."
-      - docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
 
   post_build:
     commands:
-      - echo "Enviando imagem Docker para o ECR..."
-      - docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
-      - echo "Pipeline CD concluída com sucesso"
+      - echo "Fase de post_build iniciada..."
+      - |
+        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
+          echo "Branch é main, construindo imagem Docker e enviando para ECR..."
+          docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
+          docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
+        else
+          echo "Branch não é main, pulando build e push para ECR."
+        fi
+      - echo "Pipeline concluída com sucesso"
 
 artifacts:
   files:
