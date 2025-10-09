@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 6
+    commands:
+      - echo "Restaurando pacotes NuGet..."
+      - dotnet restore main/FiapCloudGames/FiapCloudGames.sln
+  build:
+    commands:
+      - echo "Compilando a solution em modo Release..."
+      - dotnet build main/FiapCloudGames/FiapCloudGames.sln --configuration Release --no-restore
+
+artifacts:
+  files:
+    - '**/*'
