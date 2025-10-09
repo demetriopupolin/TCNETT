@@ -11,11 +11,11 @@ phases:
     commands:
       - echo "Compilando a solution em modo Release..."
       - dotnet build main/FiapCloudGames/FiapCloudGames.sln --configuration Release --no-restore
-  post_build:
-    commands:
-      - echo "Preparando deploy..."
+  #post_build:
+   # commands:
+   #   - echo "Preparando deploy..."
       # Exemplo deploy S3 (substitua pelo seu destino real)
-      - aws s3 sync ./wwwroot s3://meu-bucket-prod/ --delete
+   #   - aws s3 sync ./wwwroot s3://meu-bucket-prod/ --delete
 
 artifacts:
   files:
