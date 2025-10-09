@@ -9,12 +9,14 @@ phases:
       - echo "Usando .NET 8 e Docker"
       - dotnet --version
       - docker --version
+      # Login no ECR (substitua pelo seu URI)
       - $(aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com)
 
   pre_build:
     commands:
       - echo "Restaurando dependências do projeto..."
       - dotnet restore FiapCloudGames/FiapCloudGames.sln
+      - echo "Definindo nome da imagem e tag..."
       - IMAGE_NAME=fcg-app
       - IMAGE_TAG=latest
       - echo "Imagem será construída com a tag: $IMAGE_TAG"
