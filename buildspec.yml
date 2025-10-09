@@ -1,12 +1,16 @@
 version: 0.2
 
+env:
+  variables:
+    BRANCH_ATUAL: ${CODEBUILD_WEBHOOK_HEAD_REF:-não-definida}
+
 phases:
   install:
     commands:
       - echo "Usando .NET 8 e Docker instalados"
       - dotnet --version
       - docker --version
-      - echo "Branch atual: $CODEBUILD_WEBHOOK_HEAD_REF"
+      - echo "Branch atual: $BRANCH_ATUAL"
 
   pre_build:
     commands:
@@ -18,23 +22,23 @@ phases:
       - echo "Compilando projeto em modo Release..."
       - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
       - |
-        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
+        if [ "$BRANCH_ATUAL" = "refs/heads/main" ]; then
           echo "Branch é main, construindo imagem Docker..."
           docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
         else
-          echo "Branch não é main ($CODEBUILD_WEBHOOK_HEAD_REF), pulando construção da imagem Docker."
+          echo "Branch não é main ($BRANCH_ATUAL), pulando construção da imagem Docker."
         fi
 
   post_build:
     commands:
       - echo "Build finalizado com sucesso."
       - |
-        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
+        if [ "$BRANCH_ATUAL" = "refs/heads/main" ]; then
           echo "Branch é main, enviando imagem Docker para o ECR..."
           docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
           echo "Pipeline CD concluída com sucesso."
         else
-          echo "Branch não é main ($CODEBUILD_WEBHOOK_HEAD_REF), pulando envio para o ECR."
+          echo "Branch não é main ($BRANCH_ATUAL), pulando envio para o ECR."
         fi
 
 artifacts:
