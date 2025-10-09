@@ -13,8 +13,14 @@ phases:
         echo "Branch detectada: $BRANCH_NAME"
         echo "export BRANCH_NAME=$BRANCH_NAME" >> ~/.bash_profile
       - docker --version
-      - echo "Realizando login no Amazon ECR..."
-      - aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com
+      - |
+        source ~/.bash_profile
+        if [ "$BRANCH_NAME" = "main" ]; then
+          echo "Realizando login no Amazon ECR..."
+          aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com
+        else
+          echo "Branch não é main, pulando login no ECR."
+        fi
 
   pre_build:
     commands:
