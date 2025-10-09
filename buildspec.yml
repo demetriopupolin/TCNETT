@@ -7,16 +7,10 @@ phases:
     commands:
       - echo "Usando .NET 8 e Docker instalados"
       - dotnet --version
-      - echo "Detectando branch atual..."
 
+      - echo "Detectando branch atual..."
       - |
-        if [ -n "$CODEBUILD_WEBHOOK_HEAD_REF" ]; then
-          BRANCH_NAME=$(echo "$CODEBUILD_WEBHOOK_HEAD_REF" | sed 's|refs/heads/||')
-        elif [ -n "$CODEBUILD_SOURCE_VERSION" ] && [[ "$CODEBUILD_SOURCE_VERSION" == refs/heads/* ]]; then
-          BRANCH_NAME=$(echo "$CODEBUILD_SOURCE_VERSION" | sed 's|refs/heads/||')
-        elif [ -n "$CODEBUILD_SOURCE_BRANCH" ]; then
-          BRANCH_NAME=$(echo "$CODEBUILD_SOURCE_BRANCH" | sed 's|refs/heads/||')
-        elif [ -n "$BRANCH" ]; then
+        if [ -n "$BRANCH" ]; then
           BRANCH_NAME=$BRANCH
         else
           BRANCH_NAME="unknown"
