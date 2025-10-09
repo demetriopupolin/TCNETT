@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 8.0      
+    commands:
+      - echo "Usando .NET 8 e Docker instalados"
+      - dotnet --version
+      - docker --version
+      - echo "Realizando login no Amazon ECR..."
+      - aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com
+
+  pre_build:
+    commands:
+      - echo "Restaurando dependências do projeto..."
+      - dotnet restore FiapCloudGames/FiapCloudGames.sln
+
+  build:
+    commands:
+      - echo "Compilando projeto em modo Release..."
+      - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
+      - echo "Construindo imagem Docker..."
+      - docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
+
+  post_build:
+    commands:
+      - echo "Enviando imagem Docker para o ECR..."
+      - docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
+      - echo "Pipeline CD concluída com sucesso"
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
