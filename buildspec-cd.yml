@@ -3,9 +3,9 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      dotnet: 6.0
+      dotnet: 8.0
     commands:
-      - echo "Usando imagem gerenciada com .NET 6 instalado"
+      - echo "Usando imagem gerenciada com .NET 8 instalado"
       - dotnet --version
 
   pre_build:
