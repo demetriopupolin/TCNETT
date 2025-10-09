@@ -1,51 +1,36 @@
-version: 0.2
+install:
+  commands:
+    - echo "Usando .NET 8 instalado"
+    - dotnet --version
+    - docker --version
+    - echo "Branch atual: $CODEBUILD_WEBHOOK_HEAD_REF"
 
-phases:
-  install:
-    runtime-versions:
-      dotnet: 8.0
-    commands:
-      - echo "Usando .NET 8 instalado"
-      - dotnet --version
-      - docker --version
-      - |
-        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
-          echo "Branch é main, realizando login no ECR..."
-          aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com
-        else
-          echo "Branch não é main, pulando login no ECR."
-        fi
+pre_build:
+  commands:
+    - echo "Restaurando dependências do projeto..."
+    - dotnet restore FiapCloudGames/FiapCloudGames.sln
+    - echo "Branch usado para o build: $CODEBUILD_WEBHOOK_HEAD_REF"
 
-  pre_build:
-    commands:
-      - echo "Restaurando dependências do projeto..."
-      - dotnet restore FiapCloudGames/FiapCloudGames.sln
+build:
+  commands:
+    - echo "Compilando projeto em modo Release..."
+    - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
+    - |
+      if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
+        echo "Branch é main, construindo imagem Docker..."
+        docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
+      else
+        echo "Branch não é main ($CODEBUILD_WEBHOOK_HEAD_REF), pulando construção da imagem Docker."
+      fi
 
-  build:
-    commands:
-      - echo "Compilando projeto em modo Release..."
-      - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
-      - |
-        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
-          echo "Branch é main, construindo imagem Docker..."
-          docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
-        else
-          echo "Branch não é main, pulando construção da imagem Docker."
-        fi
-
-  post_build:
-    commands:
-      - echo "Build finalizado com sucesso."
-      - |
-        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
-          echo "Branch é main, enviando imagem Docker para o ECR..."
-          docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
-          echo "Pipeline CD concluída com sucesso."
-        else
-          echo "Branch não é main, pulando envio para o ECR."
-        fi
-
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: yes
+post_build:
+  commands:
+    - echo "Build finalizado com sucesso."
+    - |
+      if [ "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/main" ]; then
+        echo "Branch é main, enviando imagem Docker para o ECR..."
+        docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
+        echo "Pipeline CD concluída com sucesso."
+      else
+        echo "Branch não é main ($CODEBUILD_WEBHOOK_HEAD_REF), pulando envio para o ECR."
+      fi
