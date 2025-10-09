@@ -12,7 +12,8 @@ phases:
         if [[ "$CODEBUILD_SOURCE_VERSION" == refs/heads/* ]]; then
           BRANCH_NAME=$(echo $CODEBUILD_SOURCE_VERSION | sed 's|refs/heads/||')
         else
-          BRANCH_NAME="unknown"
+          # Fallback: assume que é main se vier só o SHA
+          BRANCH_NAME="main"
         fi
         echo "Branch detectada: $BRANCH_NAME"
         echo "export BRANCH_NAME=$BRANCH_NAME" >> ~/.bash_profile
