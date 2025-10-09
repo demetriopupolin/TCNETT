@@ -7,6 +7,8 @@ phases:
     commands:
       - echo "Usando .NET 8 e Docker instalados"
       - dotnet --version
+      - echo "Branch atual: $(git rev-parse --abbrev-ref HEAD)"
+      - export BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
       - docker --version
       - echo "Realizando login no Amazon ECR..."
       - aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 701604998561.dkr.ecr.sa-east-1.amazonaws.com
@@ -20,13 +22,23 @@ phases:
     commands:
       - echo "Compilando projeto em modo Release..."
       - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
-      - echo "Construindo imagem Docker..."
-      - docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
+      - |
+        if [ "$BRANCH_NAME" = "main" ]; then
+          echo "Branch é main, construindo imagem Docker..."
+          docker build -t 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest -f FiapCloudGames/Dockerfile FiapCloudGames
+        else
+          echo "Branch não é main, pulando build da imagem Docker."
+        fi
 
   post_build:
     commands:
-      - echo "Enviando imagem Docker para o ECR..."
-      - docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
+      - |
+        if [ "$BRANCH_NAME" = "main" ]; then
+          echo "Branch é main, enviando imagem Docker para o ECR..."
+          docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
+        else
+          echo "Branch não é main, pulando envio da imagem Docker."
+        fi
       - echo "Pipeline concluída com sucesso"
 
 artifacts:
