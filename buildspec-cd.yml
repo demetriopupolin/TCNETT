@@ -3,8 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      dotnet: 8.0
-      docker: 24
+      dotnet: 8.0      
     commands:
       - echo "Usando .NET 8 e Docker instalados"
       - dotnet --version
