@@ -8,24 +8,22 @@ phases:
       - echo "Usando .NET 8 e Docker instalados"
       - dotnet --version
       - echo "Detectando branch atual..."
+
       - |
         if [ -n "$CODEBUILD_WEBHOOK_HEAD_REF" ]; then
           BRANCH_NAME=$(echo "$CODEBUILD_WEBHOOK_HEAD_REF" | sed 's|refs/heads/||')
-        elif [ -n "$CODEBUILD_SOURCE_VERSION" ]; then
+        elif [ -n "$CODEBUILD_SOURCE_VERSION" ] && [[ "$CODEBUILD_SOURCE_VERSION" == refs/heads/* ]]; then
           BRANCH_NAME=$(echo "$CODEBUILD_SOURCE_VERSION" | sed 's|refs/heads/||')
         elif [ -n "$CODEBUILD_SOURCE_BRANCH" ]; then
           BRANCH_NAME=$(echo "$CODEBUILD_SOURCE_BRANCH" | sed 's|refs/heads/||')
+        elif [ -n "$BRANCH" ]; then
+          BRANCH_NAME=$BRANCH
         else
           BRANCH_NAME="unknown"
         fi
 
         echo "Branch detectada: $BRANCH_NAME"
         echo "export BRANCH_NAME=$BRANCH_NAME" >> ~/.bash_profile
-
-        if [[ "$BRANCH_NAME" != "main" && "$BRANCH_NAME" != "develop" ]]; then
-          echo "Erro: Builds só são permitidos nas branches 'main' ou 'develop'."
-          exit 1
-        fi
 
       - docker --version
       - |
@@ -61,4 +59,13 @@ phases:
         source ~/.bash_profile
         if [ "$BRANCH_NAME" = "main" ]; then
           echo "Enviando imagem Docker para o ECR..."
-          docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-ap
+          docker push 701604998561.dkr.ecr.sa-east-1.amazonaws.com/fcg-app:latest
+        else
+          echo "Branch não é main, pulando envio da imagem Docker."
+        fi
+      - echo "Pipeline concluída com sucesso"
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
