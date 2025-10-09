@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 6.0
+    commands:
+      - echo "Instalando dependências..."
+      - dotnet restore FiapCloudGames/FiapCloudGames.sln
+
+  build:
+    commands:
+      - echo "Compilando projeto..."
+      - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
