@@ -11,9 +11,10 @@ phases:
       - |
         if [[ "$CODEBUILD_SOURCE_VERSION" == refs/heads/* ]]; then
           BRANCH_NAME=$(echo $CODEBUILD_SOURCE_VERSION | sed 's|refs/heads/||')
+        elif [[ "$CODEBUILD_WEBHOOK_HEAD_REF" == refs/heads/* ]]; then
+          BRANCH_NAME=$(echo $CODEBUILD_WEBHOOK_HEAD_REF | sed 's|refs/heads/||')
         else
-          # Fallback: assume que é main se vier só o SHA
-          BRANCH_NAME="main"
+          BRANCH_NAME="commit"
         fi
         echo "Branch detectada: $BRANCH_NAME"
         echo "export BRANCH_NAME=$BRANCH_NAME" >> ~/.bash_profile
