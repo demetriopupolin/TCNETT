@@ -1,0 +1,2 @@
+# Ignorar arquivo de CI fora da develop
+buildspec-ci.yml
