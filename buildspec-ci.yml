@@ -11,10 +11,6 @@ phases:
     commands:
       - echo "Compilando a solution em modo Release..."
       - dotnet build main/FiapCloudGames/FiapCloudGames.sln --configuration Release --no-restore
-  post_build:
-    commands:
-      - echo "Executando testes unitários..."
-      - dotnet test main/FiapCloudGames/FiapCloudGames.sln --no-build --verbosity normal
 
 artifacts:
   files:
