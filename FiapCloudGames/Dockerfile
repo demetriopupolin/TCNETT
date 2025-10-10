@@ -25,7 +25,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Expõe a porta padrão da API
-EXPOSE 80
+EXPOSE 5231
 
 # Inicia a API
 ENTRYPOINT ["dotnet", "FiapCloudGamesApi.dll"]
