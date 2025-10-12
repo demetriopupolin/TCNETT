@@ -27,5 +27,8 @@ COPY --from=build /app/publish .
 # Expõe a porta padrão da API
 EXPOSE 5231
 
+# Faz a aplicação escutar em todas as interfaces (não apenas localhost)
+ENV ASPNETCORE_URLS=http://+:5231
+
 # Inicia a API
 ENTRYPOINT ["dotnet", "FiapCloudGamesApi.dll"]
