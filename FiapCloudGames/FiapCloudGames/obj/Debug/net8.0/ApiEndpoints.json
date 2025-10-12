@@ -56,6 +56,36 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "Health",
+    "RelativePath": "health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "HealthBd",
+    "RelativePath": "healthbd",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "Healthz",
+    "RelativePath": "healthz",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
     "Method": "Get",
     "RelativePath": "Jogo",

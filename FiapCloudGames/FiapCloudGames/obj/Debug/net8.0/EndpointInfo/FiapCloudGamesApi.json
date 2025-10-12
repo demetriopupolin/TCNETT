@@ -36,6 +36,44 @@
         }
       }
     },
+    "/health": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Endpoint de health check interno (retorna 200 OK).",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/healthz": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Endpoint usado por Load Balancer / Kubernetes.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/healthbd": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Erro/simular": {
       "get": {
         "tags": [

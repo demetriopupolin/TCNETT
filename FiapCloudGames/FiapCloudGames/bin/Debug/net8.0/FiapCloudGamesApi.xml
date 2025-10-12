@@ -4,6 +4,16 @@
         <name>FiapCloudGamesApi</name>
     </assembly>
     <members>
+        <member name="M:FiapCloudGamesApi.Controllers.AuthController.Health">
+            <summary>
+            Endpoint de health check interno (retorna 200 OK).
+            </summary>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.AuthController.Healthz">
+            <summary>
+            Endpoint usado por Load Balancer / Kubernetes.
+            </summary>
+        </member>
         <member name="M:FiapCloudGamesApi.Controllers.JogoController.Post(JogoInput)">
             <summary>
             Cadastrar Jogo
