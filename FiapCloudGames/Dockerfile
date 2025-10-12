@@ -1,34 +1,15 @@
-# Etapa 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
+# Imagem base com SDK para poder compilar e rodar o projeto dentro do container
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 
-# Copia o arquivo de solução
-COPY FiapCloudGames.sln ./
-
-# Copia cada projeto em sua pasta correta
-COPY Core/ Core/
-COPY FiapCloudGames/ FiapCloudGames/
-COPY Infrastructure/ Infrastructure/
-COPY Tests/ Tests/
-
-# Restaura as dependências da solução
-RUN dotnet restore FiapCloudGames.sln
-
-# Publica a aplicação principal
-RUN dotnet publish FiapCloudGames/FiapCloudGamesApi.csproj -c Release -o /app/publish
-
-# Etapa 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia os arquivos publicados da etapa de build
-COPY --from=build /app/publish .
+# Variáveis de ambiente
+ENV ASPNETCORE_URLS=http://+:5231
+ENV ASPNETCORE_ENVIRONMENT=Development
 
-# Expõe a porta padrão da API
+# Expõe a porta da aplicação
 EXPOSE 5231
 
-# Faz a aplicação escutar em todas as interfaces (não apenas localhost)
-ENV ASPNETCORE_URLS=http://+:5231
-
-# Inicia a API
-ENTRYPOINT ["dotnet", "FiapCloudGamesApi.dll"]
+# Comando para rodar a aplicação diretamente do projeto
+ENTRYPOINT ["dotnet", "run", "--project", "FiapCloudGames/FiapCloudGamesApi.csproj", "--urls", "http://+:5231"]
