@@ -2,6 +2,7 @@
 using Core.Input;   
 using Core.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
@@ -83,6 +84,31 @@ namespace FiapCloudGamesApi.Controllers
 
 
 
+
+
+        [HttpGet("/healthbd")]
+        public IActionResult HealthBd()
+        {
+            var connectionString = _configuration.GetConnectionString("ConnectionString");
+
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand("SELECT 1", connection))
+                    {
+                        command.ExecuteScalar();
+                    }
+                }
+
+                return Ok(new { status = "UP", message = "Banco de dados acessível" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(503, new { status = "DOWN", message = "Banco de dados indisponível", error = ex.Message });
+            }
+        }
 
 
 
