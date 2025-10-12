@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|c:\\github\\tcnettfase1\\fiapcloudgames\\fiapcloudgames\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6344638-F543-488F-B1FC-9658E87CAB7E}|FiapCloudGames\\FiapCloudGamesApi.csproj|solutionrelative:fiapcloudgames\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,8 +14,21 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Program.cs",
+              "RelativeDocumentMoniker": "FiapCloudGames\\Program.cs",
+              "ToolTip": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\FiapCloudGames\\Program.cs",
+              "RelativeToolTip": "FiapCloudGames\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T23:45:42.225Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"

@@ -55,6 +55,25 @@
           }
         }
       },
+      "Datadog.Trace/3.28.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "4.4.1"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Datadog.Trace.Manual.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Datadog.Trace.Manual.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Datadog.Trace.props": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1663,6 +1682,29 @@
         "lib/netstandard2.1/Castle.Core.dll",
         "lib/netstandard2.1/Castle.Core.xml",
         "readme.txt"
+      ]
+    },
+    "Datadog.Trace/3.28.0": {
+      "sha512": "eGWJsWH3uAtnUcu/uwqmH7omCvq0yClpOmDmIBOarjYFjs/eT9S/tkRNPK8sl1bMeiHK3tt6OgZiCKz7hr2Cqw==",
+      "type": "package",
+      "path": "datadog.trace/3.28.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Datadog.Trace.Trimming.xml",
+        "build/Datadog.Trace.props",
+        "buildTransitive/Datadog.Trace.Trimming.xml",
+        "buildTransitive/Datadog.Trace.props",
+        "datadog.trace.3.28.0.nupkg.sha512",
+        "datadog.trace.nuspec",
+        "lib/net461/Datadog.Trace.Manual.dll",
+        "lib/net461/Datadog.Trace.Manual.xml",
+        "lib/netcoreapp3.1/Datadog.Trace.Manual.dll",
+        "lib/netcoreapp3.1/Datadog.Trace.Manual.xml",
+        "lib/netstandard2.0/Datadog.Trace.Manual.dll",
+        "lib/netstandard2.0/Datadog.Trace.Manual.xml",
+        "packageIcon.png"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -4191,6 +4233,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Datadog.Trace >= 3.28.0",
       "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Microsoft.Data.SqlClient >= 6.1.2",
@@ -4253,6 +4296,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Datadog.Trace": {
+            "target": "Package",
+            "version": "[3.28.0, )"
+          },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[8.0.0, )"

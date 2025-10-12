@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z0gq/pipcjg=",
+  "dgSpecHash": "tFkfI+0s3VY=",
   "success": true,
   "projectFilePath": "C:\\GITHUB\\TCNETTFase1\\FiapCloudGames\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Demetrio\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
     "C:\\Users\\Demetrio\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Demetrio\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\Demetrio\\.nuget\\packages\\datadog.trace\\3.28.0\\datadog.trace.3.28.0.nupkg.sha512",
     "C:\\Users\\Demetrio\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
     "C:\\Users\\Demetrio\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "C:\\Users\\Demetrio\\.nuget\\packages\\microsoft.bcl.cryptography\\8.0.0\\microsoft.bcl.cryptography.8.0.0.nupkg.sha512",

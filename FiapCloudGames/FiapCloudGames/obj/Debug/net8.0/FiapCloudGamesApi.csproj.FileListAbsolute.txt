@@ -308,3 +308,4 @@ C:\GITHUB\TCNETTFase1\FiapCloudGames\FiapCloudGames\bin\Debug\net8.0\runtimes\un
 C:\GITHUB\TCNETTFase1\FiapCloudGames\FiapCloudGames\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
 C:\GITHUB\TCNETTFase1\FiapCloudGames\FiapCloudGames\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
 C:\GITHUB\TCNETTFase1\FiapCloudGames\FiapCloudGames\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\GITHUB\TCNETTFase1\FiapCloudGames\FiapCloudGames\bin\Debug\net8.0\Datadog.Trace.Manual.dll
