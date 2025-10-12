@@ -1,0 +1,399 @@
+﻿using Core.Entity;
+using Core.Input;
+using Core.Repository;
+using Infrastructure.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
+namespace FiapCloudGamesApi.Controllers
+{
+    [ApiController]
+    [Route("/[controller]")]
+    public class PedidoController : ControllerBase
+    {
+        private readonly IPedidoRepository _pedidoRepository;
+
+        private readonly IPromocaoRepository _promocaoRepository;
+
+        private readonly IUsuarioRepository _usuarioRepository;
+
+        private readonly IJogoRepository _jogoRepository;
+
+        public PedidoController(IPedidoRepository pedidoRepository, 
+                                IPromocaoRepository promocaoRepository,
+                                IUsuarioRepository usuarioRepository,
+                                IJogoRepository jogoRepository)
+        {
+            _pedidoRepository = pedidoRepository;
+            _promocaoRepository = promocaoRepository;
+            _usuarioRepository = usuarioRepository;
+            _jogoRepository = jogoRepository;
+        }
+
+        /// <summary>
+        /// Retorna todos os pedidos
+        /// </summary>
+        /// <returns>Lista de pedidos</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                var pedidos = _pedidoRepository.ObterTodos()
+                     .OrderBy(p => p.Id)
+                     .ToList();
+
+                var pedidosDto = new List<PedidoDto>();
+                
+                foreach (var pedido in pedidos)
+                {
+                    pedidosDto.Add(new PedidoDto()
+                    {
+                        Id = pedido.Id,
+                        DataCriacao = pedido.DataCriacao,
+                        UsuarioId = pedido.UsuarioId,
+                        JogoId = pedido.JogoId,
+                        PromocaoId = pedido.PromocaoId,
+                        VlPedido = pedido.VlPedido,
+                        VlDesconto = pedido.VlDesconto,
+                        VlPago = pedido.VlPago                        
+                    });
+                }
+
+                return Ok(pedidosDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao obter todos os pedidos.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Busca um pedido específico pelo ID
+        /// </summary>
+        /// <param name="id">ID da Pedido</param>
+        /// <returns>Pedido encontrado</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpGet("{id:int}")]
+        public IActionResult Get([FromRoute] int id)
+        {
+            try
+            {
+                var pedido = _pedidoRepository.ObterPorId(id);
+
+                if (pedido == null)
+                    return NotFound("Pedido não encontrado.");
+
+                var pedidoDto = new PedidoDto
+                {
+                    Id = pedido.Id,
+                    DataCriacao = pedido.DataCriacao,
+                    JogoId = pedido.JogoId,
+                    UsuarioId = pedido.UsuarioId,
+                    PromocaoId = pedido.PromocaoId,
+                    VlPedido = pedido.VlPedido,
+                    VlDesconto = pedido.VlDesconto,
+                    VlPago = pedido.VlPago
+                };
+
+                return Ok(pedidoDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao obter o jogo.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+
+        /// <summary>
+        /// Busca pedidos de um usuário autenticado.
+        /// </summary>
+        /// <param name="id">ID da Pedido.</param>
+        /// <returns>Pedido encontrado.</returns>
+        [Authorize]
+        [HttpGet("meus-pedidos")]
+        public IActionResult GetPedidosPorUsuario()
+        {
+            try
+            {
+                
+                int usuarioid = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+                var pedidos = _pedidoRepository.ObterPedidosPorUsuario(usuarioid);
+
+                var pedidosDto = pedidos.Select(p => new PedidoDto()
+                {
+                Id = p.Id,
+                DataCriacao = p.DataCriacao,
+                UsuarioId = p.UsuarioId,
+                JogoId = p.JogoId,
+                PromocaoId = p.PromocaoId,                
+                VlPedido = p.VlPedido,
+                VlDesconto = p.VlDesconto,
+                VlPago = p.VlPago
+               }).ToList();
+
+                return Ok(pedidosDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao obter pedidos do usuário.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+
+
+
+
+
+        private IActionResult CadastrarPedido(PedidoInput input, int? usuarioId)
+        {
+            try
+            {
+
+                if (_usuarioRepository == null)
+                    return BadRequest("Repositório de usuários não está disponível.");
+
+
+                var usuario = _usuarioRepository.ObterPorId(usuarioId);
+                if (usuario == null)
+                    return BadRequest($"Usuario não encontrado");
+
+                var jogo = _jogoRepository.ObterPorId(input.JogoId);
+                if (jogo == null)
+                    return BadRequest($"Jogo não encontrado");
+
+                Promocao promocao = null;
+                if (input.PromocaoId != null)
+                {
+                    promocao = _promocaoRepository.ObterPorId(input.PromocaoId.Value);
+                    if (promocao == null)
+                        return BadRequest("Promoção não encontrada");
+                }
+
+                
+                var pedido = new Pedido
+                {
+                    UsuarioId = (int)usuarioId, 
+                    JogoId = (int)input.JogoId,
+                    PromocaoId = input.PromocaoId,
+                    
+                };
+
+                pedido.ValidarECalcularPedido(usuario, jogo, promocao);
+
+                _pedidoRepository.Cadastrar(pedido);
+
+                return Ok("Pedido cadastrado.");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao inserir pedido.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Cadastrar Pedido do usuário autenticado
+        /// </summary>
+        /// <param name="input">Objeto com os dados do Pedido</param>
+        /// <returns>Pedido cadastrado com sucesso</returns>
+        [Authorize]
+        [HttpPost]
+        public IActionResult Post([FromBody] PedidoInputUsuario input)
+        {
+            var usuarioIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            if (!int.TryParse(usuarioIdStr, out var usuarioId) || usuarioId <= 0)
+                return BadRequest("Usuário inválido.");
+
+            
+            var pedidoInput = new PedidoInput
+            {
+                UsuarioId = usuarioId,
+                JogoId = input.JogoId,
+                PromocaoId = input.PromocaoId
+            };
+
+            return CadastrarPedido(pedidoInput, usuarioId);
+        }
+
+        /// <summary>
+        /// Cadastrar Pedido para um usuário específico
+        /// </summary>
+        /// <param name="input">Objeto com os dados do Pedido</param>
+        /// <returns>Pedido cadastrado com sucesso</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpPost("cadastrar-para-usuario")]
+        public IActionResult PostPorUsuario([FromBody] PedidoInput input)
+        {
+            if (input.UsuarioId <= 0)
+                return BadRequest("Id de usuário inválido.");
+
+            return CadastrarPedido(input, input.UsuarioId);
+        }
+
+
+
+
+        /// <summary>
+        /// Alterar Pedido
+        /// </summary>
+        /// <param name="input">Objeto com os dados do Pedido</param>
+        /// <returns>Pedido alterado</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpPut]
+        public IActionResult Put([FromBody] PedidoUpdateInput input)
+        {
+            try
+            {
+
+                var usuario = _usuarioRepository.ObterPorId(input.UsuarioId);
+                if (usuario == null)
+                    return BadRequest($"Usuario não encontrado");
+
+                var jogo = _jogoRepository.ObterPorId(input.JogoId);
+                if (jogo == null)
+                    return BadRequest($"Jogo não encontrado");
+
+                Promocao promocao = null;
+                if (input.PromocaoId != null)
+                {
+                    promocao = _promocaoRepository.ObterPorId(input.PromocaoId.Value);
+                    if (promocao == null)
+                        return BadRequest("Promoção não encontrada");
+                }
+
+                var pedido = new Pedido
+                {
+                    UsuarioId = (int)input.UsuarioId,
+                    JogoId = (int)input.JogoId,
+                    PromocaoId = input.PromocaoId
+                };
+
+                pedido.ValidarECalcularPedido(usuario, jogo, promocao);
+
+                _pedidoRepository.Alterar(pedido);
+
+                return Ok(new { Message = "Pedido alterado." });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao alterar pedido.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Excluir um Pedido específico pelo ID
+        /// </summary>
+        /// <param name="id">ID do Pedido</param>
+        /// <returns>Excluir Pedido</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            try
+            {
+
+                if (_pedidoRepository.ObterPorId(id) == null)
+                    return NotFound("Pedido inexistente.");
+
+                _pedidoRepository.Deletar(id);
+                return Ok(new { Message = "Pedido excluído." });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Message = "Erro ao deletar pedido.",
+                    Error = e.Message,
+                    Inner = e.InnerException?.Message
+                });
+            }
+        }
+
+
+        /// <summary>
+        /// Cadastro em Massa de Pedidos
+        /// </summary>
+        [Authorize(Policy = "Authenticated")]
+        [HttpPost("cadastro-em-massa")]
+        public IActionResult CadastroEmMassa()
+        {
+            try
+            {
+                var pedidos = new List<Pedido>()
+        {
+            new Pedido() { UsuarioId = 1, JogoId = 2, PromocaoId = 3 },
+            new Pedido() { UsuarioId = 2, JogoId = 3, PromocaoId = 1 },
+            new Pedido() { UsuarioId = 3, JogoId = 1, PromocaoId = 2 }
+        };
+
+                foreach (var pedido in pedidos)
+                {
+                    // Busca entidades por ID
+                    var usuario = _usuarioRepository.ObterPorId(pedido.UsuarioId);
+                    if (usuario == null)
+                        return BadRequest($"Usuário ID {pedido.UsuarioId} não encontrado.");
+
+                    var jogo = _jogoRepository.ObterPorId(pedido.JogoId);
+                    if (jogo == null)
+                        return BadRequest($"Jogo ID {pedido.JogoId} não encontrado.");
+
+                    Promocao promocao = null;
+                    if (pedido.PromocaoId.HasValue)
+                    {
+                        promocao = _promocaoRepository.ObterPorId(pedido.PromocaoId.Value);
+                        if (promocao == null)
+                            return BadRequest($"Promoção ID {pedido.PromocaoId} não encontrada.");
+                    }
+
+                    // Valida e calcula valores
+                    pedido.ValidarECalcularPedido(usuario, jogo, promocao);                 }
+
+                // Move o cadastro para fora do foreach
+                _pedidoRepository.CadastrarEmMassa(pedidos);
+
+                return Ok(new { Message = "Pedidos cadastrados em massa." });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { Message = "Erro ao cadastrar pedidos em massa", Error = e.Message });
+            }
+        }
+    }
+}

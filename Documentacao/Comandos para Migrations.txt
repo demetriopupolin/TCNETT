@@ -1,0 +1,10 @@
+---> criar migration
+Add-Migration PrimeiraMigracao -Project Infrastructure -StartupProject FiapCloudGamesApi
+
+---> atualizar o banco de dados
+Executar a migration 
+Update-Database -StartupProject FiapCloudGamesApi -Project Infrastructure
+
+---> criar .sql da migration
+Script-Migration -Project Infrastructure -StartupProject FiapCloudGamesApi
+

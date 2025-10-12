@@ -1,0 +1,466 @@
+[
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.ErroController",
+    "Method": "SimularErro",
+    "RelativePath": "api/Erro/simular",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.SecureController",
+    "Method": "AdminOnly",
+    "RelativePath": "api/Secure/admin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.SecureController",
+    "Method": "Authenticate",
+    "RelativePath": "api/Secure/authenticated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.SecureController",
+    "Method": "AnyUser",
+    "RelativePath": "api/Secure/user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "Core.Input.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "Health",
+    "RelativePath": "health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "HealthBd",
+    "RelativePath": "healthbd",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.AuthController",
+    "Method": "Healthz",
+    "RelativePath": "healthz",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
+    "Method": "Get",
+    "RelativePath": "Jogo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
+    "Method": "Post",
+    "RelativePath": "Jogo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "JogoInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
+    "Method": "Put",
+    "RelativePath": "Jogo",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.JogoUpdateInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
+    "Method": "Get",
+    "RelativePath": "Jogo/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
+    "Method": "Delete",
+    "RelativePath": "Jogo/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.JogoController",
+    "Method": "CadastroEmMassa",
+    "RelativePath": "Jogo/cadastro-em-massa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "Get",
+    "RelativePath": "Pedido",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "Post",
+    "RelativePath": "Pedido",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.PedidoInputUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "Put",
+    "RelativePath": "Pedido",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.PedidoUpdateInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "Get",
+    "RelativePath": "Pedido/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "Delete",
+    "RelativePath": "Pedido/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "PostPorUsuario",
+    "RelativePath": "Pedido/cadastrar-para-usuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.PedidoInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "CadastroEmMassa",
+    "RelativePath": "Pedido/cadastro-em-massa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PedidoController",
+    "Method": "GetPedidosPorUsuario",
+    "RelativePath": "Pedido/meus-pedidos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PromocaoController",
+    "Method": "Get",
+    "RelativePath": "Promocao",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PromocaoController",
+    "Method": "Post",
+    "RelativePath": "Promocao",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.PromocaoInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PromocaoController",
+    "Method": "Put",
+    "RelativePath": "Promocao",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.PromocaoUpdateInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PromocaoController",
+    "Method": "Get",
+    "RelativePath": "Promocao/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PromocaoController",
+    "Method": "Delete",
+    "RelativePath": "Promocao/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.PromocaoController",
+    "Method": "CadastroEmMassa",
+    "RelativePath": "Promocao/cadastro-em-massa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "Get",
+    "RelativePath": "Usuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "Post",
+    "RelativePath": "Usuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.UsuarioInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "Put",
+    "RelativePath": "Usuario",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.UsuarioUpdateInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "Get",
+    "RelativePath": "Usuario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "Put",
+    "RelativePath": "Usuario/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "CadastrarAdmin",
+    "RelativePath": "Usuario/cadastrar-admin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "Core.Input.UsuarioInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FiapCloudGamesApi.Controllers.UsuarioController",
+    "Method": "CadastroEmMassa",
+    "RelativePath": "Usuario/cadastro-em-massa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

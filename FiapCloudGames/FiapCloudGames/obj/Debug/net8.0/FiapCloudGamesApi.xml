@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FiapCloudGamesApi</name>
+    </assembly>
+    <members>
+        <member name="M:FiapCloudGamesApi.Controllers.AuthController.Health">
+            <summary>
+            Endpoint de health check interno (retorna 200 OK).
+            </summary>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.AuthController.Healthz">
+            <summary>
+            Endpoint usado por Load Balancer / Kubernetes.
+            </summary>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.JogoController.Post(JogoInput)">
+            <summary>
+            Cadastrar Jogo
+            </summary>
+            <param name="input">Objeto com os dados do Jogo</param>
+            <returns>Jogo cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.JogoController.Put(Core.Input.JogoUpdateInput)">
+            <summary>
+            Alterar Jogo
+            </summary>
+            <param name="input">Objeto com os dados do Jogo</param>
+            <returns>Jogo alterado</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.JogoController.Delete(System.Int32)">
+            <summary>
+            Excluir um jogo específico pelo ID
+            </summary>
+            <param name="id">ID do Jogo</param>
+            <returns>Excluir Jogo</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.JogoController.CadastroEmMassa">
+            <summary>
+            Cadastro em Massa de Jogos
+            </summary>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Get">
+            <summary>
+            Retorna todos os pedidos
+            </summary>
+            <returns>Lista de pedidos</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Get(System.Int32)">
+            <summary>
+            Busca um pedido específico pelo ID
+            </summary>
+            <param name="id">ID da Pedido</param>
+            <returns>Pedido encontrado</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.GetPedidosPorUsuario">
+            <summary>
+            Busca pedidos de um usuário autenticado.
+            </summary>
+            <param name="id">ID da Pedido.</param>
+            <returns>Pedido encontrado.</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Post(Core.Input.PedidoInputUsuario)">
+            <summary>
+            Cadastrar Pedido do usuário autenticado
+            </summary>
+            <param name="input">Objeto com os dados do Pedido</param>
+            <returns>Pedido cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.PostPorUsuario(Core.Input.PedidoInput)">
+            <summary>
+            Cadastrar Pedido para um usuário específico
+            </summary>
+            <param name="input">Objeto com os dados do Pedido</param>
+            <returns>Pedido cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Put(Core.Input.PedidoUpdateInput)">
+            <summary>
+            Alterar Pedido
+            </summary>
+            <param name="input">Objeto com os dados do Pedido</param>
+            <returns>Pedido alterado</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.Delete(System.Int32)">
+            <summary>
+            Excluir um Pedido específico pelo ID
+            </summary>
+            <param name="id">ID do Pedido</param>
+            <returns>Excluir Pedido</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PedidoController.CadastroEmMassa">
+            <summary>
+            Cadastro em Massa de Pedidos
+            </summary>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PromocaoController.Get">
+            <summary>
+            Retorna todas as promoções
+            </summary>
+            <returns>Lista de promoções</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PromocaoController.Get(System.Int32)">
+            <summary>
+            Busca uma promoção específico pelo ID
+            </summary>
+            <param name="id">ID da Promoção</param>
+            <returns>Promoção encontrada</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PromocaoController.Post(Core.Input.PromocaoInput)">
+            <summary>
+            Cadastrar Promoção
+            </summary>
+            <param name="input">Objeto com os dados da Promoção</param>
+            <returns>Promoção cadastrada com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PromocaoController.Put(Core.Input.PromocaoUpdateInput)">
+            <summary>
+            Alterar Promoção
+            </summary>
+            <param name="input">Objeto com os dados da Promoção</param>
+            <returns>Promoção alterada</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PromocaoController.Delete(System.Int32)">
+            <summary>
+            Excluir uma Promoção específica pelo ID
+            </summary>
+            <param name="id">ID da Promoção</param>
+            <returns>Excluir Promoção</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.PromocaoController.CadastroEmMassa">
+            <summary>
+            Cadastro em Massa de Promoções
+            </summary>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.Get">
+            <summary>
+            Retorna todos os Usuários
+            </summary>
+            <returns>Lista de Usuários</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.Get(System.Int32)">
+            <summary>
+            Busca um Usuário específico pelo ID
+            </summary>
+            <param name="id">ID do Usuário</param>
+            <returns>Usuário encontrado</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.Post(Core.Input.UsuarioInput)">
+            <summary>
+            Cadastrar Usuário
+            </summary>
+            <param name="input">Objeto com os dados do Usuário</param>
+            <returns>Usuário cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.CadastrarAdmin(Core.Input.UsuarioInput)">
+            <summary>
+            Cadastrar Usuário Admin
+            </summary>
+            <param name="input">Objeto com os dados do Usuário Admin</param>
+            <returns>Usuário Admin cadastrado com sucesso</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.Put(Core.Input.UsuarioUpdateInput)">
+            <summary>
+            Alterar Usuário
+            </summary>
+            <param name="input">Objeto com os dados do Usuário</param>
+            <returns>Usuário alterado.</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.Put(System.Int32)">
+            <summary>
+            Excluir um Usuário específico pelo ID
+            </summary>
+            <param name="id">ID do Usuário</param>
+            <returns>Excluir Usuário</returns>
+        </member>
+        <member name="M:FiapCloudGamesApi.Controllers.UsuarioController.CadastroEmMassa">
+            <summary>
+            Cadastro em Massa de Usuários
+            </summary>
+        </member>
+    </members>
+</doc>
