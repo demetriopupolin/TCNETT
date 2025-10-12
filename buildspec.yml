@@ -37,7 +37,7 @@ phases:
   build:
     commands:
       - echo "Compilando projeto em modo Release..."
-      - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release
+      - dotnet build FiapCloudGames/FiapCloudGames.sln --configuration Release -nowarn:*
       - |
         source ~/.bash_profile
         if [ "$BRANCH_NAME" = "main" ]; then

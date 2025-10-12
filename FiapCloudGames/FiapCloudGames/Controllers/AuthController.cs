@@ -59,6 +59,35 @@ namespace FiapCloudGamesApi.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        // =======================
+        // HEALTH CHECKS
+        // =======================
+        /// <summary>
+        /// Endpoint de health check interno (retorna 200 OK).
+        /// </summary>
+        [HttpGet("/health")]
+        public IActionResult Health()
+        {
+            return Ok("OK");
+        }
+
+        /// <summary>
+        /// Endpoint usado por Load Balancer / Kubernetes.
+        /// </summary>
+        [HttpGet("/healthz")]
+        public IActionResult Healthz()
+        {
+            return Ok("OK");
+        }
+
+
+
+
+
+
+
+
     }
 
 }
