@@ -110,10 +110,6 @@ namespace FiapCloudGamesApi.Controllers
             }
         }
 
-
-
-
-
     }
 
 }
