@@ -93,6 +93,9 @@ namespace FiapCloudGamesApi.Controllers
 
             try
             {
+                var builder = new SqlConnectionStringBuilder(connectionString);
+                string serverName = builder.DataSource;
+
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -102,11 +105,20 @@ namespace FiapCloudGamesApi.Controllers
                     }
                 }
 
-                return Ok(new { status = "UP", message = "Banco de dados acessível" });
+                return Ok(new { status = "UP", server = serverName, message = "Banco de dados acessível" });
             }
             catch (Exception ex)
             {
-                return StatusCode(503, new { status = "DOWN", message = "Banco de dados indisponível", error = ex.Message });
+                var builder = new SqlConnectionStringBuilder(connectionString);
+                string serverName = builder.DataSource;
+
+                return StatusCode(503, new
+                {
+                    status = "DOWN",
+                    server = serverName,
+                    message = "Banco de dados indisponível",
+                    error = ex.Message
+                });
             }
         }
 
